@@ -21,7 +21,7 @@ LIBRARIES = [MULTI_SPIN_FOLDER, CC_USB_FIRMWARE_FOLDER]
 PROJECTS = [LISTEN_NODE_FOLDER, RF_SENSOR_FOLDER]
 
 # Get the installation path
-print('Multi-Spin 2.0 installation')
+print('multi-Spin 2.0 installation')
 print('---------------------------', end = '\n\n')
 installation_path = input('Enter installation path: ')
 
@@ -84,4 +84,4 @@ for project in PROJECTS:
         os._exit(1)
 
 # Finish the installation
-print('Multi-Spin 2.0 has successfully been installed!')
+print('multi-Spin 2.0 has successfully been installed!')
