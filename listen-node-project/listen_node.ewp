@@ -287,6 +287,8 @@
         <option>
           <name>CCDefines</name>
           <state>chip=2530</state>
+          <state>USB_UART</state>
+          <state>BUF_SIZE=192</state>
         </option>
         <option>
           <name>CCPreprocFile</name>
