@@ -1,6 +1,6 @@
 import os
 import shutil
-import urllib.request
+import urllib2
 import zipfile
 
 # Sources and folders
@@ -22,7 +22,7 @@ LIBRARIES = [MULTI_SPIN_FOLDER, CC_USB_FIRMWARE_FOLDER]
 PROJECTS = [LISTEN_NODE_FOLDER, RF_NODE_FOLDER]
 
 # Get the installation path
-installation_path = input('Enter the installation path: ')
+installation_path = raw_input('Enter the installation path: ')
 
 # Check if the installation path exists or create it if possible
 if not os.path.exists(installation_path):
@@ -49,8 +49,8 @@ if os.path.exists(installation_path):
 for index, download in enumerate(DOWNLOADS):
     try:
         # Do not use the Python user agent as TI blocks it
-        request = urllib.request.Request(download, headers = {'User-Agent': ''})
-        response = urllib.request.urlopen(request)
+        request = urllib2.Request(download, headers = {'User-Agent': ''})
+        response = urllib2.urlopen(request)
         output = open(LIBRARIES[index] + '.zip', 'wb')
         output.write(response.read())
         output.close()
