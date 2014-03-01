@@ -3,7 +3,7 @@ This repository contains the radio tomography software for usage with the CC2530
 Requirements
 ============
 
-* Python
+* Python 2.7
 * IAR Embedded Workbench for 8051 version 7.60 (either the full edition or a version without code size limitations)
 
 Installation
