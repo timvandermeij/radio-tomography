@@ -12,6 +12,7 @@ CC_USB_FIRMWARE_FOLDER= 'cc-usb-firmware'
 
 LISTEN_NODE_FOLDER = 'listen-node-project'
 RF_SENSOR_FOLDER = 'rf-sensor-project'
+XPAND_UPDATES_FOLDER = 'xpand2531-updates'
 
 LIBRARIES_FOLDER = 'libraries'
 PROJECTS_FOLDER = 'projects'
@@ -21,9 +22,7 @@ LIBRARIES = [MULTI_SPIN_FOLDER, CC_USB_FIRMWARE_FOLDER]
 PROJECTS = [LISTEN_NODE_FOLDER, RF_SENSOR_FOLDER]
 
 # Get the installation path
-print('multi-Spin 2.0 installation')
-print('---------------------------', end = '\n\n')
-installation_path = input('Enter installation path: ')
+installation_path = input('Enter the installation path: ')
 
 # Check if the installation path exists or create it if possible
 if not os.path.exists(installation_path):
@@ -55,7 +54,7 @@ for index, download in enumerate(DOWNLOADS):
         output = open(LIBRARIES[index] + '.zip', 'wb')
         output.write(response.read())
         output.close()
-        print('-> Successfully downloaded "' + download + '"')
+        print('-> Downloaded "' + download + '"')
     except urllib.request.URLError as e:
         print('-> Could not download the library files from "' + download + '"; aborting!')
         os._exit(1)
@@ -68,20 +67,30 @@ for library in LIBRARIES:
         zip_file.extractall(os.path.join(libraries_path, library))
         zip_file.close()
         os.remove(library + '.zip')
-        print('-> Successfully extracted and removed "' + library + '.zip"')
+        print('-> Extracted and removed "' + library + '.zip"')
     except shutil.Error:
         print('-> Could not extract the libraries to the installation path; aborting!')
         os._exit(1)
+
+# Patch the xpand2531 code with our custom changes.
+multi_spin_path = os.path.join(libraries_path, MULTI_SPIN_FOLDER)
+try:
+    shutil.copy(XPAND_UPDATES_FOLDER + '/leds.c', multi_spin_path + '/multi-Spin_v2.0/xpand2531/leds.c')
+    print('-> Patched multi-Spin 2.0')
+except shutil.Error:
+    print('-> Could not patch multi-Spin 2.0; aborting!')
+    os._exit(1)
 
 # Copy the projects to the installation path
 projects_path = os.path.join(installation_path, PROJECTS_FOLDER)
 for project in PROJECTS:
     try:
         shutil.copytree(project, os.path.join(projects_path, project))
-        print('-> Successfully copied project folder "' + project + '"')
+        print('-> Copied project folder "' + project + '"')
     except shutil.Error:
         print('-> Could not copy the projects to the installation path; aborting!')
         os._exit(1)
 
 # Finish the installation
-print('multi-Spin 2.0 has successfully been installed!')
+print('Installation finished successfully!')
+os._exit(0)
