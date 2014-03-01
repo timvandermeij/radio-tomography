@@ -4,9 +4,9 @@ Requirements
 ============
 
 * Python 2.7
-** For all commands below, substitute `python` by `python2` if your Linux distribution uses that to distinguish between Python 2.x and Python 3.x. 
+  * For all commands below, substitute `python` by `python2` if your Linux distribution uses that to distinguish between Python 2.x and Python 3.x. 
 * IAR Embedded Workbench for 8051 version 7.60
-** Only the full version or a version without code size limitations will work.
+  * Only the full version or a version without code size limitations will work.
 
 Installation
 ============
