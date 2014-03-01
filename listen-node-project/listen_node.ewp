@@ -723,7 +723,7 @@
         </option>
         <option>
           <name>OutputFile</name>
-          <state>listen_node.d51</state>
+          <state>listen_node.a51</state>
         </option>
         <option>
           <name>OutputFormat</name>
@@ -901,7 +901,7 @@
         </option>
         <option>
           <name>DebugInformation</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>RuntimeControl</name>
