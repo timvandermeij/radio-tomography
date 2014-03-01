@@ -1,7 +1,9 @@
 # Configuration
 SDCC = sdcc
+PACKIHX = packihx
 SDCC_LIB_PATH = /usr/share/sdcc/lib
 SDAS8051 = sdas8051 # Intel 8051 compiler
+IHX = rf_node.ihx
 HEX = rf_node.hex
 
 # Include paths, object definitions and compilation flags
@@ -33,7 +35,8 @@ CFLAGS += $(INCLUDES) -DNDEBUG -Dchip=2530 -DINCLUDE_PA=2591 --model-large --dis
 
 # Compilation targets
 main: $(OBJS)
-	$(SDCC) $(CFLAGS) -L $(SDCC_LIB_PATH)/large -o $(HEX) $(OBJS)
+	$(SDCC) $(CFLAGS) -L $(SDCC_LIB_PATH)/large -o $(IHX) $(OBJS)
+	$(PACKIHX) $(IHX) > $(HEX)
 
 clean:
 	rm $(OBJS)
