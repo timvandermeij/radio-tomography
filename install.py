@@ -12,7 +12,7 @@ CC_USB_FIRMWARE_FOLDER= 'cc-usb-firmware'
 
 LISTEN_NODE_FOLDER = 'listen-node-project'
 RF_NODE_FOLDER = 'rf-node-project'
-XPAND_UPDATES_FOLDER = 'xpand2531-updates'
+PATCHES_FOLDER = 'patches'
 
 LIBRARIES_FOLDER = 'libraries'
 PROJECTS_FOLDER = 'projects'
@@ -72,13 +72,24 @@ for library in LIBRARIES:
         print('-> Could not extract the libraries to the installation path; aborting!')
         os._exit(1)
 
-# Patch the xpand2531 code with our custom changes.
+# Apply the patches for LED support and SDCC compilation.
 multi_spin_path = os.path.join(libraries_path, MULTI_SPIN_FOLDER)
+cc_usb_firmware_path = os.path.join(libraries_path, CC_USB_FIRMWARE_FOLDER)
 try:
-    shutil.copy(XPAND_UPDATES_FOLDER + '/leds.c', multi_spin_path + '/multi-Spin_v2.0/xpand2531/leds.c')
-    print('-> Patched multi-Spin 2.0')
+    shutil.copy(PATCHES_FOLDER + '/leds.c', multi_spin_path + '/multi-Spin_v2.0/xpand2531/leds.c')
+    shutil.copy(PATCHES_FOLDER + '/ioCC2530.h', libraries_path + '/ioCC2530.h')
+    shutil.copy(PATCHES_FOLDER + '/ioCC2531.h', libraries_path + '/ioCC2531.h')
+    shutil.copy(PATCHES_FOLDER + '/rf.c', multi_spin_path + '/multi-Spin_v2.0/xpand2531/rf.c')
+    shutil.copy(PATCHES_FOLDER + '/rf.h', multi_spin_path + '/multi-Spin_v2.0/xpand2531/rf.h')
+    shutil.copy(PATCHES_FOLDER + '/timers34.c', multi_spin_path + '/multi-Spin_v2.0/xpand2531/timers34.c')
+    shutil.copy(PATCHES_FOLDER + '/timers34.h', multi_spin_path + '/multi-Spin_v2.0/xpand2531/timers34.h')
+    shutil.copy(PATCHES_FOLDER + '/flash.c', multi_spin_path + '/multi-Spin_v2.0/xpand2531/flash.c')
+    shutil.copy(PATCHES_FOLDER + '/main_rf_node.c', multi_spin_path + '/multi-Spin_v2.0/RF_sensor/main.c')
+    shutil.copy(PATCHES_FOLDER + '/hal_types.h', cc_usb_firmware_path + '/source/components/common/hal_types.h')
+    shutil.copy(PATCHES_FOLDER + '/hal_int.h', cc_usb_firmware_path + '/source/components/targets/interface/hal_int.h')
+    print('-> Applied patches')
 except shutil.Error:
-    print('-> Could not patch multi-Spin 2.0; aborting!')
+    print('-> Could not apply all patches; aborting!')
     os._exit(1)
 
 # Copy the projects to the installation path
