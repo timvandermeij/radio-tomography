@@ -11,7 +11,7 @@ MULTI_SPIN_FOLDER = 'multi-spin-2.0'
 CC_USB_FIRMWARE_FOLDER= 'cc-usb-firmware'
 
 LISTEN_NODE_FOLDER = 'listen-node-project'
-RF_SENSOR_FOLDER = 'rf-sensor-project'
+RF_NODE_FOLDER = 'rf-node-project'
 XPAND_UPDATES_FOLDER = 'xpand2531-updates'
 
 LIBRARIES_FOLDER = 'libraries'
@@ -19,7 +19,7 @@ PROJECTS_FOLDER = 'projects'
 
 DOWNLOADS = [MULTI_SPIN_URL, CC_USB_FIRMWARE_URL]
 LIBRARIES = [MULTI_SPIN_FOLDER, CC_USB_FIRMWARE_FOLDER]
-PROJECTS = [LISTEN_NODE_FOLDER, RF_SENSOR_FOLDER]
+PROJECTS = [LISTEN_NODE_FOLDER, RF_NODE_FOLDER]
 
 # Get the installation path
 installation_path = input('Enter the installation path: ')

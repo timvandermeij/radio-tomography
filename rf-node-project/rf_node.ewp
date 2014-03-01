@@ -17,15 +17,15 @@
         <debug>0</debug>
         <option>
           <name>DerivativeDescriptionFile</name>
-          <state>$TOOLKIT_DIR$\config\devices\Texas Instruments\CC2531F256.i51</state>
+          <state>$TOOLKIT_DIR$\config\devices\Texas Instruments\CC2530F256.i51</state>
         </option>
         <option>
           <name>Previous Derivative File</name>
-          <state>$TOOLKIT_DIR$\config\devices\Texas Instruments\CC2531F256.i51</state>
+          <state>$TOOLKIT_DIR$\config\devices\Texas Instruments\CC2530F256.i51</state>
         </option>
         <option>
           <name>Showed Derivative</name>
-          <state>CC2531F256</state>
+          <state>CC2530F256</state>
         </option>
         <option>
           <name>CPU Core</name>
@@ -90,7 +90,7 @@
         <option>
           <name>Nr of Datapointers</name>
           <version>0</version>
-          <state>1</state>
+          <state>0</state>
         </option>
         <option>
           <name>Switch Method</name>
@@ -110,7 +110,7 @@
         </option>
         <option>
           <name>DPTR Addresses</name>
-          <state>-D?DPL1=0x84 -D?DPH1=0x85</state>
+          <state></state>
         </option>
         <option>
           <name>CodeBankReg</name>
@@ -160,25 +160,25 @@
         </option>
         <option>
           <name>RTLibraryPath</name>
-          <state>$TOOLKIT_DIR$\LIB\CLIB\cl-pli-nlxd-2e16inc.r51</state>
+          <state>$TOOLKIT_DIR$\LIB\CLIB\cl-pli-nlxd-1e16x01.r51</state>
         </option>
         <option>
           <name>Input variant</name>
           <version>0</version>
-          <state>2</state>
+          <state>1</state>
         </option>
         <option>
           <name>Input description</name>
-          <state>No float.</state>
+          <state>Full formatting.</state>
         </option>
         <option>
           <name>Output variant</name>
           <version>0</version>
-          <state>2</state>
+          <state>1</state>
         </option>
         <option>
           <name>Output description</name>
-          <state>No float.</state>
+          <state>Full formatting.</state>
         </option>
         <option>
           <name>GeneralEnableMisra</name>
@@ -266,9 +266,8 @@
         <option>
           <name>CCDefines</name>
           <state>NDEBUG</state>
-          <state>BUF_SIZE=192</state>
-          <state>USB_UART</state>
-          <state>chip=2531</state>
+          <state>chip=2530</state>
+          <state>INCLUDE_PA=2591</state>
         </option>
         <option>
           <name>CCPreprocFile</name>
@@ -308,7 +307,7 @@
         </option>
         <option>
           <name>CCDiagSuppress</name>
-          <state>Pe001,Pa084,Pa082</state>
+          <state></state>
         </option>
         <option>
           <name>CCDiagRemark</name>
@@ -353,11 +352,11 @@
         </option>
         <option>
           <name>CCObjUseModuleName</name>
-          <state>1</state>
+          <state>0</state>
         </option>
         <option>
           <name>CCObjModuleName</name>
-          <state></state>
+          <state>rf_node.hex</state>
         </option>
         <option>
           <name>CCDebugInfo</name>
@@ -446,12 +445,10 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
-          <state>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\usb\class_cdc</state>
-          <state>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\usb\library</state>
           <state>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\common</state>
           <state>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\targets\interface</state>
-          <state>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\targets\cc2531_dongle</state>
-          <state>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\utils</state>
+          <state>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\targets\srf05_soc</state>
+          <state>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\common\cc8051</state>
           <state>$PROJ_DIR$\..\..\libraries\multi-spin-2.0\multi-Spin_v2.0\xpand2531</state>
           <state>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\radios\cc2530</state>
         </option>
@@ -612,11 +609,11 @@
         <option>
           <name>AIncludes</name>
           <state>$TOOLKIT_DIR$\INC\</state>
-          <state>$PROJ_DIR$\components\radios\cc2530</state>
+          <state>$PROJ_DIR$\components\radios\cc2530\</state>
         </option>
         <option>
           <name>ADefines</name>
-          <state>chip=2531</state>
+          <state>chip=2530</state>
         </option>
         <option>
           <name>AWarnEnable</name>
@@ -690,7 +687,7 @@
         </option>
         <option>
           <name>OutputFile</name>
-          <state>listen_node.a51</state>
+          <state>rf_node.a51</state>
         </option>
         <option>
           <name>OutputFormat</name>
@@ -756,7 +753,7 @@
         </option>
         <option>
           <name>XclFile</name>
-          <state>$TOOLKIT_DIR$\config\devices\Texas Instruments\lnk51ew_cc2531F256.xcl</state>
+          <state>$TOOLKIT_DIR$\config\devices\Texas Instruments\lnk51ew_cc2530F256.xcl</state>
         </option>
         <option>
           <name>XclFileSlave</name>
@@ -880,7 +877,7 @@
         </option>
         <option>
           <name>AllowExtraOutput</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>GenerateExtraOutput</name>
@@ -892,7 +889,7 @@
         </option>
         <option>
           <name>ExtraOutputFile</name>
-          <state>listen_node.hex</state>
+          <state>rf_node.hex</state>
         </option>
         <option>
           <name>ExtraOutputFormat</name>
@@ -1035,94 +1032,7 @@
   <group>
     <name>application</name>
     <file>
-      <name>$PROJ_DIR$\..\..\libraries\multi-spin-2.0\multi-Spin_v2.0\listen_node\main.c</name>
-    </file>
-  </group>
-  <group>
-    <name>hal</name>
-    <group>
-      <name>common</name>
-      <group>
-        <name>io</name>
-        <file>
-          <name>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\targets\common\hal_uart_usb.c</name>
-        </file>
-      </group>
-      <file>
-        <name>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\common\hal_int.c</name>
-      </file>
-    </group>
-    <group>
-      <name>radio</name>
-      <group>
-        <name>cc2530</name>
-        <file>
-          <name>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\radios\cc2530\clock.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\radios\cc2530\hal_mcu.c</name>
-        </file>
-      </group>
-    </group>
-    <group>
-      <name>rfusb</name>
-      <file>
-        <name>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\targets\cc2531_dongle\hal_assert.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\targets\cc2531_dongle\hal_board.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\targets\cc2531_dongle\hal_led.c</name>
-      </file>
-    </group>
-  </group>
-  <group>
-    <name>usb</name>
-    <group>
-      <name>class_cdc</name>
-      <file>
-        <name>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\usb\class_cdc\usb_cdc_descriptor.s51</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\usb\class_cdc\usb_cdc_hooks.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\usb\class_cdc\usb_firmware_library_config.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\usb\class_cdc\usb_uart.c</name>
-      </file>
-    </group>
-    <group>
-      <name>library</name>
-      <group>
-        <name>cc2531</name>
-        <file>
-          <name>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\usb\library\cc2531\hal_enter_pm.s51</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\usb\library\cc2531\usb_interrupt.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\usb\library\cc2531\usb_suspend.c</name>
-        </file>
-      </group>
-      <file>
-        <name>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\usb\library\usb_descriptor_parser.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\usb\library\usb_framework.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\usb\library\usb_standard_requests.c</name>
-      </file>
-    </group>
-  </group>
-  <group>
-    <name>utilities</name>
-    <file>
-      <name>$PROJ_DIR$\..\..\libraries\cc-usb-firmware\source\components\utils\util_buffer.c</name>
+      <name>$PROJ_DIR$\..\..\libraries\multi-spin-2.0\multi-Spin_v2.0\RF_sensor\main.c</name>
     </file>
   </group>
   <group>
