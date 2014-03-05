@@ -17,8 +17,6 @@ INCLUDES =	-I$(BUILDROOT)/../../libraries \
 			-I$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531 \
 			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/radios/cc2530
 OBJS =	$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/RF_sensor/main.rel \
-		$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/flash.rel \
-		$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/flush_buffers.rel \
 		$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/leds.rel \
 		$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.rel \
 		$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/spin_clock.rel \
