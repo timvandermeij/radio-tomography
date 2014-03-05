@@ -8,11 +8,11 @@ HEX = rf_node.hex
 
 # Include paths, object definitions and compilation flags
 BUILDROOT = $(realpath .)
-INCLUDES =	-I$(BUILDROOT) \
-			-I$(BUILDROOT)/../../libraries \
+INCLUDES =	-I$(BUILDROOT)/../../libraries \
 			-I$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/RF_sensor \
 			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/common \
 			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/targets/interface \
+			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/targets/srf05_soc \
 			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/common/cc8051 \
 			-I$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531 \
 			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/radios/cc2530

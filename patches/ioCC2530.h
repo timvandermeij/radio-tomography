@@ -88,7 +88,6 @@ __sbit __at(addr+0) bit0;
 #define XREG(addr)       ((__xdata volatile unsigned char *) 0)[addr]
 #define PXREG(addr)      ((__xdata volatile unsigned char *) addr)
 #define VECT(num,addr)   numned char volatile __xdata *) addr)
-#define VECT(num,addr)   addr
 
 #else
 #error "Unrecognized compiler."
