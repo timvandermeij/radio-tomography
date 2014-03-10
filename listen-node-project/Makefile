@@ -41,7 +41,7 @@ OBJS =	$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/listen_node/m
 		$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.rel \
 		$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/spin_clock.rel \
 		$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.rel
-CFLAGS += $(INCLUDES) -DNDEBUG -Dchip=2530 -DINCLUDE_PA=2591 --model-large --disable-warning 85 --stack-auto --opt-code-size
+CFLAGS += $(INCLUDES) -DNDEBUG -DBUF_SIZE=192 -DUSB_UART -Dchip=2531 --model-large --disable-warning 85 --stack-auto --opt-code-size
 
 # Pattern rules
 %.rel: %.c
@@ -56,4 +56,4 @@ main: $(OBJS)
 	$(PACKIHX) $(IHX) > $(HEX)
 
 clean:
-	rm $(OBJS)
+	rm $(OBJS) *.hex *.ihx *.lk *.map *.mem

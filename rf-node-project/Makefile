@@ -36,4 +36,4 @@ main: $(OBJS)
 	$(PACKIHX) $(IHX) > $(HEX)
 
 clean:
-	rm $(OBJS)
+	rm $(OBJS) *.hex *.ihx *.lk *.map *.mem
