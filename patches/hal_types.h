@@ -142,21 +142,22 @@ typedef unsigned short istate_t;
  */
 #elif defined SDCC
 
-#ifndef BSP_H
-#define CODE   __code
-#define XDATA  __xdata
-#endif
-
-#define FAR
-#define NOP()  asm("NOP")
+#define CODE __code
+#define XDATA __xdata
+#define FAR __xdata
+#define NOP __asm \
+NOP \
+__endasm; \
 
 #define HAL_MCU_LITTLE_ENDIAN()   __LITTLE_ENDIAN__
 #define HAL_ISR_FUNC_DECLARATION(f,v)   \
-    _PRAGMA(vector=v) __near_func __interrupt void f(void)
+    void f(void) __interrupt (v)
 #define HAL_ISR_FUNC_PROTOTYPE(f,v)     \
-    _PRAGMA(vector=v) __near_func __interrupt void f(void)
+    void f(void) __interrupt (v)
 #define HAL_ISR_FUNCTION(f,v)           \
     HAL_ISR_FUNC_PROTOTYPE(f,v); HAL_ISR_FUNC_DECLARATION(f,v)
+
+typedef unsigned short istate_t;
 
 /*****************************************************
  * Other compilers
