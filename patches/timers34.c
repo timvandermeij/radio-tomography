@@ -26,14 +26,12 @@ void (*timer3IsrPtr)(void);
 void (*timer4IsrPtr)(void);
 char tickThreshSave3, tickThreshSave4;
 
-//#pragma vector=0x5B
-void timer3Isr(void) __interrupt
+void timer3Isr(void) __interrupt 11
 {
   timer3IsrPtr();
 }
 
-//#pragma vector=0x63
-void timer4Isr(void) __interrupt
+void timer4Isr(void) __interrupt 12
 {
   timer4IsrPtr();
 }

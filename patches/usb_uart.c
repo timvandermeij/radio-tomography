@@ -211,7 +211,7 @@ static void usbInProcess(void)
             bufGet(&rbTxBuf,buffer,length);
 
             // Write to USB FIFO
-            usbfwWriteFifo(&USBF4, length, buffer);
+            usbfwWriteFifo(USBF4, length, buffer);
 
             // Flag USB IN buffer as not ready (disarming EP4)
             USBFW_SELECT_ENDPOINT(4);
@@ -260,7 +260,7 @@ static void usbOutProcess(void)
         if (nToSend>0)
         {
             // Read from USB FIFO
-            usbfwReadFifo(&USBF4, nToSend, buffer);
+            usbfwReadFifo(USBF4, nToSend, buffer);
 
             // Write to radio TX buffer
             bufPut(&rbRxBuf,buffer,nToSend);

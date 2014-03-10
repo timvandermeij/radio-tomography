@@ -13,6 +13,7 @@ INCLUDES =	-I$(BUILDROOT)/../../libraries \
 			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/usb/class_cdc \
 			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/usb/library \
 			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/common \
+			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/common/cc8051 \
 			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/targets/interface \
 			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/targets/cc2531_dongle \
 			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/utils \
@@ -42,13 +43,14 @@ OBJS =	$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/listen_node/m
 		$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/spin_clock.rel \
 		$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.rel
 CFLAGS += $(INCLUDES) -DNDEBUG -DBUF_SIZE=192 -DUSB_UART -Dchip=2531 --model-large --disable-warning 85 --stack-auto --opt-code-size
+USB_DESCRIPTOR = $(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/usb/class_cdc/usb_cdc_descriptor.lst
 
 # Pattern rules
 %.rel: %.c
 	$(SDCC) -c $(CPPFLAGS) $(CFLAGS) $< -o $@
 
 %.rel: %.asm
-	$(SDAS8051) $(INCLUDES) -x -o $@ $<
+	$(SDAS8051) $(INCLUDES) -x -o $@ -l $(USB_DESCRIPTOR) $<
 
 # Compilation targets
 main: $(OBJS)
