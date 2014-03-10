@@ -87,10 +87,12 @@ PATCHES = {'clock.c': cc_usb_firmware_path + '/source/components/radios/cc2530/c
            'rf.h': multi_spin_path + '/multi-Spin_v2.0/xpand2531/rf.h',
            'timers34.c': multi_spin_path + '/multi-Spin_v2.0/xpand2531/timers34.c',
            'timers34.h': multi_spin_path + '/multi-Spin_v2.0/xpand2531/timers34.h',
+           'usb_framework.c': cc_usb_firmware_path + '/source/components/usb/library/usb_framework.c',
            'usb_framework.h': cc_usb_firmware_path + '/source/components/usb/library/usb_framework.h',
            'usb_framework_structs.h': cc_usb_firmware_path + '/source/components/usb/library/usb_framework_structs.h',
            'usb_interrupt.c': cc_usb_firmware_path + '/source/components/usb/library/cc2531/usb_interrupt.c',
            'usb_interrupt.h': cc_usb_firmware_path + '/source/components/usb/library/usb_interrupt.h',
+           'usb_standard_requests.c': cc_usb_firmware_path + '/source/components/usb/library/usb_standard_requests.c',
            'usb_uart.c': cc_usb_firmware_path + '/source/components/usb/class_cdc/usb_uart.c'}
 
 for source, destination in PATCHES.iteritems():
