@@ -42,6 +42,9 @@
 #define ADDR 0x1234 + (THIS_NODE_ID - 1)
 #define PAN 0x2011
 
+// Amplifier
+#define PA_LNA_RX_HGM() st( uint8 i; P0_7 = 1; for (i=0; i<8; i++) asm("NOP"); )
+
 spinPacket_t spinPacket,receivedPacket;
 static rfConfig_t rfConfig;
 
@@ -148,6 +151,16 @@ void main(void)
   rfConfig.channel = channel_sequence[channel_counter];
   rfConfig.txPower = 0xF5; // Max. available TX power
   radioInit(&rfConfig);
+
+  // Set up the amplifier
+  AGCCTRL1 = 0x15;
+  FSCAL1 = 0x0;
+  RFC_OBS_CTRL0 = 0x68;
+  RFC_OBS_CTRL1 = 0x6A;
+  OBSSEL1 = 0xFB;
+  OBSSEL4 = 0xFC;
+  P0DIR |= 0x80;
+  PA_LNA_RX_HGM();
   
   // Enable interrupts 
   EA = 1;
