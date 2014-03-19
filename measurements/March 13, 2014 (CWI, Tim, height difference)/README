@@ -1,0 +1,19 @@
+Commando: timeout --kill-after=1s 4s sudo python2 listener.py > 1.txt
+Duur metingen: 5s
+Staat antenne: naar boven (ongericht)
+Afstand twee nodes: 72 cm
+Hoogte 1 doos: 3 cm
+Stappen hoogte: 12 cm
+
+1: 12 cm uit elkaar
+2: 24 cm uit elkaar
+3: 36 cm uit elkaar
+4: 48 cm uit elkaar
+7: 92 cm uit elkaar (twee dozen extra)
+9: 60 opnieuw
+11: 63 cm uit elkaar
+12: 66 cm uit elkaar
+13: 69 cm uit elkaar
+14: 72 cm uit elkaar
+
+Er is een duidelijk verschil zichtbaar ommenabij de 70 cm. Vermoedelijk komt dit omdat het zithoogte is en er interferentie is met andere WiFi-signalen.

@@ -1,0 +1,37 @@
+Commando: timeout --kill-after=1s 4s sudo python2 listener.py > 1.txt
+Duur metingen: 5s
+Staat antenne: naar boven (ongericht)
+Lengte aanwijsstok: 72 cm
+
+1: 18 cm uit elkaar
+2: 36 cm uit elkaar
+3: 72 cm uit elkaar
+4: 108 cm uit elkaar
+5: 180 cm uit elkaar
+6: 252 cm uit elkaar
+
+---------------------
+
+Staat antenne: naar nodes (gericht)
+Lengte aanwijsstok: 72 cm
+
+7: 18 cm uit elkaar
+8: 36 cm uit elkaar
+9: 72 cm uit elkaar
+10: 108 cm uit elkaar
+11: 180 cm uit elkaar
+12: 252 cm uit elkaar
+
+---------------------
+
+Staat antenne: 45 graden
+Lengte aanwijsstok: 72 cm
+
+13: 18 cm uit elkaar
+14: 36 cm uit elkaar
+15: 72 cm uit elkaar
+16: 108 cm uit elkaar
+17: 180 cm uit elkaar
+18: 252 cm uit elkaar
+
+Komt door donutvorm antenne. Verschil 45 graden en omhoog niet al te groot, want gat zit andere richting op. Bij recht naar elkaar richten ze het gat op elkaar: slechtst mogelijke! Afname RSSI lijkt lineair en omdat het in dBm is (en dat logaritmisch is), is de afname in signaalsterkte kwadratisch.

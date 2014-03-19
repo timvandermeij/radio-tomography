@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"  standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg 
+ width="2000" height="1200" 
+ viewBox="0 0 2000 1200"
+ xmlns="http://www.w3.org/2000/svg"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+>
+
+<title>Gnuplot</title>
+<desc>Produced by GNUPLOT 4.6 patchlevel 4 </desc>
+
+<g id="gnuplot_canvas">
+
+<rect x="0" y="0" width="2000" height="1200" fill="none"/>
+<defs>
+
+	<circle id='gpDot' r='0.5' stroke-width='0.5'/>
+	<path id='gpPt0' stroke-width='0.222' stroke='currentColor' d='M-1,0 h2 M0,-1 v2'/>
+	<path id='gpPt1' stroke-width='0.222' stroke='currentColor' d='M-1,-1 L1,1 M1,-1 L-1,1'/>
+	<path id='gpPt2' stroke-width='0.222' stroke='currentColor' d='M-1,0 L1,0 M0,-1 L0,1 M-1,-1 L1,1 M-1,1 L1,-1'/>
+	<rect id='gpPt3' stroke-width='0.222' stroke='currentColor' x='-1' y='-1' width='2' height='2'/>
+	<rect id='gpPt4' stroke-width='0.222' stroke='currentColor' fill='currentColor' x='-1' y='-1' width='2' height='2'/>
+	<circle id='gpPt5' stroke-width='0.222' stroke='currentColor' cx='0' cy='0' r='1'/>
+	<use xlink:href='#gpPt5' id='gpPt6' fill='currentColor' stroke='none'/>
+	<path id='gpPt7' stroke-width='0.222' stroke='currentColor' d='M0,-1.33 L-1.33,0.67 L1.33,0.67 z'/>
+	<use xlink:href='#gpPt7' id='gpPt8' fill='currentColor' stroke='none'/>
+	<use xlink:href='#gpPt7' id='gpPt9' stroke='currentColor' transform='rotate(180)'/>
+	<use xlink:href='#gpPt9' id='gpPt10' fill='currentColor' stroke='none'/>
+	<use xlink:href='#gpPt3' id='gpPt11' stroke='currentColor' transform='rotate(45)'/>
+	<use xlink:href='#gpPt11' id='gpPt12' fill='currentColor' stroke='none'/>
+</defs>
+<g style="fill:none; color:white; stroke:currentColor; stroke-width:1.00; stroke-linecap:butt; stroke-linejoin:miter">
+</g>
+<g style="fill:none; color:black; stroke:currentColor; stroke-width:1.00; stroke-linecap:butt; stroke-linejoin:miter">
+	<path stroke='black'  d='M72.6,1133.4 L63.6,1133.4  h0.01'/>	<g transform="translate(55.3,1137.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text>-50</text>
+	</g>
+	<path stroke='black'  d='M72.6,910.1 L63.6,910.1  h0.01'/>	<g transform="translate(55.3,914.6)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text>-40</text>
+	</g>
+	<path stroke='black'  d='M72.6,686.7 L63.6,686.7  h0.01'/>	<g transform="translate(55.3,691.2)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text>-30</text>
+	</g>
+	<path stroke='black'  d='M72.6,463.4 L63.6,463.4  h0.01'/>	<g transform="translate(55.3,467.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text>-20</text>
+	</g>
+	<path stroke='black'  d='M72.6,240.0 L63.6,240.0  h0.01'/>	<g transform="translate(55.3,244.5)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text>-10</text>
+	</g>
+	<path stroke='black'  d='M72.6,16.7 L63.6,16.7  h0.01'/>	<g transform="translate(55.3,21.2)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text> 0</text>
+	</g>
+	<path stroke='black'  d='M314.6,1133.4 L314.6,1142.4  h0.01'/>	<g transform="translate(314.6,1164.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:middle">
+		<text>18 cm</text>
+	</g>
+	<path stroke='black'  d='M556.7,1133.4 L556.7,1142.4  h0.01'/>	<g transform="translate(556.7,1164.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:middle">
+		<text>36 cm</text>
+	</g>
+	<path stroke='black'  d='M798.7,1133.4 L798.7,1142.4  h0.01'/>	<g transform="translate(798.7,1164.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:middle">
+		<text>72 cm</text>
+	</g>
+	<path stroke='black'  d='M1040.7,1133.4 L1040.7,1142.4  h0.01'/>	<g transform="translate(1040.7,1164.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:middle">
+		<text>108 cm</text>
+	</g>
+	<path stroke='black'  d='M1282.7,1133.4 L1282.7,1142.4  h0.01'/>	<g transform="translate(1282.7,1164.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:middle">
+		<text>180 cm</text>
+	</g>
+	<path stroke='black'  d='M1524.8,1133.4 L1524.8,1142.4  h0.01'/>	<g transform="translate(1524.8,1164.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:middle">
+		<text>252 cm</text>
+	</g>
+	<path stroke='black'  d='M72.6,16.7 L72.6,1133.4 L1766.8,1133.4 L1766.8,16.7 L72.6,16.7 Z  h0.01'/>	<g transform="translate(17.6,575.1) rotate(270)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:middle">
+		<text>RSSI</text>
+	</g>
+	<g transform="translate(919.7,1191.9)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:middle">
+		<text>Distance</text>
+	</g>
+</g>
+	<g id="gnuplot_plot_1" ><title>gnuplot_plot_1</title>
+<g style="fill:none; color:red; stroke:currentColor; stroke-width:1.00; stroke-linecap:butt; stroke-linejoin:miter">
+	<g transform="translate(1932.8,30.2)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text>Node 1, channel 11</text>
+	</g>
+	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1941.1,30.2 1983.3,30.2 1983.3,21.2 1941.1,21.2 '/>
+	</g>
+	<path stroke='black'  d='M1941.1,30.2 L1983.3,30.2 L1983.3,21.2 L1941.1,21.2 L1941.1,30.2 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '226.6,106.0 248.7,106.0 248.7,16.6 226.6,16.6 '/>
+	</g>
+	<path stroke='black'  d='M226.6,16.7 L226.6,106.0 L248.6,106.0 L248.6,16.7 L226.6,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '468.6,187.9 490.7,187.9 490.7,16.6 468.6,16.6 '/>
+	</g>
+	<path stroke='black'  d='M468.6,16.7 L468.6,187.9 L490.6,187.9 L490.6,16.7 L468.6,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '710.7,434.8 732.8,434.8 732.8,16.6 710.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M710.7,16.7 L710.7,434.8 L732.7,434.8 L732.7,16.7 L710.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '952.7,443.1 974.8,443.1 974.8,16.6 952.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M952.7,16.7 L952.7,443.1 L974.7,443.1 L974.7,16.7 L952.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1194.7,599.4 1216.8,599.4 1216.8,16.6 1194.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M1194.7,16.7 L1194.7,599.4 L1216.7,599.4 L1216.7,16.7 L1194.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1436.8,692.8 1458.9,692.8 1458.9,16.6 1436.8,16.6 '/>
+	</g>
+	<path stroke='black'  d='M1436.8,16.7 L1436.8,692.8 L1458.8,692.8 L1458.8,16.7 L1436.8,16.7 Z  h0.01'/></g>
+	</g>
+	<g id="gnuplot_plot_2" ><title>gnuplot_plot_2</title>
+<g style="fill:none; color:green; stroke:currentColor; stroke-width:1.00; stroke-linecap:butt; stroke-linejoin:miter">
+	<g transform="translate(1932.8,48.2)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text>Node 1, channel 16</text>
+	</g>
+	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1941.1,48.2 1983.3,48.2 1983.3,39.2 1941.1,39.2 '/>
+	</g>
+	<path stroke='black'  d='M1941.1,48.2 L1983.3,48.2 L1983.3,39.2 L1941.1,39.2 L1941.1,48.2 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '248.6,120.9 270.7,120.9 270.7,16.6 248.6,16.6 '/>
+	</g>
+	<path stroke='black'  d='M248.6,16.7 L248.6,120.9 L270.6,120.9 L270.6,16.7 L248.6,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '490.6,195.3 512.8,195.3 512.8,16.6 490.6,16.6 '/>
+	</g>
+	<path stroke='black'  d='M490.6,16.7 L490.6,195.3 L512.7,195.3 L512.7,16.7 L490.6,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '732.7,427.5 754.8,427.5 754.8,16.6 732.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M732.7,16.7 L732.7,427.5 L754.7,427.5 L754.7,16.7 L732.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '974.7,452.0 996.8,452.0 996.8,16.6 974.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M974.7,16.7 L974.7,452.0 L996.7,452.0 L996.7,16.7 L974.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1216.7,619.1 1238.8,619.1 1238.8,16.6 1216.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M1216.7,16.7 L1216.7,619.1 L1238.7,619.1 L1238.7,16.7 L1216.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1458.8,623.0 1480.9,623.0 1480.9,16.6 1458.8,16.6 '/>
+	</g>
+	<path stroke='black'  d='M1458.8,16.7 L1458.8,623.0 L1480.8,623.0 L1480.8,16.7 L1458.8,16.7 Z  h0.01'/></g>
+	</g>
+	<g id="gnuplot_plot_3" ><title>gnuplot_plot_3</title>
+<g style="fill:none; color:blue; stroke:currentColor; stroke-width:1.00; stroke-linecap:butt; stroke-linejoin:miter">
+	<g transform="translate(1932.8,66.2)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text>Node 1, channel 21</text>
+	</g>
+	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1941.1,66.2 1983.3,66.2 1983.3,57.2 1941.1,57.2 '/>
+	</g>
+	<path stroke='black'  d='M1941.1,66.2 L1983.3,66.2 L1983.3,57.2 L1941.1,57.2 L1941.1,66.2 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '270.6,117.2 292.7,117.2 292.7,16.6 270.6,16.6 '/>
+	</g>
+	<path stroke='black'  d='M270.6,16.7 L270.6,117.2 L292.6,117.2 L292.6,16.7 L270.6,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '512.7,173.0 534.8,173.0 534.8,16.6 512.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M512.7,16.7 L512.7,173.0 L534.7,173.0 L534.7,16.7 L512.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '754.7,439.7 776.8,439.7 776.8,16.6 754.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M754.7,16.7 L754.7,439.7 L776.7,439.7 L776.7,16.7 L754.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '996.7,463.7 1018.8,463.7 1018.8,16.6 996.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M996.7,16.7 L996.7,463.7 L1018.7,463.7 L1018.7,16.7 L996.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1238.7,602.1 1260.8,602.1 1260.8,16.6 1238.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M1238.7,16.7 L1238.7,602.1 L1260.7,602.1 L1260.7,16.7 L1238.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1480.8,607.2 1502.9,607.2 1502.9,16.6 1480.8,16.6 '/>
+	</g>
+	<path stroke='black'  d='M1480.8,16.7 L1480.8,607.2 L1502.8,607.2 L1502.8,16.7 L1480.8,16.7 Z  h0.01'/></g>
+	</g>
+	<g id="gnuplot_plot_4" ><title>gnuplot_plot_4</title>
+<g style="fill:none; color:cyan; stroke:currentColor; stroke-width:1.00; stroke-linecap:butt; stroke-linejoin:miter">
+	<g transform="translate(1932.8,84.2)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text>Node 1, channel 26</text>
+	</g>
+	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1941.1,84.2 1983.3,84.2 1983.3,75.2 1941.1,75.2 '/>
+	</g>
+	<path stroke='black'  d='M1941.1,84.2 L1983.3,84.2 L1983.3,75.2 L1941.1,75.2 L1941.1,84.2 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '292.6,83.7 314.7,83.7 314.7,16.6 292.6,16.6 '/>
+	</g>
+	<path stroke='black'  d='M292.6,16.7 L292.6,83.7 L314.6,83.7 L314.6,16.7 L292.6,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '534.7,173.0 556.8,173.0 556.8,16.6 534.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M534.7,16.7 L534.7,173.0 L556.7,173.0 L556.7,16.7 L534.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '776.7,432.7 798.8,432.7 798.8,16.6 776.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M776.7,16.7 L776.7,432.7 L798.7,432.7 L798.7,16.7 L776.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1018.7,458.1 1040.8,458.1 1040.8,16.6 1018.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M1018.7,16.7 L1018.7,458.1 L1040.7,458.1 L1040.7,16.7 L1018.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1260.7,612.4 1282.8,612.4 1282.8,16.6 1260.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M1260.7,16.7 L1260.7,612.4 L1282.7,612.4 L1282.7,16.7 L1260.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1502.8,611.6 1524.9,611.6 1524.9,16.6 1502.8,16.6 '/>
+	</g>
+	<path stroke='black'  d='M1502.8,16.7 L1502.8,611.6 L1524.8,611.6 L1524.8,16.7 L1502.8,16.7 Z  h0.01'/></g>
+	</g>
+	<g id="gnuplot_plot_5" ><title>gnuplot_plot_5</title>
+<g style="fill:none; color:#157545; stroke:currentColor; stroke-width:1.00; stroke-linecap:butt; stroke-linejoin:miter">
+	<g transform="translate(1932.8,102.2)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text>Node 2, channel 11</text>
+	</g>
+	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1941.1,102.2 1983.3,102.2 1983.3,93.2 1941.1,93.2 '/>
+	</g>
+	<path stroke='black'  d='M1941.1,102.2 L1983.3,102.2 L1983.3,93.2 L1941.1,93.2 L1941.1,102.2 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '314.6,92.5 336.7,92.5 336.7,16.6 314.6,16.6 '/>
+	</g>
+	<path stroke='black'  d='M314.6,16.7 L314.6,92.5 L336.6,92.5 L336.6,16.7 L314.6,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '556.7,158.1 578.8,158.1 578.8,16.6 556.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M556.7,16.7 L556.7,158.1 L578.7,158.1 L578.7,16.7 L556.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '798.7,359.7 820.8,359.7 820.8,16.6 798.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M798.7,16.7 L798.7,359.7 L820.7,359.7 L820.7,16.7 L798.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1040.7,411.2 1062.8,411.2 1062.8,16.6 1040.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M1040.7,16.7 L1040.7,411.2 L1062.7,411.2 L1062.7,16.7 L1040.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1282.7,562.3 1304.8,562.3 1304.8,16.6 1282.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M1282.7,16.7 L1282.7,562.3 L1304.7,562.3 L1304.7,16.7 L1282.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1524.8,485.9 1546.9,485.9 1546.9,16.6 1524.8,16.6 '/>
+	</g>
+	<path stroke='black'  d='M1524.8,16.7 L1524.8,485.9 L1546.8,485.9 L1546.8,16.7 L1524.8,16.7 Z  h0.01'/></g>
+	</g>
+	<g id="gnuplot_plot_6" ><title>gnuplot_plot_6</title>
+<g style="fill:none; color:#000094; stroke:currentColor; stroke-width:1.00; stroke-linecap:butt; stroke-linejoin:miter">
+	<g transform="translate(1932.8,120.2)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text>Node 2, channel 16</text>
+	</g>
+	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1941.1,120.2 1983.3,120.2 1983.3,111.2 1941.1,111.2 '/>
+	</g>
+	<path stroke='black'  d='M1941.1,120.2 L1983.3,120.2 L1983.3,111.2 L1941.1,111.2 L1941.1,120.2 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '336.6,88.7 358.7,88.7 358.7,16.6 336.6,16.6 '/>
+	</g>
+	<path stroke='black'  d='M336.6,16.7 L336.6,88.7 L358.6,88.7 L358.6,16.7 L336.6,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '578.7,150.7 600.8,150.7 600.8,16.6 578.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M578.7,16.7 L578.7,150.7 L600.7,150.7 L600.7,16.7 L578.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '820.7,383.5 842.8,383.5 842.8,16.6 820.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M820.7,16.7 L820.7,383.5 L842.7,383.5 L842.7,16.7 L820.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1062.7,426.4 1084.8,426.4 1084.8,16.6 1062.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M1062.7,16.7 L1062.7,426.4 L1084.7,426.4 L1084.7,16.7 L1062.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1304.7,558.9 1326.8,558.9 1326.8,16.6 1304.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M1304.7,16.7 L1304.7,558.9 L1326.7,558.9 L1326.7,16.7 L1304.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1546.8,506.7 1568.9,506.7 1568.9,16.6 1546.8,16.6 '/>
+	</g>
+	<path stroke='black'  d='M1546.8,16.7 L1546.8,506.7 L1568.8,506.7 L1568.8,16.7 L1546.8,16.7 Z  h0.01'/></g>
+	</g>
+	<g id="gnuplot_plot_7" ><title>gnuplot_plot_7</title>
+<g style="fill:none; color:#FF9900; stroke:currentColor; stroke-width:1.00; stroke-linecap:butt; stroke-linejoin:miter">
+	<g transform="translate(1932.8,138.2)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text>Node 2, channel 21</text>
+	</g>
+	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1941.1,138.2 1983.3,138.2 1983.3,129.2 1941.1,129.2 '/>
+	</g>
+	<path stroke='black'  d='M1941.1,138.2 L1983.3,138.2 L1983.3,129.2 L1941.1,129.2 L1941.1,138.2 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '358.6,81.9 380.7,81.9 380.7,16.6 358.6,16.6 '/>
+	</g>
+	<path stroke='black'  d='M358.6,16.7 L358.6,81.9 L380.6,81.9 L380.6,16.7 L358.6,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '600.7,128.4 622.8,128.4 622.8,16.6 600.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M600.7,16.7 L600.7,128.4 L622.7,128.4 L622.7,16.7 L600.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '842.7,373.3 864.8,373.3 864.8,16.6 842.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M842.7,16.7 L842.7,373.3 L864.7,373.3 L864.7,16.7 L842.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1084.7,414.2 1106.8,414.2 1106.8,16.6 1084.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M1084.7,16.7 L1084.7,414.2 L1106.7,414.2 L1106.7,16.7 L1084.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1326.7,561.8 1348.9,561.8 1348.9,16.6 1326.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M1326.7,16.7 L1326.7,561.8 L1348.8,561.8 L1348.8,16.7 L1326.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1568.8,527.2 1590.9,527.2 1590.9,16.6 1568.8,16.6 '/>
+	</g>
+	<path stroke='black'  d='M1568.8,16.7 L1568.8,527.2 L1590.8,527.2 L1590.8,16.7 L1568.8,16.7 Z  h0.01'/></g>
+	</g>
+	<g id="gnuplot_plot_8" ><title>gnuplot_plot_8</title>
+<g style="fill:none; color:#0099A1; stroke:currentColor; stroke-width:1.00; stroke-linecap:butt; stroke-linejoin:miter">
+	<g transform="translate(1932.8,156.2)" style="stroke:none; fill:black; font-family:Arial; font-size:12.00pt; text-anchor:end">
+		<text>Node 2, channel 26</text>
+	</g>
+	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1941.1,156.2 1983.3,156.2 1983.3,147.2 1941.1,147.2 '/>
+	</g>
+	<path stroke='black'  d='M1941.1,156.2 L1983.3,156.2 L1983.3,147.2 L1941.1,147.2 L1941.1,156.2 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '380.6,83.7 402.7,83.7 402.7,16.6 380.6,16.6 '/>
+	</g>
+	<path stroke='black'  d='M380.6,16.7 L380.6,83.7 L402.6,83.7 L402.6,16.7 L380.6,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '622.7,150.7 644.8,150.7 644.8,16.6 622.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M622.7,16.7 L622.7,150.7 L644.7,150.7 L644.7,16.7 L622.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '864.7,375.3 886.8,375.3 886.8,16.6 864.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M864.7,16.7 L864.7,375.3 L886.7,375.3 L886.7,16.7 L864.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1106.7,410.5 1128.8,410.5 1128.8,16.6 1106.7,16.6 '/>
+	</g>
+	<path stroke='black'  d='M1106.7,16.7 L1106.7,410.5 L1128.7,410.5 L1128.7,16.7 L1106.7,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1348.8,534.6 1370.9,534.6 1370.9,16.6 1348.8,16.6 '/>
+	</g>
+	<path stroke='black'  d='M1348.8,16.7 L1348.8,534.6 L1370.8,534.6 L1370.8,16.7 L1348.8,16.7 Z  h0.01'/>	<g style = 'stroke:none; shape-rendering:crispEdges'>
+		<polygon fill = 'currentColor' points = '1590.8,556.2 1612.9,556.2 1612.9,16.6 1590.8,16.6 '/>
+	</g>
+	<path stroke='black'  d='M1590.8,16.7 L1590.8,556.2 L1612.8,556.2 L1612.8,16.7 L1590.8,16.7 Z  h0.01'/></g>
+	</g>
+<g style="fill:none; color:black; stroke:currentColor; stroke-width:1.00; stroke-linecap:butt; stroke-linejoin:miter">
+	<path stroke='black'  d='M72.6,16.7 L72.6,1133.4 L1766.8,1133.4 L1766.8,16.7 L72.6,16.7 Z  h0.01'/></g>
+</g>
+</svg>
+
