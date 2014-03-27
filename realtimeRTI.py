@@ -6,6 +6,8 @@ import numpy as np
 from struct import unpack
 import weights
 import time
+from OpenGL import GLUT as glut
+import glumpy
 
 # open connection to USB dongle
 ser = serial.Serial("/dev/ttyACM0", 38400);
@@ -60,10 +62,10 @@ def sweep2vec(sweep):
     return vec
 
 nodes = [
-        [0,0],
-        [0,1],
-        [1,1],
-        [1,0]]
+        [0,0], [0,1], [0,2], [0,3], [0,4],
+        [1,4], [2,4], [3,4], 
+        [3,3], [3,2], [3,1], [3,0],
+        [2,0], [1,0]]
 #nodes = [       
 #        [0,0],
 #        [0,3],
@@ -80,13 +82,14 @@ nodes = [
 
 resX = 64
 resY = 64
-_lambda = 1
+#_lambda = 0.01
+_lambda = 0.02
 
 W  = sp.sparse.csc_matrix(weights.createWeights(nodes, resX, resY, _lambda))
 Wt = np.transpose(W)
 
-u, s, vt = sp.sparse.linalg.svds(W,15)
-print s
+#u, s, vt = sp.sparse.linalg.svds(W,80)
+u, s, vt = sp.sparse.linalg.svds(W,60)
 #print u.shape
 #print s.shape
 #print vt.shape
@@ -110,7 +113,7 @@ while True:
     p_mean += p_mean
     nMeasurements += 1.0
     # wait 10 seconds
-    if time.time()-t1 > 10:
+    if time.time()-t1 > 20:
         break
 
 p_mean /= nMeasurements
@@ -118,14 +121,29 @@ p_mean /= nMeasurements
 def svds_recon(p):
     return np.dot(Winv,p)
 
+M = np.zeros((resX,resY)).astype('float32')
+fig = glumpy.figure((512,512))
+im = glumpy.image.Image(M, colormap=glumpy.colormap.Hot)
+
+@fig.event
+def on_draw():
+    fig.clear()
+    im.update()
+    im.draw(x=0,y=0,z=0,width=fig.width, height=fig.height)
+i=0
 print 'Realtime reconstruction'
 while True:
     sweep = getSweep(numNodes)
     p = sweep2vec(sweep)
     p -= p_mean
     x = np.dot(Winv,p)
-    #print np.reshape((x < -0.8).astype(int),(8,8))
-    print np.reshape(x, (8,8))
-    for i in range(0,24):
-        print ''
-
+    M = np.reshape(x,(resY,resX)).astype('float32')
+    M = M - M.min()
+    M = M / M.max()
+    im = glumpy.image.Image(M, colormap=glumpy.colormap.Hot)
+    glut.glutMainLoopEvent()
+    on_draw()
+    glut.glutSwapBuffers()
+    i +=1
+    print 'loop', i
+    print ser.inWaiting()

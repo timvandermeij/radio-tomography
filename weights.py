@@ -36,6 +36,7 @@ def createWeights(positions, width, height, _lambda):
             d = np.linalg.norm(np.array(positions[i]) - np.array(positions[j]))
             # (the second part just creates the ellipse shape)
             weight = (1.0/np.sqrt(d))*(nodedistances[i] + nodedistances[j] < d + _lambda)
+            print i*nodecount + j
             weights[i*nodecount + j] = weight
 
     return weights
