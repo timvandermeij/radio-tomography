@@ -38,9 +38,12 @@
 #include "channels.h"
 
 // ID number of the RF sensor
-#define THIS_NODE_ID 1
+#define THIS_NODE_ID 4
 #define ADDR 0x1234 + (THIS_NODE_ID - 1)
 #define PAN 0x2011
+
+// Amplifier
+#define PA_LNA_RX_HGM() { uint8 i; P0_7 = 1; for (i=0; i<8; i++) { NOP; } }
 
 spinPacket_t spinPacket,receivedPacket;
 static rfConfig_t rfConfig;
@@ -69,8 +72,54 @@ timer34Config_t channel_hoppingConfig;
 // timer 4: broadcast a packet
 timer34Config_t next_TX_timeConfig;
 
-// ISR for broadcasting a packet
-void next_TX_timeISR(void)
+void blink(int arg) {
+  int i, j, k;
+  
+  ledOn(1);
+  for (i = 0; i < 4000; ++i) {
+          for (k = 0; k < 800; ++k) {
+              NOP;
+          }
+      }
+  ledOff(1);
+for (i = 0; i < 1000; ++i) {
+          for (k = 0; k < 400; ++k) {
+              NOP;
+          }
+      }
+
+
+  k = arg;
+  for (j = 0; j < 16; ++j) {
+       if ((arg>>j) == 0)
+           break;
+
+      if ((arg>>j) & 1)
+        ledOn(1);
+      for (i = 0; i < 2000; ++i) {
+          for (k = 0; k < 400; ++k) {
+              NOP;
+          }
+      }
+      ledOff(1);
+      for (i = 0; i < 1000; ++i) {
+          for (k = 0; k < 400; ++k) {
+              NOP;
+          }
+      }
+
+  }
+
+  ledOn(1);
+  for (i = 0; i < 4000; ++i) {
+          for (k = 0; k < 800; ++k) {
+              NOP;
+          }
+      }
+  ledOff(1);
+}
+
+void next_TX_timeISR(void) __interrupt (12)
 {
   int i; // PATCHED: declare here, not in loop
   timer4Stop();
@@ -79,10 +128,10 @@ void next_TX_timeISR(void)
   timer4Init(&next_TX_timeConfig); // PATCHED: &
   timer4Start();
   
-  ledOn(1); //green LED on
+  //ledOn(1); //green LED on
   sendPacket((char*)&spinPacket, sizeof(spinPacket), rfConfig.pan, 0xFFFF, rfConfig.addr);
-  ledOff(1); //green LED off
-  
+  //ledOff(1); //green LED off
+
   // Increase the counter for the number of packets consecutively broadcasted WITHOUT
   // receiving a packet from a neighboring RF sensors
   TX_counter++;
@@ -97,7 +146,7 @@ void next_TX_timeISR(void)
 
 // ISR for switching frequency channel
 // The listen node loops on the frequency channels defined in channels.h
-void channel_hoppingISR(void)
+void channel_hoppingISR(void) __interrupt (11)
 {
   if(TX_counter < RESET_LIMIT)
   {
@@ -132,7 +181,7 @@ void main(void)
   clockInit();
   ledInit();
   setSysTickFreq(TIMER_TICK_FREQ_250KHZ);
-  
+
   // Initialize the packet to be broadcasted
   spinPacket.packet_counter = 0;
   spinPacket.TX_id = THIS_NODE_ID;
@@ -148,10 +197,20 @@ void main(void)
   rfConfig.channel = channel_sequence[channel_counter];
   rfConfig.txPower = 0xF5; // Max. available TX power
   radioInit(&rfConfig); // PATCHED: &
-  
+
+  // Set up the amplifier
+  /*AGCCTRL1 = 0x15;
+  FSCAL1 = 0x0;
+  RFC_OBS_CTRL0 = 0x68;
+  RFC_OBS_CTRL1 = 0x6A;
+  OBSSEL1 = 0xFB;
+  OBSSEL4 = 0xFC;
+  P0DIR |= 0x80;
+  PA_LNA_RX_HGM();*/
+
   // Enable interrupts 
   EA = 1;
-  
+
   //Set up Timer4 for next_TX_time
   next_TX_timeConfig.tickDivider = 7;
   next_TX_timeConfig.tickThresh = next_TX_time;
@@ -164,7 +223,7 @@ void main(void)
   channel_hoppingConfig.isrPtr = channel_hoppingISR;
   timer3Init(&channel_hoppingConfig); // PATCHED: &
 
-  timer4Start(); 
+  timer4Start();
   while(1)
   {
     if(isPacketReady())
@@ -181,7 +240,7 @@ void main(void)
         int_TX_id = (int)(TX_id);
         if ((int_TX_id > 0) & (int_TX_id <= MAX_NUM_NODES))
         {
-          ledOn(2); //red LED on
+          ledOn(1); //red LED on
           next_channel_time = (MAX_NUM_NODES - int_TX_id +2) * SLOT_LENGTH;
           channel_hoppingConfig.tickThresh = next_channel_time;
           timer3Init(&channel_hoppingConfig); // PATCHED: &
@@ -207,9 +266,11 @@ void main(void)
           
           // Update the RSS array
           spinPacket.RSS[int_TX_id-1] = rssi;          
-          ledOff(2); //red LED off 
+          ledOff(1); //red LED off 
         }
       }
     }
   }
 }
+
+

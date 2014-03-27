@@ -26,12 +26,12 @@ void (*timer3IsrPtr)(void);
 void (*timer4IsrPtr)(void);
 char tickThreshSave3, tickThreshSave4;
 
-void timer3Isr(void) __interrupt 11 // PATCHED: moved interrupt to end and replaced pragma by 11 (see interrupt table)
+void timer3Isr(void) __interrupt (11) // PATCHED: moved interrupt to end and replaced pragma by 11 (see interrupt table)
 {
   timer3IsrPtr();
 }
 
-void timer4Isr(void) __interrupt 12 // PATCHED: moved interrupt to end and replaced pragma by 12 (see interrupt table)
+void timer4Isr(void) __interrupt (12) // PATCHED: moved interrupt to end and replaced pragma by 12 (see interrupt table)
 {
   timer4IsrPtr();
 }
@@ -76,7 +76,6 @@ void timer3Stop(void)
 
 void timer4Init(timer34Config_t *config)
 {
-  
   // Clear timer count
   T4CTL |= 1 << 2;
   

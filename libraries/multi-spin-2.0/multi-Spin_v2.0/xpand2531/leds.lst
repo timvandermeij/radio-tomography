@@ -1,0 +1,621 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.3.0 #8604 (Jul  8 2013) (Linux)
+                              4 ; This file was generated Thu Mar 27 18:46:38 2014
+                              5 ;--------------------------------------------------------
+                              6 	.module leds
+                              7 	.optsdcc -mmcs51 --model-large
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _ledToggle
+                             13 	.globl _ledOff
+                             14 	.globl _ledOn
+                             15 	.globl _ledInit
+                             16 	.globl _U1ACTIVE
+                             17 	.globl _U1TX_BYTE
+                             18 	.globl _U1RX_BYTE
+                             19 	.globl _U1ERR
+                             20 	.globl _U1FE
+                             21 	.globl _U1SLAVE
+                             22 	.globl _U1RE
+                             23 	.globl _U1MODE
+                             24 	.globl _P2IF
+                             25 	.globl _UTX0IF
+                             26 	.globl _UTX1IF
+                             27 	.globl _P1IF
+                             28 	.globl _WDTIF
+                             29 	.globl __IRCON25
+                             30 	.globl __IRCON26
+                             31 	.globl __IRCON27
+                             32 	.globl _T3OVFIF
+                             33 	.globl _T3CH0IF
+                             34 	.globl _T3CH1IF
+                             35 	.globl _T4OVFIF
+                             36 	.globl _T4CH0IF
+                             37 	.globl _T4CH1IF
+                             38 	.globl _T1OVFIM
+                             39 	.globl __TIMIF7
+                             40 	.globl _P
+                             41 	.globl _F1
+                             42 	.globl _OV
+                             43 	.globl _RS0
+                             44 	.globl _RS1
+                             45 	.globl _F0
+                             46 	.globl _AC
+                             47 	.globl _CY
+                             48 	.globl _DMAIF
+                             49 	.globl _T1IF
+                             50 	.globl _T2IF
+                             51 	.globl _T3IF
+                             52 	.globl _T4IF
+                             53 	.globl _P0IF
+                             54 	.globl __IRCON6
+                             55 	.globl _STIF
+                             56 	.globl _DMAIE
+                             57 	.globl _T1IE
+                             58 	.globl _T2IE
+                             59 	.globl _T3IE
+                             60 	.globl _T4IE
+                             61 	.globl _P0IE
+                             62 	.globl __IEN16
+                             63 	.globl __IEN17
+                             64 	.globl _RFERRIE
+                             65 	.globl _ADCIE
+                             66 	.globl _URX0IE
+                             67 	.globl _URX1IE
+                             68 	.globl _ENCIE
+                             69 	.globl _STIE
+                             70 	.globl __IEN06
+                             71 	.globl _EA
+                             72 	.globl _P2_0
+                             73 	.globl _P2_1
+                             74 	.globl _P2_2
+                             75 	.globl _P2_3
+                             76 	.globl _P2_4
+                             77 	.globl __P2_5
+                             78 	.globl __P2_6
+                             79 	.globl __P2_7
+                             80 	.globl _ENCIF_0
+                             81 	.globl _ENCIF_1
+                             82 	.globl __S0CON2
+                             83 	.globl __S0CON3
+                             84 	.globl __S0CON4
+                             85 	.globl __S0CON5
+                             86 	.globl __S0CON6
+                             87 	.globl __S0CON7
+                             88 	.globl _P1_0
+                             89 	.globl _P1_1
+                             90 	.globl _P1_2
+                             91 	.globl _P1_3
+                             92 	.globl _P1_4
+                             93 	.globl _P1_5
+                             94 	.globl _P1_6
+                             95 	.globl _P1_7
+                             96 	.globl _IT0
+                             97 	.globl _RFERRIF
+                             98 	.globl _IT1
+                             99 	.globl _URX0IF
+                            100 	.globl __TCON4
+                            101 	.globl _ADCIF
+                            102 	.globl __TCON6
+                            103 	.globl _URX1IF
+                            104 	.globl _P0_0
+                            105 	.globl _P0_1
+                            106 	.globl _P0_2
+                            107 	.globl _P0_3
+                            108 	.globl _P0_4
+                            109 	.globl _P0_5
+                            110 	.globl _P0_6
+                            111 	.globl _P0_7
+                            112 	.globl _P2DIR
+                            113 	.globl _P1DIR
+                            114 	.globl _P0DIR
+                            115 	.globl _U1GCR
+                            116 	.globl _U1UCR
+                            117 	.globl _U1BAUD
+                            118 	.globl _U1DBUF
+                            119 	.globl _U1CSR
+                            120 	.globl _P2INP
+                            121 	.globl _P1INP
+                            122 	.globl _P2SEL
+                            123 	.globl _P1SEL
+                            124 	.globl _P0SEL
+                            125 	.globl _APCFG
+                            126 	.globl _ADCCFG
+                            127 	.globl _PERCFG
+                            128 	.globl _B
+                            129 	.globl _T4CC1
+                            130 	.globl _T4CCTL1
+                            131 	.globl _T4CC0
+                            132 	.globl _T4CCTL0
+                            133 	.globl _T4CTL
+                            134 	.globl _T4CNT
+                            135 	.globl _RFIRQF0
+                            136 	.globl _IRCON2
+                            137 	.globl _T1CCTL2
+                            138 	.globl _T1CCTL1
+                            139 	.globl _T1CCTL0
+                            140 	.globl _T1CTL
+                            141 	.globl _T1CNTH
+                            142 	.globl _T1CNTL
+                            143 	.globl _RFST
+                            144 	.globl _ACC
+                            145 	.globl _T1CC2H
+                            146 	.globl _T1CC2L
+                            147 	.globl _T1CC1H
+                            148 	.globl _T1CC1L
+                            149 	.globl _T1CC0H
+                            150 	.globl _T1CC0L
+                            151 	.globl _RFD
+                            152 	.globl _TIMIF
+                            153 	.globl _DMAREQ
+                            154 	.globl _DMAARM
+                            155 	.globl _DMA0CFGH
+                            156 	.globl _DMA0CFGL
+                            157 	.globl _DMA1CFGH
+                            158 	.globl _DMA1CFGL
+                            159 	.globl _DMAIRQ
+                            160 	.globl _PSW
+                            161 	.globl _T3CC1
+                            162 	.globl _T3CCTL1
+                            163 	.globl _T3CC0
+                            164 	.globl _T3CCTL0
+                            165 	.globl _T3CTL
+                            166 	.globl _T3CNT
+                            167 	.globl _WDCTL
+                            168 	.globl __SFRC8
+                            169 	.globl _MEMCTR
+                            170 	.globl _CLKCONCMD
+                            171 	.globl _U0GCR
+                            172 	.globl _U0UCR
+                            173 	.globl _T2MSEL
+                            174 	.globl _U0BAUD
+                            175 	.globl _U0DBUF
+                            176 	.globl _IRCON
+                            177 	.globl _RFERRF
+                            178 	.globl _SLEEPCMD
+                            179 	.globl _RNDH
+                            180 	.globl _RNDL
+                            181 	.globl _ADCH
+                            182 	.globl _ADCL
+                            183 	.globl _IP1
+                            184 	.globl _IEN1
+                            185 	.globl __SFRB7
+                            186 	.globl _ADCCON3
+                            187 	.globl _ADCCON2
+                            188 	.globl _ADCCON1
+                            189 	.globl _ENCCS
+                            190 	.globl _ENCDO
+                            191 	.globl _ENCDI
+                            192 	.globl __SFRB0
+                            193 	.globl _T1STAT
+                            194 	.globl _PMUX
+                            195 	.globl _STLOAD
+                            196 	.globl _P2IEN
+                            197 	.globl _P0IEN
+                            198 	.globl __SFRAA
+                            199 	.globl _IP0
+                            200 	.globl _IEN0
+                            201 	.globl _T2IRQM
+                            202 	.globl _T2MOVF2
+                            203 	.globl _T2MOVF1
+                            204 	.globl _T2MOVF0
+                            205 	.globl _T2M1
+                            206 	.globl _T2M0
+                            207 	.globl _T2IRQF
+                            208 	.globl _P2
+                            209 	.globl _FMAP
+                            210 	.globl _CLKCONSTA
+                            211 	.globl _SLEEPSTA
+                            212 	.globl _T2EVTCFG
+                            213 	.globl _T2CSPCFG
+                            214 	.globl _S1CON
+                            215 	.globl _IEN2
+                            216 	.globl __SFR99
+                            217 	.globl _S0CON
+                            218 	.globl _ST2
+                            219 	.globl _ST1
+                            220 	.globl _ST0
+                            221 	.globl _T2CTRL
+                            222 	.globl _MPAGE
+                            223 	.globl _DPS
+                            224 	.globl _RFIRQF1
+                            225 	.globl _P1
+                            226 	.globl _P0INP
+                            227 	.globl __SFR8E
+                            228 	.globl _P1IEN
+                            229 	.globl _PICTL
+                            230 	.globl _P2IFG
+                            231 	.globl _P1IFG
+                            232 	.globl _P0IFG
+                            233 	.globl _TCON
+                            234 	.globl _PCON
+                            235 	.globl _U0CSR
+                            236 	.globl _DPH1
+                            237 	.globl _DPL1
+                            238 	.globl _DPH0
+                            239 	.globl _DPL0
+                            240 	.globl _SP
+                            241 	.globl _P0
+                            242 ;--------------------------------------------------------
+                            243 ; special function registers
+                            244 ;--------------------------------------------------------
+                            245 	.area RSEG    (ABS,DATA)
+   0000                     246 	.org 0x0000
+                     0080   247 _P0	=	0x0080
+                     0081   248 _SP	=	0x0081
+                     0082   249 _DPL0	=	0x0082
+                     0083   250 _DPH0	=	0x0083
+                     0084   251 _DPL1	=	0x0084
+                     0085   252 _DPH1	=	0x0085
+                     0086   253 _U0CSR	=	0x0086
+                     0087   254 _PCON	=	0x0087
+                     0088   255 _TCON	=	0x0088
+                     0089   256 _P0IFG	=	0x0089
+                     008A   257 _P1IFG	=	0x008a
+                     008B   258 _P2IFG	=	0x008b
+                     008C   259 _PICTL	=	0x008c
+                     008D   260 _P1IEN	=	0x008d
+                     008E   261 __SFR8E	=	0x008e
+                     008F   262 _P0INP	=	0x008f
+                     0090   263 _P1	=	0x0090
+                     0091   264 _RFIRQF1	=	0x0091
+                     0092   265 _DPS	=	0x0092
+                     0093   266 _MPAGE	=	0x0093
+                     0094   267 _T2CTRL	=	0x0094
+                     0095   268 _ST0	=	0x0095
+                     0096   269 _ST1	=	0x0096
+                     0097   270 _ST2	=	0x0097
+                     0098   271 _S0CON	=	0x0098
+                     0099   272 __SFR99	=	0x0099
+                     009A   273 _IEN2	=	0x009a
+                     009B   274 _S1CON	=	0x009b
+                     009C   275 _T2CSPCFG	=	0x009c
+                     009C   276 _T2EVTCFG	=	0x009c
+                     009D   277 _SLEEPSTA	=	0x009d
+                     009E   278 _CLKCONSTA	=	0x009e
+                     009F   279 _FMAP	=	0x009f
+                     00A0   280 _P2	=	0x00a0
+                     00A1   281 _T2IRQF	=	0x00a1
+                     00A2   282 _T2M0	=	0x00a2
+                     00A3   283 _T2M1	=	0x00a3
+                     00A4   284 _T2MOVF0	=	0x00a4
+                     00A5   285 _T2MOVF1	=	0x00a5
+                     00A6   286 _T2MOVF2	=	0x00a6
+                     00A7   287 _T2IRQM	=	0x00a7
+                     00A8   288 _IEN0	=	0x00a8
+                     00A9   289 _IP0	=	0x00a9
+                     00AA   290 __SFRAA	=	0x00aa
+                     00AB   291 _P0IEN	=	0x00ab
+                     00AC   292 _P2IEN	=	0x00ac
+                     00AD   293 _STLOAD	=	0x00ad
+                     00AE   294 _PMUX	=	0x00ae
+                     00AF   295 _T1STAT	=	0x00af
+                     00B0   296 __SFRB0	=	0x00b0
+                     00B1   297 _ENCDI	=	0x00b1
+                     00B2   298 _ENCDO	=	0x00b2
+                     00B3   299 _ENCCS	=	0x00b3
+                     00B4   300 _ADCCON1	=	0x00b4
+                     00B5   301 _ADCCON2	=	0x00b5
+                     00B6   302 _ADCCON3	=	0x00b6
+                     00B7   303 __SFRB7	=	0x00b7
+                     00B8   304 _IEN1	=	0x00b8
+                     00B9   305 _IP1	=	0x00b9
+                     00BA   306 _ADCL	=	0x00ba
+                     00BB   307 _ADCH	=	0x00bb
+                     00BC   308 _RNDL	=	0x00bc
+                     00BD   309 _RNDH	=	0x00bd
+                     00BE   310 _SLEEPCMD	=	0x00be
+                     00BF   311 _RFERRF	=	0x00bf
+                     00C0   312 _IRCON	=	0x00c0
+                     00C1   313 _U0DBUF	=	0x00c1
+                     00C2   314 _U0BAUD	=	0x00c2
+                     00C3   315 _T2MSEL	=	0x00c3
+                     00C4   316 _U0UCR	=	0x00c4
+                     00C5   317 _U0GCR	=	0x00c5
+                     00C6   318 _CLKCONCMD	=	0x00c6
+                     00C7   319 _MEMCTR	=	0x00c7
+                     00C8   320 __SFRC8	=	0x00c8
+                     00C9   321 _WDCTL	=	0x00c9
+                     00CA   322 _T3CNT	=	0x00ca
+                     00CB   323 _T3CTL	=	0x00cb
+                     00CC   324 _T3CCTL0	=	0x00cc
+                     00CD   325 _T3CC0	=	0x00cd
+                     00CE   326 _T3CCTL1	=	0x00ce
+                     00CF   327 _T3CC1	=	0x00cf
+                     00D0   328 _PSW	=	0x00d0
+                     00D1   329 _DMAIRQ	=	0x00d1
+                     00D2   330 _DMA1CFGL	=	0x00d2
+                     00D3   331 _DMA1CFGH	=	0x00d3
+                     00D4   332 _DMA0CFGL	=	0x00d4
+                     00D5   333 _DMA0CFGH	=	0x00d5
+                     00D6   334 _DMAARM	=	0x00d6
+                     00D7   335 _DMAREQ	=	0x00d7
+                     00D8   336 _TIMIF	=	0x00d8
+                     00D9   337 _RFD	=	0x00d9
+                     00DA   338 _T1CC0L	=	0x00da
+                     00DB   339 _T1CC0H	=	0x00db
+                     00DC   340 _T1CC1L	=	0x00dc
+                     00DD   341 _T1CC1H	=	0x00dd
+                     00DE   342 _T1CC2L	=	0x00de
+                     00DF   343 _T1CC2H	=	0x00df
+                     00E0   344 _ACC	=	0x00e0
+                     00E1   345 _RFST	=	0x00e1
+                     00E2   346 _T1CNTL	=	0x00e2
+                     00E3   347 _T1CNTH	=	0x00e3
+                     00E4   348 _T1CTL	=	0x00e4
+                     00E5   349 _T1CCTL0	=	0x00e5
+                     00E6   350 _T1CCTL1	=	0x00e6
+                     00E7   351 _T1CCTL2	=	0x00e7
+                     00E8   352 _IRCON2	=	0x00e8
+                     00E9   353 _RFIRQF0	=	0x00e9
+                     00EA   354 _T4CNT	=	0x00ea
+                     00EB   355 _T4CTL	=	0x00eb
+                     00EC   356 _T4CCTL0	=	0x00ec
+                     00ED   357 _T4CC0	=	0x00ed
+                     00EE   358 _T4CCTL1	=	0x00ee
+                     00EF   359 _T4CC1	=	0x00ef
+                     00F0   360 _B	=	0x00f0
+                     00F1   361 _PERCFG	=	0x00f1
+                     00F2   362 _ADCCFG	=	0x00f2
+                     00F2   363 _APCFG	=	0x00f2
+                     00F3   364 _P0SEL	=	0x00f3
+                     00F4   365 _P1SEL	=	0x00f4
+                     00F5   366 _P2SEL	=	0x00f5
+                     00F6   367 _P1INP	=	0x00f6
+                     00F7   368 _P2INP	=	0x00f7
+                     00F8   369 _U1CSR	=	0x00f8
+                     00F9   370 _U1DBUF	=	0x00f9
+                     00FA   371 _U1BAUD	=	0x00fa
+                     00FB   372 _U1UCR	=	0x00fb
+                     00FC   373 _U1GCR	=	0x00fc
+                     00FD   374 _P0DIR	=	0x00fd
+                     00FE   375 _P1DIR	=	0x00fe
+                     00FF   376 _P2DIR	=	0x00ff
+                            377 ;--------------------------------------------------------
+                            378 ; special function bits
+                            379 ;--------------------------------------------------------
+                            380 	.area RSEG    (ABS,DATA)
+   0000                     381 	.org 0x0000
+                     0087   382 _P0_7	=	0x0087
+                     0086   383 _P0_6	=	0x0086
+                     0085   384 _P0_5	=	0x0085
+                     0084   385 _P0_4	=	0x0084
+                     0083   386 _P0_3	=	0x0083
+                     0082   387 _P0_2	=	0x0082
+                     0081   388 _P0_1	=	0x0081
+                     0080   389 _P0_0	=	0x0080
+                     008F   390 _URX1IF	=	0x008f
+                     008E   391 __TCON6	=	0x008e
+                     008D   392 _ADCIF	=	0x008d
+                     008C   393 __TCON4	=	0x008c
+                     008B   394 _URX0IF	=	0x008b
+                     008A   395 _IT1	=	0x008a
+                     0089   396 _RFERRIF	=	0x0089
+                     0088   397 _IT0	=	0x0088
+                     0097   398 _P1_7	=	0x0097
+                     0096   399 _P1_6	=	0x0096
+                     0095   400 _P1_5	=	0x0095
+                     0094   401 _P1_4	=	0x0094
+                     0093   402 _P1_3	=	0x0093
+                     0092   403 _P1_2	=	0x0092
+                     0091   404 _P1_1	=	0x0091
+                     0090   405 _P1_0	=	0x0090
+                     009F   406 __S0CON7	=	0x009f
+                     009E   407 __S0CON6	=	0x009e
+                     009D   408 __S0CON5	=	0x009d
+                     009C   409 __S0CON4	=	0x009c
+                     009B   410 __S0CON3	=	0x009b
+                     009A   411 __S0CON2	=	0x009a
+                     0099   412 _ENCIF_1	=	0x0099
+                     0098   413 _ENCIF_0	=	0x0098
+                     00A7   414 __P2_7	=	0x00a7
+                     00A6   415 __P2_6	=	0x00a6
+                     00A5   416 __P2_5	=	0x00a5
+                     00A4   417 _P2_4	=	0x00a4
+                     00A3   418 _P2_3	=	0x00a3
+                     00A2   419 _P2_2	=	0x00a2
+                     00A1   420 _P2_1	=	0x00a1
+                     00A0   421 _P2_0	=	0x00a0
+                     00AF   422 _EA	=	0x00af
+                     00AE   423 __IEN06	=	0x00ae
+                     00AD   424 _STIE	=	0x00ad
+                     00AC   425 _ENCIE	=	0x00ac
+                     00AB   426 _URX1IE	=	0x00ab
+                     00AA   427 _URX0IE	=	0x00aa
+                     00A9   428 _ADCIE	=	0x00a9
+                     00A8   429 _RFERRIE	=	0x00a8
+                     00BF   430 __IEN17	=	0x00bf
+                     00BE   431 __IEN16	=	0x00be
+                     00BD   432 _P0IE	=	0x00bd
+                     00BC   433 _T4IE	=	0x00bc
+                     00BB   434 _T3IE	=	0x00bb
+                     00BA   435 _T2IE	=	0x00ba
+                     00B9   436 _T1IE	=	0x00b9
+                     00B8   437 _DMAIE	=	0x00b8
+                     00C7   438 _STIF	=	0x00c7
+                     00C6   439 __IRCON6	=	0x00c6
+                     00C5   440 _P0IF	=	0x00c5
+                     00C4   441 _T4IF	=	0x00c4
+                     00C3   442 _T3IF	=	0x00c3
+                     00C2   443 _T2IF	=	0x00c2
+                     00C1   444 _T1IF	=	0x00c1
+                     00C0   445 _DMAIF	=	0x00c0
+                     00D7   446 _CY	=	0x00d7
+                     00D6   447 _AC	=	0x00d6
+                     00D5   448 _F0	=	0x00d5
+                     00D4   449 _RS1	=	0x00d4
+                     00D3   450 _RS0	=	0x00d3
+                     00D2   451 _OV	=	0x00d2
+                     00D1   452 _F1	=	0x00d1
+                     00D0   453 _P	=	0x00d0
+                     00DF   454 __TIMIF7	=	0x00df
+                     00DE   455 _T1OVFIM	=	0x00de
+                     00DD   456 _T4CH1IF	=	0x00dd
+                     00DC   457 _T4CH0IF	=	0x00dc
+                     00DB   458 _T4OVFIF	=	0x00db
+                     00DA   459 _T3CH1IF	=	0x00da
+                     00D9   460 _T3CH0IF	=	0x00d9
+                     00D8   461 _T3OVFIF	=	0x00d8
+                     00EF   462 __IRCON27	=	0x00ef
+                     00EE   463 __IRCON26	=	0x00ee
+                     00ED   464 __IRCON25	=	0x00ed
+                     00EC   465 _WDTIF	=	0x00ec
+                     00EB   466 _P1IF	=	0x00eb
+                     00EA   467 _UTX1IF	=	0x00ea
+                     00E9   468 _UTX0IF	=	0x00e9
+                     00E8   469 _P2IF	=	0x00e8
+                     00FF   470 _U1MODE	=	0x00ff
+                     00FE   471 _U1RE	=	0x00fe
+                     00FD   472 _U1SLAVE	=	0x00fd
+                     00FC   473 _U1FE	=	0x00fc
+                     00FB   474 _U1ERR	=	0x00fb
+                     00FA   475 _U1RX_BYTE	=	0x00fa
+                     00F9   476 _U1TX_BYTE	=	0x00f9
+                     00F8   477 _U1ACTIVE	=	0x00f8
+                            478 ;--------------------------------------------------------
+                            479 ; overlayable register banks
+                            480 ;--------------------------------------------------------
+                            481 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                     482 	.ds 8
+                            483 ;--------------------------------------------------------
+                            484 ; internal ram data
+                            485 ;--------------------------------------------------------
+                            486 	.area DSEG    (DATA)
+                            487 ;--------------------------------------------------------
+                            488 ; overlayable items in internal ram 
+                            489 ;--------------------------------------------------------
+                            490 ;--------------------------------------------------------
+                            491 ; indirectly addressable internal ram data
+                            492 ;--------------------------------------------------------
+                            493 	.area ISEG    (DATA)
+                            494 ;--------------------------------------------------------
+                            495 ; absolute internal ram data
+                            496 ;--------------------------------------------------------
+                            497 	.area IABS    (ABS,DATA)
+                            498 	.area IABS    (ABS,DATA)
+                            499 ;--------------------------------------------------------
+                            500 ; bit data
+                            501 ;--------------------------------------------------------
+                            502 	.area BSEG    (BIT)
+                            503 ;--------------------------------------------------------
+                            504 ; paged external ram data
+                            505 ;--------------------------------------------------------
+                            506 	.area PSEG    (PAG,XDATA)
+                            507 ;--------------------------------------------------------
+                            508 ; external ram data
+                            509 ;--------------------------------------------------------
+                            510 	.area XSEG    (XDATA)
+                            511 ;--------------------------------------------------------
+                            512 ; absolute external ram data
+                            513 ;--------------------------------------------------------
+                            514 	.area XABS    (ABS,XDATA)
+                            515 ;--------------------------------------------------------
+                            516 ; external initialized ram data
+                            517 ;--------------------------------------------------------
+                            518 	.area XISEG   (XDATA)
+                            519 	.area HOME    (CODE)
+                            520 	.area GSINIT0 (CODE)
+                            521 	.area GSINIT1 (CODE)
+                            522 	.area GSINIT2 (CODE)
+                            523 	.area GSINIT3 (CODE)
+                            524 	.area GSINIT4 (CODE)
+                            525 	.area GSINIT5 (CODE)
+                            526 	.area GSINIT  (CODE)
+                            527 	.area GSFINAL (CODE)
+                            528 	.area CSEG    (CODE)
+                            529 ;--------------------------------------------------------
+                            530 ; global & static initialisations
+                            531 ;--------------------------------------------------------
+                            532 	.area HOME    (CODE)
+                            533 	.area GSINIT  (CODE)
+                            534 	.area GSFINAL (CODE)
+                            535 	.area GSINIT  (CODE)
+                            536 ;--------------------------------------------------------
+                            537 ; Home
+                            538 ;--------------------------------------------------------
+                            539 	.area HOME    (CODE)
+                            540 	.area HOME    (CODE)
+                            541 ;--------------------------------------------------------
+                            542 ; code
+                            543 ;--------------------------------------------------------
+                            544 	.area CSEG    (CODE)
+                            545 ;------------------------------------------------------------
+                            546 ;Allocation info for local variables in function 'ledInit'
+                            547 ;------------------------------------------------------------
+                            548 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/leds.c:24: void ledInit(void)
+                            549 ;	-----------------------------------------
+                            550 ;	 function ledInit
+                            551 ;	-----------------------------------------
+   0000                     552 _ledInit:
+                     0007   553 	ar7 = 0x07
+                     0006   554 	ar6 = 0x06
+                     0005   555 	ar5 = 0x05
+                     0004   556 	ar4 = 0x04
+                     0003   557 	ar3 = 0x03
+                     0002   558 	ar2 = 0x02
+                     0001   559 	ar1 = 0x01
+                     0000   560 	ar0 = 0x00
+                            561 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/leds.c:26: P1DIR |= 0x01; // PATCHED: only one led
+   0000 43 FE 01      [24]  562 	orl	_P1DIR,#0x01
+   0003 22            [24]  563 	ret
+                            564 ;------------------------------------------------------------
+                            565 ;Allocation info for local variables in function 'ledOn'
+                            566 ;------------------------------------------------------------
+                            567 ;ledID                     Allocated to registers r7 
+                            568 ;------------------------------------------------------------
+                            569 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/leds.c:29: void ledOn(char ledID) // PATCHED: only one led
+                            570 ;	-----------------------------------------
+                            571 ;	 function ledOn
+                            572 ;	-----------------------------------------
+   0004                     573 _ledOn:
+   0004 AF 82         [24]  574 	mov	r7,dpl
+                            575 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/leds.c:31: if(ledID == 1) {
+   0006 BF 01 02      [24]  576 	cjne	r7,#0x01,00102$
+                            577 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/leds.c:32: P1_0 = 0;
+   0009 C2 90         [12]  578 	clr	_P1_0
+   000B                     579 00102$:
+                            580 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/leds.c:34: return;
+   000B 22            [24]  581 	ret
+                            582 ;------------------------------------------------------------
+                            583 ;Allocation info for local variables in function 'ledOff'
+                            584 ;------------------------------------------------------------
+                            585 ;ledID                     Allocated to registers r7 
+                            586 ;------------------------------------------------------------
+                            587 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/leds.c:37: void ledOff(char ledID) // PATCHED: only one led
+                            588 ;	-----------------------------------------
+                            589 ;	 function ledOff
+                            590 ;	-----------------------------------------
+   000C                     591 _ledOff:
+   000C AF 82         [24]  592 	mov	r7,dpl
+                            593 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/leds.c:39: if(ledID == 1){
+   000E BF 01 02      [24]  594 	cjne	r7,#0x01,00102$
+                            595 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/leds.c:40: P1_0 = 1;
+   0011 D2 90         [12]  596 	setb	_P1_0
+   0013                     597 00102$:
+                            598 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/leds.c:42: return;
+   0013 22            [24]  599 	ret
+                            600 ;------------------------------------------------------------
+                            601 ;Allocation info for local variables in function 'ledToggle'
+                            602 ;------------------------------------------------------------
+                            603 ;ledID                     Allocated to registers r7 
+                            604 ;------------------------------------------------------------
+                            605 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/leds.c:45: void ledToggle(char ledID) // PATCHED: only one led
+                            606 ;	-----------------------------------------
+                            607 ;	 function ledToggle
+                            608 ;	-----------------------------------------
+   0014                     609 _ledToggle:
+   0014 AF 82         [24]  610 	mov	r7,dpl
+                            611 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/leds.c:47: if(ledID == 1) {
+   0016 BF 01 02      [24]  612 	cjne	r7,#0x01,00102$
+                            613 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/leds.c:48: P1_0 ^= 1;
+   0019 B2 90         [12]  614 	cpl	_P1_0
+   001B                     615 00102$:
+                            616 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/leds.c:50: return;
+   001B 22            [24]  617 	ret
+                            618 	.area CSEG    (CODE)
+                            619 	.area CONST   (CODE)
+                            620 	.area XINIT   (CODE)
+                            621 	.area CABS    (ABS,CODE)

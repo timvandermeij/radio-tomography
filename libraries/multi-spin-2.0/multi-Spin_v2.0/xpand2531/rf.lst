@@ -1,0 +1,1020 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.3.0 #8604 (Jul  8 2013) (Linux)
+                              4 ; This file was generated Thu Mar 27 19:34:24 2014
+                              5 ;--------------------------------------------------------
+                              6 	.module rf
+                              7 	.optsdcc -mmcs51 --model-large
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _blink
+                             13 	.globl _U1ACTIVE
+                             14 	.globl _U1TX_BYTE
+                             15 	.globl _U1RX_BYTE
+                             16 	.globl _U1ERR
+                             17 	.globl _U1FE
+                             18 	.globl _U1SLAVE
+                             19 	.globl _U1RE
+                             20 	.globl _U1MODE
+                             21 	.globl _P2IF
+                             22 	.globl _UTX0IF
+                             23 	.globl _UTX1IF
+                             24 	.globl _P1IF
+                             25 	.globl _WDTIF
+                             26 	.globl __IRCON25
+                             27 	.globl __IRCON26
+                             28 	.globl __IRCON27
+                             29 	.globl _T3OVFIF
+                             30 	.globl _T3CH0IF
+                             31 	.globl _T3CH1IF
+                             32 	.globl _T4OVFIF
+                             33 	.globl _T4CH0IF
+                             34 	.globl _T4CH1IF
+                             35 	.globl _T1OVFIM
+                             36 	.globl __TIMIF7
+                             37 	.globl _P
+                             38 	.globl _F1
+                             39 	.globl _OV
+                             40 	.globl _RS0
+                             41 	.globl _RS1
+                             42 	.globl _F0
+                             43 	.globl _AC
+                             44 	.globl _CY
+                             45 	.globl _DMAIF
+                             46 	.globl _T1IF
+                             47 	.globl _T2IF
+                             48 	.globl _T3IF
+                             49 	.globl _T4IF
+                             50 	.globl _P0IF
+                             51 	.globl __IRCON6
+                             52 	.globl _STIF
+                             53 	.globl _DMAIE
+                             54 	.globl _T1IE
+                             55 	.globl _T2IE
+                             56 	.globl _T3IE
+                             57 	.globl _T4IE
+                             58 	.globl _P0IE
+                             59 	.globl __IEN16
+                             60 	.globl __IEN17
+                             61 	.globl _RFERRIE
+                             62 	.globl _ADCIE
+                             63 	.globl _URX0IE
+                             64 	.globl _URX1IE
+                             65 	.globl _ENCIE
+                             66 	.globl _STIE
+                             67 	.globl __IEN06
+                             68 	.globl _EA
+                             69 	.globl _P2_0
+                             70 	.globl _P2_1
+                             71 	.globl _P2_2
+                             72 	.globl _P2_3
+                             73 	.globl _P2_4
+                             74 	.globl __P2_5
+                             75 	.globl __P2_6
+                             76 	.globl __P2_7
+                             77 	.globl _ENCIF_0
+                             78 	.globl _ENCIF_1
+                             79 	.globl __S0CON2
+                             80 	.globl __S0CON3
+                             81 	.globl __S0CON4
+                             82 	.globl __S0CON5
+                             83 	.globl __S0CON6
+                             84 	.globl __S0CON7
+                             85 	.globl _P1_0
+                             86 	.globl _P1_1
+                             87 	.globl _P1_2
+                             88 	.globl _P1_3
+                             89 	.globl _P1_4
+                             90 	.globl _P1_5
+                             91 	.globl _P1_6
+                             92 	.globl _P1_7
+                             93 	.globl _IT0
+                             94 	.globl _RFERRIF
+                             95 	.globl _IT1
+                             96 	.globl _URX0IF
+                             97 	.globl __TCON4
+                             98 	.globl _ADCIF
+                             99 	.globl __TCON6
+                            100 	.globl _URX1IF
+                            101 	.globl _P0_0
+                            102 	.globl _P0_1
+                            103 	.globl _P0_2
+                            104 	.globl _P0_3
+                            105 	.globl _P0_4
+                            106 	.globl _P0_5
+                            107 	.globl _P0_6
+                            108 	.globl _P0_7
+                            109 	.globl _P2DIR
+                            110 	.globl _P1DIR
+                            111 	.globl _P0DIR
+                            112 	.globl _U1GCR
+                            113 	.globl _U1UCR
+                            114 	.globl _U1BAUD
+                            115 	.globl _U1DBUF
+                            116 	.globl _U1CSR
+                            117 	.globl _P2INP
+                            118 	.globl _P1INP
+                            119 	.globl _P2SEL
+                            120 	.globl _P1SEL
+                            121 	.globl _P0SEL
+                            122 	.globl _APCFG
+                            123 	.globl _ADCCFG
+                            124 	.globl _PERCFG
+                            125 	.globl _B
+                            126 	.globl _T4CC1
+                            127 	.globl _T4CCTL1
+                            128 	.globl _T4CC0
+                            129 	.globl _T4CCTL0
+                            130 	.globl _T4CTL
+                            131 	.globl _T4CNT
+                            132 	.globl _RFIRQF0
+                            133 	.globl _IRCON2
+                            134 	.globl _T1CCTL2
+                            135 	.globl _T1CCTL1
+                            136 	.globl _T1CCTL0
+                            137 	.globl _T1CTL
+                            138 	.globl _T1CNTH
+                            139 	.globl _T1CNTL
+                            140 	.globl _RFST
+                            141 	.globl _ACC
+                            142 	.globl _T1CC2H
+                            143 	.globl _T1CC2L
+                            144 	.globl _T1CC1H
+                            145 	.globl _T1CC1L
+                            146 	.globl _T1CC0H
+                            147 	.globl _T1CC0L
+                            148 	.globl _RFD
+                            149 	.globl _TIMIF
+                            150 	.globl _DMAREQ
+                            151 	.globl _DMAARM
+                            152 	.globl _DMA0CFGH
+                            153 	.globl _DMA0CFGL
+                            154 	.globl _DMA1CFGH
+                            155 	.globl _DMA1CFGL
+                            156 	.globl _DMAIRQ
+                            157 	.globl _PSW
+                            158 	.globl _T3CC1
+                            159 	.globl _T3CCTL1
+                            160 	.globl _T3CC0
+                            161 	.globl _T3CCTL0
+                            162 	.globl _T3CTL
+                            163 	.globl _T3CNT
+                            164 	.globl _WDCTL
+                            165 	.globl __SFRC8
+                            166 	.globl _MEMCTR
+                            167 	.globl _CLKCONCMD
+                            168 	.globl _U0GCR
+                            169 	.globl _U0UCR
+                            170 	.globl _T2MSEL
+                            171 	.globl _U0BAUD
+                            172 	.globl _U0DBUF
+                            173 	.globl _IRCON
+                            174 	.globl _RFERRF
+                            175 	.globl _SLEEPCMD
+                            176 	.globl _RNDH
+                            177 	.globl _RNDL
+                            178 	.globl _ADCH
+                            179 	.globl _ADCL
+                            180 	.globl _IP1
+                            181 	.globl _IEN1
+                            182 	.globl __SFRB7
+                            183 	.globl _ADCCON3
+                            184 	.globl _ADCCON2
+                            185 	.globl _ADCCON1
+                            186 	.globl _ENCCS
+                            187 	.globl _ENCDO
+                            188 	.globl _ENCDI
+                            189 	.globl __SFRB0
+                            190 	.globl _T1STAT
+                            191 	.globl _PMUX
+                            192 	.globl _STLOAD
+                            193 	.globl _P2IEN
+                            194 	.globl _P0IEN
+                            195 	.globl __SFRAA
+                            196 	.globl _IP0
+                            197 	.globl _IEN0
+                            198 	.globl _T2IRQM
+                            199 	.globl _T2MOVF2
+                            200 	.globl _T2MOVF1
+                            201 	.globl _T2MOVF0
+                            202 	.globl _T2M1
+                            203 	.globl _T2M0
+                            204 	.globl _T2IRQF
+                            205 	.globl _P2
+                            206 	.globl _FMAP
+                            207 	.globl _CLKCONSTA
+                            208 	.globl _SLEEPSTA
+                            209 	.globl _T2EVTCFG
+                            210 	.globl _T2CSPCFG
+                            211 	.globl _S1CON
+                            212 	.globl _IEN2
+                            213 	.globl __SFR99
+                            214 	.globl _S0CON
+                            215 	.globl _ST2
+                            216 	.globl _ST1
+                            217 	.globl _ST0
+                            218 	.globl _T2CTRL
+                            219 	.globl _MPAGE
+                            220 	.globl _DPS
+                            221 	.globl _RFIRQF1
+                            222 	.globl _P1
+                            223 	.globl _P0INP
+                            224 	.globl __SFR8E
+                            225 	.globl _P1IEN
+                            226 	.globl _PICTL
+                            227 	.globl _P2IFG
+                            228 	.globl _P1IFG
+                            229 	.globl _P0IFG
+                            230 	.globl _TCON
+                            231 	.globl _PCON
+                            232 	.globl _U0CSR
+                            233 	.globl _DPH1
+                            234 	.globl _DPL1
+                            235 	.globl _DPH0
+                            236 	.globl _DPL0
+                            237 	.globl _SP
+                            238 	.globl _P0
+                            239 	.globl _radioInit
+                            240 	.globl _sendPacket
+                            241 	.globl _receivePacket
+                            242 	.globl _isPacketReady
+                            243 ;--------------------------------------------------------
+                            244 ; special function registers
+                            245 ;--------------------------------------------------------
+                            246 	.area RSEG    (ABS,DATA)
+   0000                     247 	.org 0x0000
+                     0080   248 _P0	=	0x0080
+                     0081   249 _SP	=	0x0081
+                     0082   250 _DPL0	=	0x0082
+                     0083   251 _DPH0	=	0x0083
+                     0084   252 _DPL1	=	0x0084
+                     0085   253 _DPH1	=	0x0085
+                     0086   254 _U0CSR	=	0x0086
+                     0087   255 _PCON	=	0x0087
+                     0088   256 _TCON	=	0x0088
+                     0089   257 _P0IFG	=	0x0089
+                     008A   258 _P1IFG	=	0x008a
+                     008B   259 _P2IFG	=	0x008b
+                     008C   260 _PICTL	=	0x008c
+                     008D   261 _P1IEN	=	0x008d
+                     008E   262 __SFR8E	=	0x008e
+                     008F   263 _P0INP	=	0x008f
+                     0090   264 _P1	=	0x0090
+                     0091   265 _RFIRQF1	=	0x0091
+                     0092   266 _DPS	=	0x0092
+                     0093   267 _MPAGE	=	0x0093
+                     0094   268 _T2CTRL	=	0x0094
+                     0095   269 _ST0	=	0x0095
+                     0096   270 _ST1	=	0x0096
+                     0097   271 _ST2	=	0x0097
+                     0098   272 _S0CON	=	0x0098
+                     0099   273 __SFR99	=	0x0099
+                     009A   274 _IEN2	=	0x009a
+                     009B   275 _S1CON	=	0x009b
+                     009C   276 _T2CSPCFG	=	0x009c
+                     009C   277 _T2EVTCFG	=	0x009c
+                     009D   278 _SLEEPSTA	=	0x009d
+                     009E   279 _CLKCONSTA	=	0x009e
+                     009F   280 _FMAP	=	0x009f
+                     00A0   281 _P2	=	0x00a0
+                     00A1   282 _T2IRQF	=	0x00a1
+                     00A2   283 _T2M0	=	0x00a2
+                     00A3   284 _T2M1	=	0x00a3
+                     00A4   285 _T2MOVF0	=	0x00a4
+                     00A5   286 _T2MOVF1	=	0x00a5
+                     00A6   287 _T2MOVF2	=	0x00a6
+                     00A7   288 _T2IRQM	=	0x00a7
+                     00A8   289 _IEN0	=	0x00a8
+                     00A9   290 _IP0	=	0x00a9
+                     00AA   291 __SFRAA	=	0x00aa
+                     00AB   292 _P0IEN	=	0x00ab
+                     00AC   293 _P2IEN	=	0x00ac
+                     00AD   294 _STLOAD	=	0x00ad
+                     00AE   295 _PMUX	=	0x00ae
+                     00AF   296 _T1STAT	=	0x00af
+                     00B0   297 __SFRB0	=	0x00b0
+                     00B1   298 _ENCDI	=	0x00b1
+                     00B2   299 _ENCDO	=	0x00b2
+                     00B3   300 _ENCCS	=	0x00b3
+                     00B4   301 _ADCCON1	=	0x00b4
+                     00B5   302 _ADCCON2	=	0x00b5
+                     00B6   303 _ADCCON3	=	0x00b6
+                     00B7   304 __SFRB7	=	0x00b7
+                     00B8   305 _IEN1	=	0x00b8
+                     00B9   306 _IP1	=	0x00b9
+                     00BA   307 _ADCL	=	0x00ba
+                     00BB   308 _ADCH	=	0x00bb
+                     00BC   309 _RNDL	=	0x00bc
+                     00BD   310 _RNDH	=	0x00bd
+                     00BE   311 _SLEEPCMD	=	0x00be
+                     00BF   312 _RFERRF	=	0x00bf
+                     00C0   313 _IRCON	=	0x00c0
+                     00C1   314 _U0DBUF	=	0x00c1
+                     00C2   315 _U0BAUD	=	0x00c2
+                     00C3   316 _T2MSEL	=	0x00c3
+                     00C4   317 _U0UCR	=	0x00c4
+                     00C5   318 _U0GCR	=	0x00c5
+                     00C6   319 _CLKCONCMD	=	0x00c6
+                     00C7   320 _MEMCTR	=	0x00c7
+                     00C8   321 __SFRC8	=	0x00c8
+                     00C9   322 _WDCTL	=	0x00c9
+                     00CA   323 _T3CNT	=	0x00ca
+                     00CB   324 _T3CTL	=	0x00cb
+                     00CC   325 _T3CCTL0	=	0x00cc
+                     00CD   326 _T3CC0	=	0x00cd
+                     00CE   327 _T3CCTL1	=	0x00ce
+                     00CF   328 _T3CC1	=	0x00cf
+                     00D0   329 _PSW	=	0x00d0
+                     00D1   330 _DMAIRQ	=	0x00d1
+                     00D2   331 _DMA1CFGL	=	0x00d2
+                     00D3   332 _DMA1CFGH	=	0x00d3
+                     00D4   333 _DMA0CFGL	=	0x00d4
+                     00D5   334 _DMA0CFGH	=	0x00d5
+                     00D6   335 _DMAARM	=	0x00d6
+                     00D7   336 _DMAREQ	=	0x00d7
+                     00D8   337 _TIMIF	=	0x00d8
+                     00D9   338 _RFD	=	0x00d9
+                     00DA   339 _T1CC0L	=	0x00da
+                     00DB   340 _T1CC0H	=	0x00db
+                     00DC   341 _T1CC1L	=	0x00dc
+                     00DD   342 _T1CC1H	=	0x00dd
+                     00DE   343 _T1CC2L	=	0x00de
+                     00DF   344 _T1CC2H	=	0x00df
+                     00E0   345 _ACC	=	0x00e0
+                     00E1   346 _RFST	=	0x00e1
+                     00E2   347 _T1CNTL	=	0x00e2
+                     00E3   348 _T1CNTH	=	0x00e3
+                     00E4   349 _T1CTL	=	0x00e4
+                     00E5   350 _T1CCTL0	=	0x00e5
+                     00E6   351 _T1CCTL1	=	0x00e6
+                     00E7   352 _T1CCTL2	=	0x00e7
+                     00E8   353 _IRCON2	=	0x00e8
+                     00E9   354 _RFIRQF0	=	0x00e9
+                     00EA   355 _T4CNT	=	0x00ea
+                     00EB   356 _T4CTL	=	0x00eb
+                     00EC   357 _T4CCTL0	=	0x00ec
+                     00ED   358 _T4CC0	=	0x00ed
+                     00EE   359 _T4CCTL1	=	0x00ee
+                     00EF   360 _T4CC1	=	0x00ef
+                     00F0   361 _B	=	0x00f0
+                     00F1   362 _PERCFG	=	0x00f1
+                     00F2   363 _ADCCFG	=	0x00f2
+                     00F2   364 _APCFG	=	0x00f2
+                     00F3   365 _P0SEL	=	0x00f3
+                     00F4   366 _P1SEL	=	0x00f4
+                     00F5   367 _P2SEL	=	0x00f5
+                     00F6   368 _P1INP	=	0x00f6
+                     00F7   369 _P2INP	=	0x00f7
+                     00F8   370 _U1CSR	=	0x00f8
+                     00F9   371 _U1DBUF	=	0x00f9
+                     00FA   372 _U1BAUD	=	0x00fa
+                     00FB   373 _U1UCR	=	0x00fb
+                     00FC   374 _U1GCR	=	0x00fc
+                     00FD   375 _P0DIR	=	0x00fd
+                     00FE   376 _P1DIR	=	0x00fe
+                     00FF   377 _P2DIR	=	0x00ff
+                            378 ;--------------------------------------------------------
+                            379 ; special function bits
+                            380 ;--------------------------------------------------------
+                            381 	.area RSEG    (ABS,DATA)
+   0000                     382 	.org 0x0000
+                     0087   383 _P0_7	=	0x0087
+                     0086   384 _P0_6	=	0x0086
+                     0085   385 _P0_5	=	0x0085
+                     0084   386 _P0_4	=	0x0084
+                     0083   387 _P0_3	=	0x0083
+                     0082   388 _P0_2	=	0x0082
+                     0081   389 _P0_1	=	0x0081
+                     0080   390 _P0_0	=	0x0080
+                     008F   391 _URX1IF	=	0x008f
+                     008E   392 __TCON6	=	0x008e
+                     008D   393 _ADCIF	=	0x008d
+                     008C   394 __TCON4	=	0x008c
+                     008B   395 _URX0IF	=	0x008b
+                     008A   396 _IT1	=	0x008a
+                     0089   397 _RFERRIF	=	0x0089
+                     0088   398 _IT0	=	0x0088
+                     0097   399 _P1_7	=	0x0097
+                     0096   400 _P1_6	=	0x0096
+                     0095   401 _P1_5	=	0x0095
+                     0094   402 _P1_4	=	0x0094
+                     0093   403 _P1_3	=	0x0093
+                     0092   404 _P1_2	=	0x0092
+                     0091   405 _P1_1	=	0x0091
+                     0090   406 _P1_0	=	0x0090
+                     009F   407 __S0CON7	=	0x009f
+                     009E   408 __S0CON6	=	0x009e
+                     009D   409 __S0CON5	=	0x009d
+                     009C   410 __S0CON4	=	0x009c
+                     009B   411 __S0CON3	=	0x009b
+                     009A   412 __S0CON2	=	0x009a
+                     0099   413 _ENCIF_1	=	0x0099
+                     0098   414 _ENCIF_0	=	0x0098
+                     00A7   415 __P2_7	=	0x00a7
+                     00A6   416 __P2_6	=	0x00a6
+                     00A5   417 __P2_5	=	0x00a5
+                     00A4   418 _P2_4	=	0x00a4
+                     00A3   419 _P2_3	=	0x00a3
+                     00A2   420 _P2_2	=	0x00a2
+                     00A1   421 _P2_1	=	0x00a1
+                     00A0   422 _P2_0	=	0x00a0
+                     00AF   423 _EA	=	0x00af
+                     00AE   424 __IEN06	=	0x00ae
+                     00AD   425 _STIE	=	0x00ad
+                     00AC   426 _ENCIE	=	0x00ac
+                     00AB   427 _URX1IE	=	0x00ab
+                     00AA   428 _URX0IE	=	0x00aa
+                     00A9   429 _ADCIE	=	0x00a9
+                     00A8   430 _RFERRIE	=	0x00a8
+                     00BF   431 __IEN17	=	0x00bf
+                     00BE   432 __IEN16	=	0x00be
+                     00BD   433 _P0IE	=	0x00bd
+                     00BC   434 _T4IE	=	0x00bc
+                     00BB   435 _T3IE	=	0x00bb
+                     00BA   436 _T2IE	=	0x00ba
+                     00B9   437 _T1IE	=	0x00b9
+                     00B8   438 _DMAIE	=	0x00b8
+                     00C7   439 _STIF	=	0x00c7
+                     00C6   440 __IRCON6	=	0x00c6
+                     00C5   441 _P0IF	=	0x00c5
+                     00C4   442 _T4IF	=	0x00c4
+                     00C3   443 _T3IF	=	0x00c3
+                     00C2   444 _T2IF	=	0x00c2
+                     00C1   445 _T1IF	=	0x00c1
+                     00C0   446 _DMAIF	=	0x00c0
+                     00D7   447 _CY	=	0x00d7
+                     00D6   448 _AC	=	0x00d6
+                     00D5   449 _F0	=	0x00d5
+                     00D4   450 _RS1	=	0x00d4
+                     00D3   451 _RS0	=	0x00d3
+                     00D2   452 _OV	=	0x00d2
+                     00D1   453 _F1	=	0x00d1
+                     00D0   454 _P	=	0x00d0
+                     00DF   455 __TIMIF7	=	0x00df
+                     00DE   456 _T1OVFIM	=	0x00de
+                     00DD   457 _T4CH1IF	=	0x00dd
+                     00DC   458 _T4CH0IF	=	0x00dc
+                     00DB   459 _T4OVFIF	=	0x00db
+                     00DA   460 _T3CH1IF	=	0x00da
+                     00D9   461 _T3CH0IF	=	0x00d9
+                     00D8   462 _T3OVFIF	=	0x00d8
+                     00EF   463 __IRCON27	=	0x00ef
+                     00EE   464 __IRCON26	=	0x00ee
+                     00ED   465 __IRCON25	=	0x00ed
+                     00EC   466 _WDTIF	=	0x00ec
+                     00EB   467 _P1IF	=	0x00eb
+                     00EA   468 _UTX1IF	=	0x00ea
+                     00E9   469 _UTX0IF	=	0x00e9
+                     00E8   470 _P2IF	=	0x00e8
+                     00FF   471 _U1MODE	=	0x00ff
+                     00FE   472 _U1RE	=	0x00fe
+                     00FD   473 _U1SLAVE	=	0x00fd
+                     00FC   474 _U1FE	=	0x00fc
+                     00FB   475 _U1ERR	=	0x00fb
+                     00FA   476 _U1RX_BYTE	=	0x00fa
+                     00F9   477 _U1TX_BYTE	=	0x00f9
+                     00F8   478 _U1ACTIVE	=	0x00f8
+                            479 ;--------------------------------------------------------
+                            480 ; overlayable register banks
+                            481 ;--------------------------------------------------------
+                            482 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                     483 	.ds 8
+                            484 ;--------------------------------------------------------
+                            485 ; internal ram data
+                            486 ;--------------------------------------------------------
+                            487 	.area DSEG    (DATA)
+                            488 ;--------------------------------------------------------
+                            489 ; overlayable items in internal ram 
+                            490 ;--------------------------------------------------------
+                            491 ;--------------------------------------------------------
+                            492 ; indirectly addressable internal ram data
+                            493 ;--------------------------------------------------------
+                            494 	.area ISEG    (DATA)
+                            495 ;--------------------------------------------------------
+                            496 ; absolute internal ram data
+                            497 ;--------------------------------------------------------
+                            498 	.area IABS    (ABS,DATA)
+                            499 	.area IABS    (ABS,DATA)
+                            500 ;--------------------------------------------------------
+                            501 ; bit data
+                            502 ;--------------------------------------------------------
+                            503 	.area BSEG    (BIT)
+                            504 ;--------------------------------------------------------
+                            505 ; paged external ram data
+                            506 ;--------------------------------------------------------
+                            507 	.area PSEG    (PAG,XDATA)
+                            508 ;--------------------------------------------------------
+                            509 ; external ram data
+                            510 ;--------------------------------------------------------
+                            511 	.area XSEG    (XDATA)
+   0000                     512 _sendPacket_seq_1_12:
+   0000                     513 	.ds 1
+                            514 ;--------------------------------------------------------
+                            515 ; absolute external ram data
+                            516 ;--------------------------------------------------------
+                            517 	.area XABS    (ABS,XDATA)
+                            518 ;--------------------------------------------------------
+                            519 ; external initialized ram data
+                            520 ;--------------------------------------------------------
+                            521 	.area XISEG   (XDATA)
+                            522 	.area HOME    (CODE)
+                            523 	.area GSINIT0 (CODE)
+                            524 	.area GSINIT1 (CODE)
+                            525 	.area GSINIT2 (CODE)
+                            526 	.area GSINIT3 (CODE)
+                            527 	.area GSINIT4 (CODE)
+                            528 	.area GSINIT5 (CODE)
+                            529 	.area GSINIT  (CODE)
+                            530 	.area GSFINAL (CODE)
+                            531 	.area CSEG    (CODE)
+                            532 ;--------------------------------------------------------
+                            533 ; global & static initialisations
+                            534 ;--------------------------------------------------------
+                            535 	.area HOME    (CODE)
+                            536 	.area GSINIT  (CODE)
+                            537 	.area GSFINAL (CODE)
+                            538 	.area GSINIT  (CODE)
+                            539 ;--------------------------------------------------------
+                            540 ; Home
+                            541 ;--------------------------------------------------------
+                            542 	.area HOME    (CODE)
+                            543 	.area HOME    (CODE)
+                            544 ;--------------------------------------------------------
+                            545 ; code
+                            546 ;--------------------------------------------------------
+                            547 	.area CSEG    (CODE)
+                            548 ;------------------------------------------------------------
+                            549 ;Allocation info for local variables in function 'radioInit'
+                            550 ;------------------------------------------------------------
+                            551 ;rfConfig                  Allocated to registers r5 r6 r7 
+                            552 ;------------------------------------------------------------
+                            553 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:25: void radioInit(rfConfig_t *rfConfig)
+                            554 ;	-----------------------------------------
+                            555 ;	 function radioInit
+                            556 ;	-----------------------------------------
+   0000                     557 _radioInit:
+                     0007   558 	ar7 = 0x07
+                     0006   559 	ar6 = 0x06
+                     0005   560 	ar5 = 0x05
+                     0004   561 	ar4 = 0x04
+                     0003   562 	ar3 = 0x03
+                     0002   563 	ar2 = 0x02
+                     0001   564 	ar1 = 0x01
+                     0000   565 	ar0 = 0x00
+   0000 AD 82         [24]  566 	mov	r5,dpl
+   0002 AE 83         [24]  567 	mov	r6,dph
+   0004 AF F0         [24]  568 	mov	r7,b
+                            569 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:33: MDMCTRL1 = CORR_THR;
+   0006 90 61 A9      [24]  570 	mov	dptr,#0x61A9
+   0009 74 14         [12]  571 	mov	a,#0x14
+   000B F0            [24]  572 	movx	@dptr,a
+                            573 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:36: RXCTRL = 0x3F;
+   000C 90 61 AB      [24]  574 	mov	dptr,#0x61AB
+   000F 74 3F         [12]  575 	mov	a,#0x3F
+   0011 F0            [24]  576 	movx	@dptr,a
+                            577 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:45: MDMCTRL0 = 0x85;
+   0012 90 61 A8      [24]  578 	mov	dptr,#0x61A8
+   0015 74 85         [12]  579 	mov	a,#0x85
+   0017 F0            [24]  580 	movx	@dptr,a
+                            581 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:48: FSCTRL = 0x5A;
+   0018 90 61 AC      [24]  582 	mov	dptr,#0x61AC
+   001B 74 5A         [12]  583 	mov	a,#0x5A
+   001D F0            [24]  584 	movx	@dptr,a
+                            585 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:51: AGCCTRL1 = 0x15;
+   001E 90 61 B2      [24]  586 	mov	dptr,#0x61B2
+   0021 74 15         [12]  587 	mov	a,#0x15
+   0023 F0            [24]  588 	movx	@dptr,a
+                            589 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:54: SRCMATCH = 0x00;
+   0024 90 61 82      [24]  590 	mov	dptr,#0x6182
+   0027 E4            [12]  591 	clr	a
+   0028 F0            [24]  592 	movx	@dptr,a
+                            593 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:57: ADCTEST0 = 0x10;
+   0029 90 61 B5      [24]  594 	mov	dptr,#0x61B5
+   002C 74 10         [12]  595 	mov	a,#0x10
+   002E F0            [24]  596 	movx	@dptr,a
+                            597 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:58: ADCTEST1 = 0x0E;
+   002F 90 61 B6      [24]  598 	mov	dptr,#0x61B6
+   0032 74 0E         [12]  599 	mov	a,#0x0E
+   0034 F0            [24]  600 	movx	@dptr,a
+                            601 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:59: ADCTEST2 = 0x03;
+   0035 90 61 B7      [24]  602 	mov	dptr,#0x61B7
+   0038 74 03         [12]  603 	mov	a,#0x03
+   003A F0            [24]  604 	movx	@dptr,a
+                            605 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:64: TXFILTCFG = TXFILTCFG_RESET_VALUE;
+   003B 90 61 FA      [24]  606 	mov	dptr,#0x61FA
+   003E 74 09         [12]  607 	mov	a,#0x09
+   0040 F0            [24]  608 	movx	@dptr,a
+                            609 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:66: CSPT = 0xFF; //disable the CSPT register compare function
+   0041 90 61 E5      [24]  610 	mov	dptr,#0x61E5
+   0044 74 FF         [12]  611 	mov	a,#0xFF
+   0046 F0            [24]  612 	movx	@dptr,a
+                            613 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:67: TXPOWER = rfConfig->txPower; //Transmitter Power
+   0047 74 05         [12]  614 	mov	a,#0x05
+   0049 2D            [12]  615 	add	a,r5
+   004A FA            [12]  616 	mov	r2,a
+   004B E4            [12]  617 	clr	a
+   004C 3E            [12]  618 	addc	a,r6
+   004D FB            [12]  619 	mov	r3,a
+   004E 8F 04         [24]  620 	mov	ar4,r7
+   0050 8A 82         [24]  621 	mov	dpl,r2
+   0052 8B 83         [24]  622 	mov	dph,r3
+   0054 8C F0         [24]  623 	mov	b,r4
+   0056 12r00r00      [24]  624 	lcall	__gptrget
+   0059 90 61 90      [24]  625 	mov	dptr,#0x6190
+   005C F0            [24]  626 	movx	@dptr,a
+                            627 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:68: FREQCTRL = 11+5*(rfConfig->channel-11); //Frequency setup: f=(2394 + FREQCNTL) MHz
+   005D 74 04         [12]  628 	mov	a,#0x04
+   005F 2D            [12]  629 	add	a,r5
+   0060 FA            [12]  630 	mov	r2,a
+   0061 E4            [12]  631 	clr	a
+   0062 3E            [12]  632 	addc	a,r6
+   0063 FB            [12]  633 	mov	r3,a
+   0064 8F 04         [24]  634 	mov	ar4,r7
+   0066 8A 82         [24]  635 	mov	dpl,r2
+   0068 8B 83         [24]  636 	mov	dph,r3
+   006A 8C F0         [24]  637 	mov	b,r4
+   006C 12r00r00      [24]  638 	lcall	__gptrget
+   006F 24 F5         [12]  639 	add	a,#0xF5
+   0071 75 F0 05      [24]  640 	mov	b,#0x05
+   0074 A4            [48]  641 	mul	ab
+   0075 24 0B         [12]  642 	add	a,#0x0B
+   0077 90 61 8F      [24]  643 	mov	dptr,#0x618F
+   007A F0            [24]  644 	movx	@dptr,a
+                            645 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:70: FRMCTRL0 |= 0x40; //Turn on auto CRC
+   007B 90 61 89      [24]  646 	mov	dptr,#0x6189
+   007E 74 40         [12]  647 	mov	a,#0x40
+   0080 F0            [24]  648 	movx	@dptr,a
+                            649 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:73: SHORT_ADDRL = (char)rfConfig->addr;
+   0081 74 02         [12]  650 	mov	a,#0x02
+   0083 2D            [12]  651 	add	a,r5
+   0084 FA            [12]  652 	mov	r2,a
+   0085 E4            [12]  653 	clr	a
+   0086 3E            [12]  654 	addc	a,r6
+   0087 FB            [12]  655 	mov	r3,a
+   0088 8F 04         [24]  656 	mov	ar4,r7
+   008A 8A 82         [24]  657 	mov	dpl,r2
+   008C 8B 83         [24]  658 	mov	dph,r3
+   008E 8C F0         [24]  659 	mov	b,r4
+   0090 12r00r00      [24]  660 	lcall	__gptrget
+   0093 F8            [12]  661 	mov	r0,a
+   0094 A3            [24]  662 	inc	dptr
+   0095 12r00r00      [24]  663 	lcall	__gptrget
+   0098 90 61 74      [24]  664 	mov	dptr,#0x6174
+   009B E8            [12]  665 	mov	a,r0
+   009C F0            [24]  666 	movx	@dptr,a
+                            667 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:74: SHORT_ADDRH = (char)(rfConfig->addr>>8);
+   009D 8A 82         [24]  668 	mov	dpl,r2
+   009F 8B 83         [24]  669 	mov	dph,r3
+   00A1 8C F0         [24]  670 	mov	b,r4
+   00A3 12r00r00      [24]  671 	lcall	__gptrget
+   00A6 A3            [24]  672 	inc	dptr
+   00A7 12r00r00      [24]  673 	lcall	__gptrget
+   00AA FA            [12]  674 	mov	r2,a
+   00AB 90 61 75      [24]  675 	mov	dptr,#0x6175
+   00AE EA            [12]  676 	mov	a,r2
+   00AF F0            [24]  677 	movx	@dptr,a
+                            678 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:75: PANL = (char)rfConfig->pan;
+   00B0 8D 82         [24]  679 	mov	dpl,r5
+   00B2 8E 83         [24]  680 	mov	dph,r6
+   00B4 8F F0         [24]  681 	mov	b,r7
+   00B6 12r00r00      [24]  682 	lcall	__gptrget
+   00B9 FB            [12]  683 	mov	r3,a
+   00BA A3            [24]  684 	inc	dptr
+   00BB 12r00r00      [24]  685 	lcall	__gptrget
+   00BE 90 61 72      [24]  686 	mov	dptr,#0x6172
+   00C1 EB            [12]  687 	mov	a,r3
+   00C2 F0            [24]  688 	movx	@dptr,a
+                            689 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:76: PANH = (char)(rfConfig->pan>>8);
+   00C3 8D 82         [24]  690 	mov	dpl,r5
+   00C5 8E 83         [24]  691 	mov	dph,r6
+   00C7 8F F0         [24]  692 	mov	b,r7
+   00C9 12r00r00      [24]  693 	lcall	__gptrget
+   00CC A3            [24]  694 	inc	dptr
+   00CD 12r00r00      [24]  695 	lcall	__gptrget
+   00D0 FD            [12]  696 	mov	r5,a
+   00D1 90 61 73      [24]  697 	mov	dptr,#0x6173
+   00D4 ED            [12]  698 	mov	a,r5
+   00D5 F0            [24]  699 	movx	@dptr,a
+                            700 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:79: FRMFILT0 = 0x0D; //Enable frame filt, max_fcf_version set to 11
+   00D6 90 61 80      [24]  701 	mov	dptr,#0x6180
+   00D9 74 0D         [12]  702 	mov	a,#0x0D
+   00DB F0            [24]  703 	movx	@dptr,a
+                            704 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:80: FRMFILT1 = 0x10; //Only allow for data packets (no beacons, no ack, etc)
+   00DC 90 61 81      [24]  705 	mov	dptr,#0x6181
+   00DF 74 10         [12]  706 	mov	a,#0x10
+   00E1 F0            [24]  707 	movx	@dptr,a
+                            708 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:83: RFST = ISRXON;
+   00E2 75 E1 E3      [24]  709 	mov	_RFST,#0xE3
+   00E5 22            [24]  710 	ret
+                            711 ;------------------------------------------------------------
+                            712 ;Allocation info for local variables in function 'sendPacket'
+                            713 ;------------------------------------------------------------
+                            714 ;len                       Allocated to stack - _bp -4
+                            715 ;pan                       Allocated to stack - _bp -6
+                            716 ;dest                      Allocated to stack - _bp -8
+                            717 ;src                       Allocated to stack - _bp -10
+                            718 ;ptr                       Allocated to stack - _bp +1
+                            719 ;i                         Allocated to registers r4 
+                            720 ;seq                       Allocated with name '_sendPacket_seq_1_12'
+                            721 ;------------------------------------------------------------
+                            722 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:87: void sendPacket(char* ptr, short len, short pan, short dest, short src)
+                            723 ;	-----------------------------------------
+                            724 ;	 function sendPacket
+                            725 ;	-----------------------------------------
+   00E6                     726 _sendPacket:
+   00E6 C0*00         [24]  727 	push	_bp
+   00E8 85 81*00      [24]  728 	mov	_bp,sp
+   00EB C0 82         [24]  729 	push	dpl
+   00ED C0 83         [24]  730 	push	dph
+   00EF C0 F0         [24]  731 	push	b
+                            732 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:91: seq++;  //This auto increments every function call due to "static" declaration
+   00F1 90r00r00      [24]  733 	mov	dptr,#_sendPacket_seq_1_12
+   00F4 E0            [24]  734 	movx	a,@dptr
+   00F5 24 01         [12]  735 	add	a,#0x01
+   00F7 F0            [24]  736 	movx	@dptr,a
+                            737 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:95: RFIRQF1 &= ~0x02; 
+   00F8 AC 91         [24]  738 	mov	r4,_RFIRQF1
+   00FA 74 FD         [12]  739 	mov	a,#0xFD
+   00FC 5C            [12]  740 	anl	a,r4
+   00FD F5 91         [12]  741 	mov	_RFIRQF1,a
+                            742 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:98: RFST = ISRFOFF;
+   00FF 75 E1 EF      [24]  743 	mov	_RFST,#0xEF
+                            744 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:101: RFST = ISFLUSHTX; RFST = ISFLUSHTX; 
+   0102 75 E1 EE      [24]  745 	mov	_RFST,#0xEE
+   0105 75 E1 EE      [24]  746 	mov	_RFST,#0xEE
+                            747 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:105: RFD = 2+2+1+8+len;
+   0108 E5*00         [12]  748 	mov	a,_bp
+   010A 24 FC         [12]  749 	add	a,#0xfc
+   010C F8            [12]  750 	mov	r0,a
+   010D 86 04         [24]  751 	mov	ar4,@r0
+   010F 74 0D         [12]  752 	mov	a,#0x0D
+   0111 2C            [12]  753 	add	a,r4
+   0112 F5 D9         [12]  754 	mov	_RFD,a
+                            755 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:108: RFD = 0x01; //FCF1 - No security, compression, ack
+   0114 75 D9 01      [24]  756 	mov	_RFD,#0x01
+                            757 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:109: RFD = 0x88; //Use short addr and IEEE 802.15.4 2003 matching
+   0117 75 D9 88      [24]  758 	mov	_RFD,#0x88
+                            759 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:110: RFD = seq;
+   011A 90r00r00      [24]  760 	mov	dptr,#_sendPacket_seq_1_12
+   011D E0            [24]  761 	movx	a,@dptr
+   011E F5 D9         [12]  762 	mov	_RFD,a
+                            763 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:113: RFD = (char)pan; //LSB byte of pan
+   0120 E5*00         [12]  764 	mov	a,_bp
+   0122 24 FA         [12]  765 	add	a,#0xfa
+   0124 F8            [12]  766 	mov	r0,a
+   0125 86 04         [24]  767 	mov	ar4,@r0
+   0127 8C D9         [24]  768 	mov	_RFD,r4
+                            769 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:114: RFD = (char)(pan >> 8); //MSB byte of pan 
+   0129 E5*00         [12]  770 	mov	a,_bp
+   012B 24 FA         [12]  771 	add	a,#0xfa
+   012D F8            [12]  772 	mov	r0,a
+   012E 08            [12]  773 	inc	r0
+   012F 86 03         [24]  774 	mov	ar3,@r0
+   0131 8B D9         [24]  775 	mov	_RFD,r3
+                            776 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:115: RFD = (char)dest; //LSB byte of pan
+   0133 E5*00         [12]  777 	mov	a,_bp
+   0135 24 F8         [12]  778 	add	a,#0xf8
+   0137 F8            [12]  779 	mov	r0,a
+   0138 86 D9         [24]  780 	mov	_RFD,@r0
+                            781 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:116: RFD = (char)(dest >> 8); //MSB byte of pan
+   013A E5*00         [12]  782 	mov	a,_bp
+   013C 24 F8         [12]  783 	add	a,#0xf8
+   013E F8            [12]  784 	mov	r0,a
+   013F 08            [12]  785 	inc	r0
+   0140 86 D9         [24]  786 	mov	_RFD,@r0
+                            787 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:119: RFD = (char)pan; //LSB byte of pan
+   0142 8C D9         [24]  788 	mov	_RFD,r4
+                            789 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:120: RFD = (char)(pan >> 8); //MSB byte of pan
+   0144 8B D9         [24]  790 	mov	_RFD,r3
+                            791 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:121: RFD = (char)src; //LSB byte of pan
+   0146 E5*00         [12]  792 	mov	a,_bp
+   0148 24 F6         [12]  793 	add	a,#0xf6
+   014A F8            [12]  794 	mov	r0,a
+   014B 86 D9         [24]  795 	mov	_RFD,@r0
+                            796 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:122: RFD = (char)(src >> 8); //MSB byte of pan
+   014D E5*00         [12]  797 	mov	a,_bp
+   014F 24 F6         [12]  798 	add	a,#0xf6
+   0151 F8            [12]  799 	mov	r0,a
+   0152 08            [12]  800 	inc	r0
+   0153 86 D9         [24]  801 	mov	_RFD,@r0
+                            802 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:125: for (i=0; i<len; i++)
+   0155 7C 00         [12]  803 	mov	r4,#0x00
+   0157                     804 00106$:
+   0157 EC            [12]  805 	mov	a,r4
+   0158 FA            [12]  806 	mov	r2,a
+   0159 33            [12]  807 	rlc	a
+   015A 95 E0         [12]  808 	subb	a,acc
+   015C FB            [12]  809 	mov	r3,a
+   015D E5*00         [12]  810 	mov	a,_bp
+   015F 24 FC         [12]  811 	add	a,#0xfc
+   0161 F8            [12]  812 	mov	r0,a
+   0162 C3            [12]  813 	clr	c
+   0163 EA            [12]  814 	mov	a,r2
+   0164 96            [12]  815 	subb	a,@r0
+   0165 EB            [12]  816 	mov	a,r3
+   0166 64 80         [12]  817 	xrl	a,#0x80
+   0168 08            [12]  818 	inc	r0
+   0169 86 F0         [24]  819 	mov	b,@r0
+   016B 63 F0 80      [24]  820 	xrl	b,#0x80
+   016E 95 F0         [12]  821 	subb	a,b
+   0170 50 1B         [24]  822 	jnc	00101$
+                            823 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:127: RFD = ptr[i];
+   0172 A8*00         [24]  824 	mov	r0,_bp
+   0174 08            [12]  825 	inc	r0
+   0175 EC            [12]  826 	mov	a,r4
+   0176 26            [12]  827 	add	a,@r0
+   0177 FA            [12]  828 	mov	r2,a
+   0178 E4            [12]  829 	clr	a
+   0179 08            [12]  830 	inc	r0
+   017A 36            [12]  831 	addc	a,@r0
+   017B FB            [12]  832 	mov	r3,a
+   017C 08            [12]  833 	inc	r0
+   017D 86 07         [24]  834 	mov	ar7,@r0
+   017F 8A 82         [24]  835 	mov	dpl,r2
+   0181 8B 83         [24]  836 	mov	dph,r3
+   0183 8F F0         [24]  837 	mov	b,r7
+   0185 12r00r00      [24]  838 	lcall	__gptrget
+   0188 F5 D9         [12]  839 	mov	_RFD,a
+                            840 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:125: for (i=0; i<len; i++)
+   018A 0C            [12]  841 	inc	r4
+   018B 80 CA         [24]  842 	sjmp	00106$
+   018D                     843 00101$:
+                            844 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:131: RFST = ISTXON;
+   018D 75 E1 E9      [24]  845 	mov	_RFST,#0xE9
+                            846 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:134: while (!(RFIRQF1 & 0x02));
+   0190                     847 00102$:
+   0190 E5 91         [12]  848 	mov	a,_RFIRQF1
+   0192 30 E1 FB      [24]  849 	jnb	acc.1,00102$
+                            850 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:137: RFST = ISRXON;
+   0195 75 E1 E3      [24]  851 	mov	_RFST,#0xE3
+   0198 85*00 81      [24]  852 	mov	sp,_bp
+   019B D0*00         [24]  853 	pop	_bp
+   019D 22            [24]  854 	ret
+                            855 ;------------------------------------------------------------
+                            856 ;Allocation info for local variables in function 'receivePacket'
+                            857 ;------------------------------------------------------------
+                            858 ;len                       Allocated to stack - _bp -3
+                            859 ;rssi                      Allocated to stack - _bp -6
+                            860 ;ptr                       Allocated to stack - _bp +1
+                            861 ;i                         Allocated to registers r7 
+                            862 ;------------------------------------------------------------
+                            863 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:142: char receivePacket(char* ptr, char len, signed char* rssi)
+                            864 ;	-----------------------------------------
+                            865 ;	 function receivePacket
+                            866 ;	-----------------------------------------
+   019E                     867 _receivePacket:
+   019E C0*00         [24]  868 	push	_bp
+   01A0 85 81*00      [24]  869 	mov	_bp,sp
+   01A3 C0 82         [24]  870 	push	dpl
+   01A5 C0 83         [24]  871 	push	dph
+   01A7 C0 F0         [24]  872 	push	b
+                            873 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:147: RFIRQF0 = 0x00;
+   01A9 75 E9 00      [24]  874 	mov	_RFIRQF0,#0x00
+                            875 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:148: blink(RXFIFOCNT + 1);
+   01AC 90 00 01      [24]  876 	mov	dptr,#0x0001
+   01AF 12r00r00      [24]  877 	lcall	_blink
+                            878 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:150: if(RXFIFOCNT != len+14)
+   01B2 E5*00         [12]  879 	mov	a,_bp
+   01B4 24 FD         [12]  880 	add	a,#0xfd
+   01B6 F8            [12]  881 	mov	r0,a
+   01B7 86 03         [24]  882 	mov	ar3,@r0
+   01B9 E6            [12]  883 	mov	a,@r0
+   01BA 33            [12]  884 	rlc	a
+   01BB 95 E0         [12]  885 	subb	a,acc
+   01BD FC            [12]  886 	mov	r4,a
+   01BE 74 0E         [12]  887 	mov	a,#0x0E
+   01C0 2B            [12]  888 	add	a,r3
+   01C1 FA            [12]  889 	mov	r2,a
+   01C2 E4            [12]  890 	clr	a
+   01C3 3C            [12]  891 	addc	a,r4
+   01C4 FF            [12]  892 	mov	r7,a
+   01C5 4A            [12]  893 	orl	a,r2
+   01C6 60 0C         [24]  894 	jz	00120$
+                            895 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:152: RFST = ISFLUSHRX; RFST = ISFLUSHRX; //Flush the FIFO - 2 times necessary
+   01C8 75 E1 ED      [24]  896 	mov	_RFST,#0xED
+   01CB 75 E1 ED      [24]  897 	mov	_RFST,#0xED
+                            898 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:153: return 0; //Error
+   01CE 75 82 00      [24]  899 	mov	dpl,#0x00
+   01D1 02r02r52      [24]  900 	ljmp	00117$
+                            901 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:156: for (i = 0; i<12; i++)
+   01D4                     902 00120$:
+   01D4 7F 0C         [12]  903 	mov	r7,#0x0C
+   01D6                     904 00113$:
+                            905 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:158: RFD; //Skip through the first 12 bytes, not useful here
+   01D6 E5 D9         [12]  906 	mov	a,_RFD
+   01D8 DF FC         [24]  907 	djnz	r7,00113$
+                            908 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:156: for (i = 0; i<12; i++)
+                            909 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:162: if(RXFIFOCNT != (len + 2))
+   01DA 74 02         [12]  910 	mov	a,#0x02
+   01DC 2B            [12]  911 	add	a,r3
+   01DD FB            [12]  912 	mov	r3,a
+   01DE E4            [12]  913 	clr	a
+   01DF 3C            [12]  914 	addc	a,r4
+   01E0 FC            [12]  915 	mov	r4,a
+   01E1 4B            [12]  916 	orl	a,r3
+   01E2 60 0B         [24]  917 	jz	00124$
+                            918 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:164: RFST = ISFLUSHRX; RFST = ISFLUSHRX; //Flush the FIFO - 2 times necessary
+   01E4 75 E1 ED      [24]  919 	mov	_RFST,#0xED
+   01E7 75 E1 ED      [24]  920 	mov	_RFST,#0xED
+                            921 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:165: return 0; //Error
+   01EA 75 82 00      [24]  922 	mov	dpl,#0x00
+                            923 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:171: for(i=0;i<len;i++)
+   01ED 80 63         [24]  924 	sjmp	00117$
+   01EF                     925 00124$:
+   01EF 7F 00         [12]  926 	mov	r7,#0x00
+   01F1                     927 00115$:
+   01F1 E5*00         [12]  928 	mov	a,_bp
+   01F3 24 FD         [12]  929 	add	a,#0xfd
+   01F5 F8            [12]  930 	mov	r0,a
+   01F6 C3            [12]  931 	clr	c
+   01F7 EF            [12]  932 	mov	a,r7
+   01F8 64 80         [12]  933 	xrl	a,#0x80
+   01FA 86 F0         [24]  934 	mov	b,@r0
+   01FC 63 F0 80      [24]  935 	xrl	b,#0x80
+   01FF 95 F0         [12]  936 	subb	a,b
+   0201 50 1B         [24]  937 	jnc	00104$
+                            938 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:173: ptr[i] = RFD;
+   0203 A8*00         [24]  939 	mov	r0,_bp
+   0205 08            [12]  940 	inc	r0
+   0206 EF            [12]  941 	mov	a,r7
+   0207 26            [12]  942 	add	a,@r0
+   0208 FC            [12]  943 	mov	r4,a
+   0209 E4            [12]  944 	clr	a
+   020A 08            [12]  945 	inc	r0
+   020B 36            [12]  946 	addc	a,@r0
+   020C FD            [12]  947 	mov	r5,a
+   020D 08            [12]  948 	inc	r0
+   020E 86 06         [24]  949 	mov	ar6,@r0
+   0210 8C 82         [24]  950 	mov	dpl,r4
+   0212 8D 83         [24]  951 	mov	dph,r5
+   0214 8E F0         [24]  952 	mov	b,r6
+   0216 E5 D9         [12]  953 	mov	a,_RFD
+   0218 12r00r00      [24]  954 	lcall	__gptrput
+                            955 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:171: for(i=0;i<len;i++)
+   021B 0F            [12]  956 	inc	r7
+   021C 80 D3         [24]  957 	sjmp	00115$
+   021E                     958 00104$:
+                            959 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:177: *rssi = RFD + RSSI_OFFSET;
+   021E E5*00         [12]  960 	mov	a,_bp
+   0220 24 FA         [12]  961 	add	a,#0xfa
+   0222 F8            [12]  962 	mov	r0,a
+   0223 86 05         [24]  963 	mov	ar5,@r0
+   0225 08            [12]  964 	inc	r0
+   0226 86 06         [24]  965 	mov	ar6,@r0
+   0228 08            [12]  966 	inc	r0
+   0229 86 07         [24]  967 	mov	ar7,@r0
+   022B AC D9         [24]  968 	mov	r4,_RFD
+   022D 74 B4         [12]  969 	mov	a,#0xB4
+   022F 2C            [12]  970 	add	a,r4
+   0230 FC            [12]  971 	mov	r4,a
+   0231 8D 82         [24]  972 	mov	dpl,r5
+   0233 8E 83         [24]  973 	mov	dph,r6
+   0235 8F F0         [24]  974 	mov	b,r7
+   0237 12r00r00      [24]  975 	lcall	__gptrput
+                            976 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:180: i = RFD;
+                            977 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:181: if(!(i & 0x80)) //MSB of last byte is CRC valid bit
+   023A E5 D9         [12]  978 	mov	a,_RFD
+   023C FF            [12]  979 	mov	r7,a
+   023D 30 E7 02      [24]  980 	jnb	acc.7,00148$
+   0240 80 09         [24]  981 	sjmp	00106$
+   0242                     982 00148$:
+                            983 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:182: return len; //0;
+   0242 E5*00         [12]  984 	mov	a,_bp
+   0244 24 FD         [12]  985 	add	a,#0xfd
+   0246 F8            [12]  986 	mov	r0,a
+   0247 86 82         [24]  987 	mov	dpl,@r0
+   0249 80 07         [24]  988 	sjmp	00117$
+   024B                     989 00106$:
+                            990 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:184: return len;
+   024B E5*00         [12]  991 	mov	a,_bp
+   024D 24 FD         [12]  992 	add	a,#0xfd
+   024F F8            [12]  993 	mov	r0,a
+   0250 86 82         [24]  994 	mov	dpl,@r0
+   0252                     995 00117$:
+   0252 85*00 81      [24]  996 	mov	sp,_bp
+   0255 D0*00         [24]  997 	pop	_bp
+   0257 22            [24]  998 	ret
+                            999 ;------------------------------------------------------------
+                           1000 ;Allocation info for local variables in function 'isPacketReady'
+                           1001 ;------------------------------------------------------------
+                           1002 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:190: char isPacketReady(void)
+                           1003 ;	-----------------------------------------
+                           1004 ;	 function isPacketReady
+                           1005 ;	-----------------------------------------
+   0258                    1006 _isPacketReady:
+                           1007 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:193: if(RFIRQF0 & 0x40) //Bit 6 means frame accepted and loaded
+   0258 E5 E9         [12] 1008 	mov	a,_RFIRQF0
+   025A 30 E6 04      [24] 1009 	jnb	acc.6,00102$
+                           1010 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:194: return 1;
+   025D 75 82 01      [24] 1011 	mov	dpl,#0x01
+   0260 22            [24] 1012 	ret
+   0261                    1013 00102$:
+                           1014 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.c:196: return 0;
+   0261 75 82 00      [24] 1015 	mov	dpl,#0x00
+   0264 22            [24] 1016 	ret
+                           1017 	.area CSEG    (CODE)
+                           1018 	.area CONST   (CODE)
+                           1019 	.area XINIT   (CODE)
+                           1020 	.area CABS    (ABS,CODE)

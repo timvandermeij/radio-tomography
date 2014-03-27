@@ -1,0 +1,588 @@
+ASxxxx Linker V03.00 + NoICE + sdld,  page 1.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CABS                                00000000    00000000 =           0. bytes (ABS,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   FFFFFF00  s_BSEG                          
+C:   00000000  l_BSEG                          
+C:   00000000  l_BSEG_BYTES                    
+C:   00000000  l_CABS                          
+C:   00000000  l_CONST                         
+C:   00000000  l_GSINIT                        
+C:   00000000  l_GSINIT1                       
+C:   00000000  l_GSINIT5                       
+C:   00000000  l_IABS                          
+C:   00000000  l_ISEG                          
+C:   00000000  l_OSEG                          
+C:   00000000  l_PSEG                          
+C:   00000000  l_REG_BANK_1                    
+C:   00000000  l_REG_BANK_2                    
+C:   00000000  l_REG_BANK_3                    
+C:   00000000  l_RSEG                          
+C:   00000000  l_RSEG0                         
+C:   00000000  l_RSEG1                         
+C:   00000000  l_XABS                          
+C:   00000000  l__CODE                         
+C:   00000000  s_BSEG_BYTES                    
+C:   00000000  s_CABS                          
+C:   00000000  s_DSEG                          
+C:   00000000  s_HOME                          
+C:   00000000  s_IABS                          
+C:   00000000  s_ISEG                          
+C:   00000000  s_PSEG                          
+C:   00000000  s_REG_BANK_0                    
+C:   00000000  s_RSEG                          
+C:   00000000  s_RSEG0                         
+C:   00000000  s_RSEG1                         
+C:   00000000  s_XABS                          
+C:   00000000  s_XSEG                          
+C:   00000001  l_BIT_BANK                      
+C:   00000003  l_GSFINAL                       
+C:   00000003  l_GSINIT0                       
+C:   00000008  l_REG_BANK_0                    
+C:   00000008  s_REG_BANK_1                    
+C:   0000000A  l_GSINIT2                       
+C:   00000010  l_XINIT                         
+C:   00000010  l_XISEG                         
+C:   00000010  s_REG_BANK_2                    
+C:   00000018  s_REG_BANK_3                    
+C:   00000020  s_BIT_BANK                      
+C:   00000020  s_OSEG                          
+C:   00000020  s__CODE                         
+C:   00000021  s_SSEG                          
+C:   00000022  l_GSINIT3                       
+C:   0000002A  l_GSINIT4                       
+C:   0000002F  l_XSEG                          
+ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CABS                                00000000    00000000 =           0. bytes (ABS,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   0000002F  s_XISEG                         
+C:   00000069  l_DSEG                          
+C:   0000006B  l_HOME                          
+C:   0000006B  s_GSINIT0                       
+C:   0000006E  s_GSINIT1                       
+C:   0000006E  s_GSINIT2                       
+C:   00000078  s_GSINIT3                       
+C:   0000009A  s_GSINIT4                       
+C:   000000C4  s_GSFINAL                       
+C:   000000C4  s_GSINIT                        
+C:   000000C4  s_GSINIT5                       
+C:   000000C7  s_CSEG                          
+C:   000000DF  l_SSEG                          
+C:   00000100  l_IRAM                          
+C:   00000A05  l_CSEG                          
+C:   00000ACC  s_CONST                         
+C:   00000ACC  s_XINIT                         
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000000  .__.ABS.                           _startup
+     00000080  _P0                                timers34
+     00000080  _P0_0                              timers34
+     00000081  _P0_1                              timers34
+     00000081  _SP                                timers34
+     00000082  _DPL0                              timers34
+     00000082  _P0_2                              timers34
+     00000083  _DPH0                              timers34
+     00000083  _P0_3                              timers34
+     00000084  _DPL1                              timers34
+     00000084  _P0_4                              timers34
+     00000085  _DPH1                              timers34
+     00000085  _P0_5                              timers34
+     00000086  _P0_6                              timers34
+     00000086  _U0CSR                             timers34
+     00000087  _P0_7                              timers34
+     00000087  _PCON                              timers34
+     00000088  _IT0                               timers34
+     00000088  _TCON                              timers34
+     00000089  _P0IFG                             timers34
+     00000089  _RFERRIF                           timers34
+     0000008A  _IT1                               timers34
+     0000008A  _P1IFG                             timers34
+     0000008B  _P2IFG                             timers34
+     0000008B  _URX0IF                            timers34
+     0000008C  _PICTL                             timers34
+     0000008C  __TCON4                            timers34
+     0000008D  _ADCIF                             timers34
+     0000008D  _P1IEN                             timers34
+     0000008E  __SFR8E                            timers34
+     0000008E  __TCON6                            timers34
+     0000008F  _P0INP                             timers34
+     0000008F  _URX1IF                            timers34
+     00000090  _P1                                timers34
+     00000090  _P1_0                              timers34
+     00000091  _P1_1                              timers34
+     00000091  _RFIRQF1                           timers34
+     00000092  _DPS                               timers34
+     00000092  _P1_2                              timers34
+     00000093  _MPAGE                             timers34
+     00000093  _P1_3                              timers34
+     00000094  _P1_4                              timers34
+     00000094  _T2CTRL                            timers34
+     00000095  _P1_5                              timers34
+     00000095  _ST0                               timers34
+     00000096  _P1_6                              timers34
+     00000096  _ST1                               timers34
+     00000097  _P1_7                              timers34
+     00000097  _ST2                               timers34
+     00000098  _ENCIF_0                           timers34
+ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000098  _S0CON                             timers34
+     00000099  _ENCIF_1                           timers34
+     00000099  __SFR99                            timers34
+     0000009A  _IEN2                              timers34
+     0000009A  __S0CON2                           timers34
+     0000009B  _S1CON                             timers34
+     0000009B  __S0CON3                           timers34
+     0000009C  _T2CSPCFG                          timers34
+     0000009C  _T2EVTCFG                          timers34
+     0000009C  __S0CON4                           timers34
+     0000009D  _SLEEPSTA                          timers34
+     0000009D  __S0CON5                           timers34
+     0000009E  _CLKCONSTA                         timers34
+     0000009E  __S0CON6                           timers34
+     0000009F  _FMAP                              timers34
+     0000009F  __S0CON7                           timers34
+     000000A0  _P2                                timers34
+     000000A0  _P2_0                              timers34
+     000000A0  __XPAGE                            
+     000000A1  _P2_1                              timers34
+     000000A1  _T2IRQF                            timers34
+     000000A2  _P2_2                              timers34
+     000000A2  _T2M0                              timers34
+     000000A3  _P2_3                              timers34
+     000000A3  _T2M1                              timers34
+     000000A4  _P2_4                              timers34
+     000000A4  _T2MOVF0                           timers34
+     000000A5  _T2MOVF1                           timers34
+     000000A5  __P2_5                             timers34
+     000000A6  _T2MOVF2                           timers34
+     000000A6  __P2_6                             timers34
+     000000A7  _T2IRQM                            timers34
+     000000A7  __P2_7                             timers34
+     000000A8  _IEN0                              timers34
+     000000A8  _RFERRIE                           timers34
+     000000A9  _ADCIE                             timers34
+     000000A9  _IP0                               timers34
+     000000AA  _URX0IE                            timers34
+     000000AA  __SFRAA                            timers34
+     000000AB  _P0IEN                             timers34
+     000000AB  _URX1IE                            timers34
+     000000AC  _ENCIE                             timers34
+     000000AC  _P2IEN                             timers34
+     000000AD  _STIE                              timers34
+     000000AD  _STLOAD                            timers34
+     000000AE  _PMUX                              timers34
+     000000AE  __IEN06                            timers34
+     000000AF  _EA                                timers34
+     000000AF  _T1STAT                            timers34
+     000000B0  __SFRB0                            timers34
+     000000B1  _ENCDI                             timers34
+ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000B2  _ENCDO                             timers34
+     000000B3  _ENCCS                             timers34
+     000000B4  _ADCCON1                           timers34
+     000000B5  _ADCCON2                           timers34
+     000000B6  _ADCCON3                           timers34
+     000000B7  __SFRB7                            timers34
+     000000B8  _DMAIE                             timers34
+     000000B8  _IEN1                              timers34
+     000000B9  _IP1                               timers34
+     000000B9  _T1IE                              timers34
+     000000BA  _ADCL                              timers34
+     000000BA  _T2IE                              timers34
+     000000BB  _ADCH                              timers34
+     000000BB  _T3IE                              timers34
+     000000BC  _RNDL                              timers34
+     000000BC  _T4IE                              timers34
+     000000BD  _P0IE                              timers34
+     000000BD  _RNDH                              timers34
+     000000BE  _SLEEPCMD                          timers34
+     000000BE  __IEN16                            timers34
+     000000BF  _RFERRF                            timers34
+     000000BF  __IEN17                            timers34
+     000000C0  _DMAIF                             timers34
+     000000C0  _IRCON                             timers34
+     000000C1  _T1IF                              timers34
+     000000C1  _U0DBUF                            timers34
+     000000C2  _T2IF                              timers34
+     000000C2  _U0BAUD                            timers34
+     000000C3  _T2MSEL                            timers34
+     000000C3  _T3IF                              timers34
+     000000C4  _T4IF                              timers34
+     000000C4  _U0UCR                             timers34
+     000000C5  _P0IF                              timers34
+     000000C5  _U0GCR                             timers34
+     000000C6  _CLKCONCMD                         timers34
+     000000C6  __IRCON6                           timers34
+     000000C7  _MEMCTR                            timers34
+     000000C7  _STIF                              timers34
+     000000C8  __SFRC8                            timers34
+     000000C9  _WDCTL                             timers34
+     000000CA  _T3CNT                             timers34
+     000000CB  _T3CTL                             timers34
+     000000CC  _T3CCTL0                           timers34
+     000000CD  _T3CC0                             timers34
+     000000CE  _T3CCTL1                           timers34
+     000000CF  _T3CC1                             timers34
+     000000D0  _P                                 timers34
+     000000D0  _PSW                               timers34
+     000000D1  _DMAIRQ                            timers34
+     000000D1  _F1                                timers34
+     000000D2  _DMA1CFGL                          timers34
+ASxxxx Linker V03.00 + NoICE + sdld,  page 6.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000D2  _OV                                timers34
+     000000D3  _DMA1CFGH                          timers34
+     000000D3  _RS0                               timers34
+     000000D4  _DMA0CFGL                          timers34
+     000000D4  _RS1                               timers34
+     000000D5  _DMA0CFGH                          timers34
+     000000D5  _F0                                timers34
+     000000D6  _AC                                timers34
+     000000D6  _DMAARM                            timers34
+     000000D7  _CY                                timers34
+     000000D7  _DMAREQ                            timers34
+     000000D8  _T3OVFIF                           timers34
+     000000D8  _TIMIF                             timers34
+     000000D9  _RFD                               timers34
+     000000D9  _T3CH0IF                           timers34
+     000000DA  _T1CC0L                            timers34
+     000000DA  _T3CH1IF                           timers34
+     000000DB  _T1CC0H                            timers34
+     000000DB  _T4OVFIF                           timers34
+     000000DC  _T1CC1L                            timers34
+     000000DC  _T4CH0IF                           timers34
+     000000DD  _T1CC1H                            timers34
+     000000DD  _T4CH1IF                           timers34
+     000000DE  _T1CC2L                            timers34
+     000000DE  _T1OVFIM                           timers34
+     000000DF  _T1CC2H                            timers34
+     000000DF  __TIMIF7                           timers34
+     000000E0  _ACC                               timers34
+     000000E1  _RFST                              timers34
+     000000E2  _T1CNTL                            timers34
+     000000E3  _T1CNTH                            timers34
+     000000E4  _T1CTL                             timers34
+     000000E5  _T1CCTL0                           timers34
+     000000E6  _T1CCTL1                           timers34
+     000000E7  _T1CCTL2                           timers34
+     000000E8  _IRCON2                            timers34
+     000000E8  _P2IF                              timers34
+     000000E9  _RFIRQF0                           timers34
+     000000E9  _UTX0IF                            timers34
+     000000EA  _T4CNT                             timers34
+     000000EA  _UTX1IF                            timers34
+     000000EB  _P1IF                              timers34
+     000000EB  _T4CTL                             timers34
+     000000EC  _T4CCTL0                           timers34
+     000000EC  _WDTIF                             timers34
+     000000ED  _T4CC0                             timers34
+     000000ED  __IRCON25                          timers34
+     000000EE  _T4CCTL1                           timers34
+     000000EE  __IRCON26                          timers34
+     000000EF  _T4CC1                             timers34
+     000000EF  __IRCON27                          timers34
+ASxxxx Linker V03.00 + NoICE + sdld,  page 7.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000F0  _B                                 timers34
+     000000F1  _PERCFG                            timers34
+     000000F2  _ADCCFG                            timers34
+     000000F2  _APCFG                             timers34
+     000000F3  _P0SEL                             timers34
+     000000F4  _P1SEL                             timers34
+     000000F5  _B_5                               _gptrget
+     000000F5  _P2SEL                             timers34
+     000000F6  _B_6                               _gptrget
+     000000F6  _P1INP                             timers34
+     000000F7  _B_7                               _gptrget
+     000000F7  _P2INP                             timers34
+     000000F8  _U1ACTIVE                          timers34
+     000000F8  _U1CSR                             timers34
+     000000F9  _U1DBUF                            timers34
+     000000F9  _U1TX_BYTE                         timers34
+     000000FA  _U1BAUD                            timers34
+     000000FA  _U1RX_BYTE                         timers34
+     000000FB  _U1ERR                             timers34
+     000000FB  _U1UCR                             timers34
+     000000FC  _U1FE                              timers34
+     000000FC  _U1GCR                             timers34
+     000000FD  _P0DIR                             timers34
+     000000FD  _U1SLAVE                           timers34
+     000000FE  _P1DIR                             timers34
+     000000FE  _U1RE                              timers34
+     000000FF  _P2DIR                             timers34
+     000000FF  _U1MODE                            timers34
+ASxxxx Linker V03.00 + NoICE + sdld,  page 8.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+REG_BANK_0                          00000000    00000008 =           8. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 9.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+BIT_BANK                            00000020    00000001 =           1. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 10.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+DSEG                                00000000    00000069 =         105. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000008  _bp                                _bp
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 11.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+SSEG                                00000021    000000DF =         223. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000021  __start__stack                     main
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 12.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+XSEG                                00000000    0000002F =          47. bytes (REL,CON,XDATA)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+D:   00000000  _spinPacket                        main
+D:   00000008  _receivedPacket                    main
+D:   00000016  _rssi                              main
+D:   00000017  _TX_id                             main
+D:   00000018  _int_TX_id                         main
+D:   0000001A  _channel                           main
+D:   0000001B  _RX_packet_counter                 main
+D:   0000001D  _channel_hoppingConfig             main
+D:   00000021  _next_TX_timeConfig                main
+D:   00000026  _timer3IsrPtr                      timers34
+D:   00000028  _timer4IsrPtr                      timers34
+D:   0000002A  _tickThreshSave3                   timers34
+D:   0000002B  _tickThreshSave4                   timers34
+D:   0000002C  __gptrput_PARM_2                   _gptrput
+D:   0000002D  __mulint_PARM_2                    _mulint
+ASxxxx Linker V03.00 + NoICE + sdld,  page 13.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+XISEG                               0000002F    00000010 =          16. bytes (REL,CON,XDATA)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+D:   0000002F  _channel_sequence                  main
+D:   00000033  _next_TX_time                      main
+D:   00000035  _next_channel_time                 main
+D:   00000037  _i                                 main
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 14.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+HOME                                00000000    0000006B =         107. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000066  __sdcc_program_startup             main
+C:   00000069  __sdcc_call_dptr                   
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 15.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT0                             0000006B    00000003 =           3. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   0000006B  __sdcc_gsinit_startup              
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 16.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT2                             0000006E    0000000A =          10. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 17.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT3                             00000078    00000022 =          34. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000078  __mcs51_genXINIT                   
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 18.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT4                             0000009A    0000002A =          42. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   0000009A  __mcs51_genRAMCLEAR                
+C:   000000A0  __mcs51_genXRAMCLEAR               
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 19.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSFINAL                             000000C4    00000003 =           3. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 20.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                000000C7    00000A05 =        2565. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000000C7  _blink                             main
+C:   00000204  _next_TX_timeISR                   main
+C:   000002C5  _channel_hoppingISR                main
+C:   000003A5  _main                              main
+C:   0000063B  _ledInit                           leds
+C:   0000063F  _ledOn                             leds
+C:   00000647  _ledOff                            leds
+C:   0000064F  _ledToggle                         leds
+C:   00000657  _radioInit                         rf
+C:   0000073D  _sendPacket                        rf
+C:   000007F5  _receivePacket                     rf
+C:   000008AF  _isPacketReady                     rf
+C:   000008BC  _clockInit                         spin_clock
+C:   000008C5  _setSysTickFreq                    spin_clock
+C:   000008F7  _timer3Isr                         timers34
+C:   00000941  _timer4Isr                         timers34
+C:   0000098B  _timer3Init                        timers34
+C:   000009EC  _timer3Start                       timers34
+C:   000009F6  _timer3Stop                        timers34
+C:   000009FE  _timer4Init                        timers34
+C:   00000A5F  _timer4Start                       timers34
+C:   00000A69  _timer4Stop                        timers34
+C:   00000A71  __gptrput                          _gptrput
+C:   00000A8C  __mulint                           _mulint
+C:   00000AAC  __gptrget                          _gptrget
+C:   00000AC8  __sdcc_external_startup            _startup
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 21.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+XINIT                               00000ACC    00000010 =          16. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 22.
+
+Files Linked                              [ module(s) ]
+
+/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/RF_sensor/main.rel
+                                          [  ]
+/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/leds.rel
+                                          [  ]
+/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.rel
+                                          [  ]
+/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/spin_clock.rel
+                                          [  ]
+/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.rel
+                                          [  ]
+
+
+Libraries Linked                          [ object file ]
+
+/usr/share/sdcc/lib/large/mcs51.lib       [ crtclear.rel ]
+/usr/share/sdcc/lib/large/mcs51.lib       [ crtxinit.rel ]
+/usr/share/sdcc/lib/large/libsdcc.lib     [ _gptrput.rel ]
+/usr/share/sdcc/lib/large/libint.lib      [ _mulint.rel ]
+/usr/share/sdcc/lib/large/mcs51.lib       [ crtxclear.rel ]
+/usr/share/sdcc/lib/large/mcs51.lib       [ crtcall.rel ]
+/usr/share/sdcc/lib/large/libsdcc.lib     [ _bp.rel ]
+/usr/share/sdcc/lib/large/mcs51.lib       [ crtpagesfr.rel ]
+/usr/share/sdcc/lib/large/mcs51.lib       [ crtstart.rel ]
+/usr/share/sdcc/lib/large/libsdcc.lib     [ _gptrget.rel ]
+/usr/share/sdcc/lib/large/libsdcc.lib     [ _startup.rel ]
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 23.
+
+User Base Address Definitions
+
+HOME = 0x0000
+ISEG = 0x0000
+BSEG = 0x0000
+
+

@@ -1,0 +1,882 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.3.0 #8604 (Jul  8 2013) (Linux)
+                              4 ; This file was generated Thu Mar 27 18:46:38 2014
+                              5 ;--------------------------------------------------------
+                              6 	.module timers34
+                              7 	.optsdcc -mmcs51 --model-large
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _timer4Isr
+                             13 	.globl _timer3Isr
+                             14 	.globl _U1ACTIVE
+                             15 	.globl _U1TX_BYTE
+                             16 	.globl _U1RX_BYTE
+                             17 	.globl _U1ERR
+                             18 	.globl _U1FE
+                             19 	.globl _U1SLAVE
+                             20 	.globl _U1RE
+                             21 	.globl _U1MODE
+                             22 	.globl _P2IF
+                             23 	.globl _UTX0IF
+                             24 	.globl _UTX1IF
+                             25 	.globl _P1IF
+                             26 	.globl _WDTIF
+                             27 	.globl __IRCON25
+                             28 	.globl __IRCON26
+                             29 	.globl __IRCON27
+                             30 	.globl _T3OVFIF
+                             31 	.globl _T3CH0IF
+                             32 	.globl _T3CH1IF
+                             33 	.globl _T4OVFIF
+                             34 	.globl _T4CH0IF
+                             35 	.globl _T4CH1IF
+                             36 	.globl _T1OVFIM
+                             37 	.globl __TIMIF7
+                             38 	.globl _P
+                             39 	.globl _F1
+                             40 	.globl _OV
+                             41 	.globl _RS0
+                             42 	.globl _RS1
+                             43 	.globl _F0
+                             44 	.globl _AC
+                             45 	.globl _CY
+                             46 	.globl _DMAIF
+                             47 	.globl _T1IF
+                             48 	.globl _T2IF
+                             49 	.globl _T3IF
+                             50 	.globl _T4IF
+                             51 	.globl _P0IF
+                             52 	.globl __IRCON6
+                             53 	.globl _STIF
+                             54 	.globl _DMAIE
+                             55 	.globl _T1IE
+                             56 	.globl _T2IE
+                             57 	.globl _T3IE
+                             58 	.globl _T4IE
+                             59 	.globl _P0IE
+                             60 	.globl __IEN16
+                             61 	.globl __IEN17
+                             62 	.globl _RFERRIE
+                             63 	.globl _ADCIE
+                             64 	.globl _URX0IE
+                             65 	.globl _URX1IE
+                             66 	.globl _ENCIE
+                             67 	.globl _STIE
+                             68 	.globl __IEN06
+                             69 	.globl _EA
+                             70 	.globl _P2_0
+                             71 	.globl _P2_1
+                             72 	.globl _P2_2
+                             73 	.globl _P2_3
+                             74 	.globl _P2_4
+                             75 	.globl __P2_5
+                             76 	.globl __P2_6
+                             77 	.globl __P2_7
+                             78 	.globl _ENCIF_0
+                             79 	.globl _ENCIF_1
+                             80 	.globl __S0CON2
+                             81 	.globl __S0CON3
+                             82 	.globl __S0CON4
+                             83 	.globl __S0CON5
+                             84 	.globl __S0CON6
+                             85 	.globl __S0CON7
+                             86 	.globl _P1_0
+                             87 	.globl _P1_1
+                             88 	.globl _P1_2
+                             89 	.globl _P1_3
+                             90 	.globl _P1_4
+                             91 	.globl _P1_5
+                             92 	.globl _P1_6
+                             93 	.globl _P1_7
+                             94 	.globl _IT0
+                             95 	.globl _RFERRIF
+                             96 	.globl _IT1
+                             97 	.globl _URX0IF
+                             98 	.globl __TCON4
+                             99 	.globl _ADCIF
+                            100 	.globl __TCON6
+                            101 	.globl _URX1IF
+                            102 	.globl _P0_0
+                            103 	.globl _P0_1
+                            104 	.globl _P0_2
+                            105 	.globl _P0_3
+                            106 	.globl _P0_4
+                            107 	.globl _P0_5
+                            108 	.globl _P0_6
+                            109 	.globl _P0_7
+                            110 	.globl _P2DIR
+                            111 	.globl _P1DIR
+                            112 	.globl _P0DIR
+                            113 	.globl _U1GCR
+                            114 	.globl _U1UCR
+                            115 	.globl _U1BAUD
+                            116 	.globl _U1DBUF
+                            117 	.globl _U1CSR
+                            118 	.globl _P2INP
+                            119 	.globl _P1INP
+                            120 	.globl _P2SEL
+                            121 	.globl _P1SEL
+                            122 	.globl _P0SEL
+                            123 	.globl _APCFG
+                            124 	.globl _ADCCFG
+                            125 	.globl _PERCFG
+                            126 	.globl _B
+                            127 	.globl _T4CC1
+                            128 	.globl _T4CCTL1
+                            129 	.globl _T4CC0
+                            130 	.globl _T4CCTL0
+                            131 	.globl _T4CTL
+                            132 	.globl _T4CNT
+                            133 	.globl _RFIRQF0
+                            134 	.globl _IRCON2
+                            135 	.globl _T1CCTL2
+                            136 	.globl _T1CCTL1
+                            137 	.globl _T1CCTL0
+                            138 	.globl _T1CTL
+                            139 	.globl _T1CNTH
+                            140 	.globl _T1CNTL
+                            141 	.globl _RFST
+                            142 	.globl _ACC
+                            143 	.globl _T1CC2H
+                            144 	.globl _T1CC2L
+                            145 	.globl _T1CC1H
+                            146 	.globl _T1CC1L
+                            147 	.globl _T1CC0H
+                            148 	.globl _T1CC0L
+                            149 	.globl _RFD
+                            150 	.globl _TIMIF
+                            151 	.globl _DMAREQ
+                            152 	.globl _DMAARM
+                            153 	.globl _DMA0CFGH
+                            154 	.globl _DMA0CFGL
+                            155 	.globl _DMA1CFGH
+                            156 	.globl _DMA1CFGL
+                            157 	.globl _DMAIRQ
+                            158 	.globl _PSW
+                            159 	.globl _T3CC1
+                            160 	.globl _T3CCTL1
+                            161 	.globl _T3CC0
+                            162 	.globl _T3CCTL0
+                            163 	.globl _T3CTL
+                            164 	.globl _T3CNT
+                            165 	.globl _WDCTL
+                            166 	.globl __SFRC8
+                            167 	.globl _MEMCTR
+                            168 	.globl _CLKCONCMD
+                            169 	.globl _U0GCR
+                            170 	.globl _U0UCR
+                            171 	.globl _T2MSEL
+                            172 	.globl _U0BAUD
+                            173 	.globl _U0DBUF
+                            174 	.globl _IRCON
+                            175 	.globl _RFERRF
+                            176 	.globl _SLEEPCMD
+                            177 	.globl _RNDH
+                            178 	.globl _RNDL
+                            179 	.globl _ADCH
+                            180 	.globl _ADCL
+                            181 	.globl _IP1
+                            182 	.globl _IEN1
+                            183 	.globl __SFRB7
+                            184 	.globl _ADCCON3
+                            185 	.globl _ADCCON2
+                            186 	.globl _ADCCON1
+                            187 	.globl _ENCCS
+                            188 	.globl _ENCDO
+                            189 	.globl _ENCDI
+                            190 	.globl __SFRB0
+                            191 	.globl _T1STAT
+                            192 	.globl _PMUX
+                            193 	.globl _STLOAD
+                            194 	.globl _P2IEN
+                            195 	.globl _P0IEN
+                            196 	.globl __SFRAA
+                            197 	.globl _IP0
+                            198 	.globl _IEN0
+                            199 	.globl _T2IRQM
+                            200 	.globl _T2MOVF2
+                            201 	.globl _T2MOVF1
+                            202 	.globl _T2MOVF0
+                            203 	.globl _T2M1
+                            204 	.globl _T2M0
+                            205 	.globl _T2IRQF
+                            206 	.globl _P2
+                            207 	.globl _FMAP
+                            208 	.globl _CLKCONSTA
+                            209 	.globl _SLEEPSTA
+                            210 	.globl _T2EVTCFG
+                            211 	.globl _T2CSPCFG
+                            212 	.globl _S1CON
+                            213 	.globl _IEN2
+                            214 	.globl __SFR99
+                            215 	.globl _S0CON
+                            216 	.globl _ST2
+                            217 	.globl _ST1
+                            218 	.globl _ST0
+                            219 	.globl _T2CTRL
+                            220 	.globl _MPAGE
+                            221 	.globl _DPS
+                            222 	.globl _RFIRQF1
+                            223 	.globl _P1
+                            224 	.globl _P0INP
+                            225 	.globl __SFR8E
+                            226 	.globl _P1IEN
+                            227 	.globl _PICTL
+                            228 	.globl _P2IFG
+                            229 	.globl _P1IFG
+                            230 	.globl _P0IFG
+                            231 	.globl _TCON
+                            232 	.globl _PCON
+                            233 	.globl _U0CSR
+                            234 	.globl _DPH1
+                            235 	.globl _DPL1
+                            236 	.globl _DPH0
+                            237 	.globl _DPL0
+                            238 	.globl _SP
+                            239 	.globl _P0
+                            240 	.globl _tickThreshSave4
+                            241 	.globl _tickThreshSave3
+                            242 	.globl _timer4IsrPtr
+                            243 	.globl _timer3IsrPtr
+                            244 	.globl _timer3Init
+                            245 	.globl _timer3Start
+                            246 	.globl _timer3Stop
+                            247 	.globl _timer4Init
+                            248 	.globl _timer4Start
+                            249 	.globl _timer4Stop
+                            250 ;--------------------------------------------------------
+                            251 ; special function registers
+                            252 ;--------------------------------------------------------
+                            253 	.area RSEG    (ABS,DATA)
+   0000                     254 	.org 0x0000
+                     0080   255 _P0	=	0x0080
+                     0081   256 _SP	=	0x0081
+                     0082   257 _DPL0	=	0x0082
+                     0083   258 _DPH0	=	0x0083
+                     0084   259 _DPL1	=	0x0084
+                     0085   260 _DPH1	=	0x0085
+                     0086   261 _U0CSR	=	0x0086
+                     0087   262 _PCON	=	0x0087
+                     0088   263 _TCON	=	0x0088
+                     0089   264 _P0IFG	=	0x0089
+                     008A   265 _P1IFG	=	0x008a
+                     008B   266 _P2IFG	=	0x008b
+                     008C   267 _PICTL	=	0x008c
+                     008D   268 _P1IEN	=	0x008d
+                     008E   269 __SFR8E	=	0x008e
+                     008F   270 _P0INP	=	0x008f
+                     0090   271 _P1	=	0x0090
+                     0091   272 _RFIRQF1	=	0x0091
+                     0092   273 _DPS	=	0x0092
+                     0093   274 _MPAGE	=	0x0093
+                     0094   275 _T2CTRL	=	0x0094
+                     0095   276 _ST0	=	0x0095
+                     0096   277 _ST1	=	0x0096
+                     0097   278 _ST2	=	0x0097
+                     0098   279 _S0CON	=	0x0098
+                     0099   280 __SFR99	=	0x0099
+                     009A   281 _IEN2	=	0x009a
+                     009B   282 _S1CON	=	0x009b
+                     009C   283 _T2CSPCFG	=	0x009c
+                     009C   284 _T2EVTCFG	=	0x009c
+                     009D   285 _SLEEPSTA	=	0x009d
+                     009E   286 _CLKCONSTA	=	0x009e
+                     009F   287 _FMAP	=	0x009f
+                     00A0   288 _P2	=	0x00a0
+                     00A1   289 _T2IRQF	=	0x00a1
+                     00A2   290 _T2M0	=	0x00a2
+                     00A3   291 _T2M1	=	0x00a3
+                     00A4   292 _T2MOVF0	=	0x00a4
+                     00A5   293 _T2MOVF1	=	0x00a5
+                     00A6   294 _T2MOVF2	=	0x00a6
+                     00A7   295 _T2IRQM	=	0x00a7
+                     00A8   296 _IEN0	=	0x00a8
+                     00A9   297 _IP0	=	0x00a9
+                     00AA   298 __SFRAA	=	0x00aa
+                     00AB   299 _P0IEN	=	0x00ab
+                     00AC   300 _P2IEN	=	0x00ac
+                     00AD   301 _STLOAD	=	0x00ad
+                     00AE   302 _PMUX	=	0x00ae
+                     00AF   303 _T1STAT	=	0x00af
+                     00B0   304 __SFRB0	=	0x00b0
+                     00B1   305 _ENCDI	=	0x00b1
+                     00B2   306 _ENCDO	=	0x00b2
+                     00B3   307 _ENCCS	=	0x00b3
+                     00B4   308 _ADCCON1	=	0x00b4
+                     00B5   309 _ADCCON2	=	0x00b5
+                     00B6   310 _ADCCON3	=	0x00b6
+                     00B7   311 __SFRB7	=	0x00b7
+                     00B8   312 _IEN1	=	0x00b8
+                     00B9   313 _IP1	=	0x00b9
+                     00BA   314 _ADCL	=	0x00ba
+                     00BB   315 _ADCH	=	0x00bb
+                     00BC   316 _RNDL	=	0x00bc
+                     00BD   317 _RNDH	=	0x00bd
+                     00BE   318 _SLEEPCMD	=	0x00be
+                     00BF   319 _RFERRF	=	0x00bf
+                     00C0   320 _IRCON	=	0x00c0
+                     00C1   321 _U0DBUF	=	0x00c1
+                     00C2   322 _U0BAUD	=	0x00c2
+                     00C3   323 _T2MSEL	=	0x00c3
+                     00C4   324 _U0UCR	=	0x00c4
+                     00C5   325 _U0GCR	=	0x00c5
+                     00C6   326 _CLKCONCMD	=	0x00c6
+                     00C7   327 _MEMCTR	=	0x00c7
+                     00C8   328 __SFRC8	=	0x00c8
+                     00C9   329 _WDCTL	=	0x00c9
+                     00CA   330 _T3CNT	=	0x00ca
+                     00CB   331 _T3CTL	=	0x00cb
+                     00CC   332 _T3CCTL0	=	0x00cc
+                     00CD   333 _T3CC0	=	0x00cd
+                     00CE   334 _T3CCTL1	=	0x00ce
+                     00CF   335 _T3CC1	=	0x00cf
+                     00D0   336 _PSW	=	0x00d0
+                     00D1   337 _DMAIRQ	=	0x00d1
+                     00D2   338 _DMA1CFGL	=	0x00d2
+                     00D3   339 _DMA1CFGH	=	0x00d3
+                     00D4   340 _DMA0CFGL	=	0x00d4
+                     00D5   341 _DMA0CFGH	=	0x00d5
+                     00D6   342 _DMAARM	=	0x00d6
+                     00D7   343 _DMAREQ	=	0x00d7
+                     00D8   344 _TIMIF	=	0x00d8
+                     00D9   345 _RFD	=	0x00d9
+                     00DA   346 _T1CC0L	=	0x00da
+                     00DB   347 _T1CC0H	=	0x00db
+                     00DC   348 _T1CC1L	=	0x00dc
+                     00DD   349 _T1CC1H	=	0x00dd
+                     00DE   350 _T1CC2L	=	0x00de
+                     00DF   351 _T1CC2H	=	0x00df
+                     00E0   352 _ACC	=	0x00e0
+                     00E1   353 _RFST	=	0x00e1
+                     00E2   354 _T1CNTL	=	0x00e2
+                     00E3   355 _T1CNTH	=	0x00e3
+                     00E4   356 _T1CTL	=	0x00e4
+                     00E5   357 _T1CCTL0	=	0x00e5
+                     00E6   358 _T1CCTL1	=	0x00e6
+                     00E7   359 _T1CCTL2	=	0x00e7
+                     00E8   360 _IRCON2	=	0x00e8
+                     00E9   361 _RFIRQF0	=	0x00e9
+                     00EA   362 _T4CNT	=	0x00ea
+                     00EB   363 _T4CTL	=	0x00eb
+                     00EC   364 _T4CCTL0	=	0x00ec
+                     00ED   365 _T4CC0	=	0x00ed
+                     00EE   366 _T4CCTL1	=	0x00ee
+                     00EF   367 _T4CC1	=	0x00ef
+                     00F0   368 _B	=	0x00f0
+                     00F1   369 _PERCFG	=	0x00f1
+                     00F2   370 _ADCCFG	=	0x00f2
+                     00F2   371 _APCFG	=	0x00f2
+                     00F3   372 _P0SEL	=	0x00f3
+                     00F4   373 _P1SEL	=	0x00f4
+                     00F5   374 _P2SEL	=	0x00f5
+                     00F6   375 _P1INP	=	0x00f6
+                     00F7   376 _P2INP	=	0x00f7
+                     00F8   377 _U1CSR	=	0x00f8
+                     00F9   378 _U1DBUF	=	0x00f9
+                     00FA   379 _U1BAUD	=	0x00fa
+                     00FB   380 _U1UCR	=	0x00fb
+                     00FC   381 _U1GCR	=	0x00fc
+                     00FD   382 _P0DIR	=	0x00fd
+                     00FE   383 _P1DIR	=	0x00fe
+                     00FF   384 _P2DIR	=	0x00ff
+                            385 ;--------------------------------------------------------
+                            386 ; special function bits
+                            387 ;--------------------------------------------------------
+                            388 	.area RSEG    (ABS,DATA)
+   0000                     389 	.org 0x0000
+                     0087   390 _P0_7	=	0x0087
+                     0086   391 _P0_6	=	0x0086
+                     0085   392 _P0_5	=	0x0085
+                     0084   393 _P0_4	=	0x0084
+                     0083   394 _P0_3	=	0x0083
+                     0082   395 _P0_2	=	0x0082
+                     0081   396 _P0_1	=	0x0081
+                     0080   397 _P0_0	=	0x0080
+                     008F   398 _URX1IF	=	0x008f
+                     008E   399 __TCON6	=	0x008e
+                     008D   400 _ADCIF	=	0x008d
+                     008C   401 __TCON4	=	0x008c
+                     008B   402 _URX0IF	=	0x008b
+                     008A   403 _IT1	=	0x008a
+                     0089   404 _RFERRIF	=	0x0089
+                     0088   405 _IT0	=	0x0088
+                     0097   406 _P1_7	=	0x0097
+                     0096   407 _P1_6	=	0x0096
+                     0095   408 _P1_5	=	0x0095
+                     0094   409 _P1_4	=	0x0094
+                     0093   410 _P1_3	=	0x0093
+                     0092   411 _P1_2	=	0x0092
+                     0091   412 _P1_1	=	0x0091
+                     0090   413 _P1_0	=	0x0090
+                     009F   414 __S0CON7	=	0x009f
+                     009E   415 __S0CON6	=	0x009e
+                     009D   416 __S0CON5	=	0x009d
+                     009C   417 __S0CON4	=	0x009c
+                     009B   418 __S0CON3	=	0x009b
+                     009A   419 __S0CON2	=	0x009a
+                     0099   420 _ENCIF_1	=	0x0099
+                     0098   421 _ENCIF_0	=	0x0098
+                     00A7   422 __P2_7	=	0x00a7
+                     00A6   423 __P2_6	=	0x00a6
+                     00A5   424 __P2_5	=	0x00a5
+                     00A4   425 _P2_4	=	0x00a4
+                     00A3   426 _P2_3	=	0x00a3
+                     00A2   427 _P2_2	=	0x00a2
+                     00A1   428 _P2_1	=	0x00a1
+                     00A0   429 _P2_0	=	0x00a0
+                     00AF   430 _EA	=	0x00af
+                     00AE   431 __IEN06	=	0x00ae
+                     00AD   432 _STIE	=	0x00ad
+                     00AC   433 _ENCIE	=	0x00ac
+                     00AB   434 _URX1IE	=	0x00ab
+                     00AA   435 _URX0IE	=	0x00aa
+                     00A9   436 _ADCIE	=	0x00a9
+                     00A8   437 _RFERRIE	=	0x00a8
+                     00BF   438 __IEN17	=	0x00bf
+                     00BE   439 __IEN16	=	0x00be
+                     00BD   440 _P0IE	=	0x00bd
+                     00BC   441 _T4IE	=	0x00bc
+                     00BB   442 _T3IE	=	0x00bb
+                     00BA   443 _T2IE	=	0x00ba
+                     00B9   444 _T1IE	=	0x00b9
+                     00B8   445 _DMAIE	=	0x00b8
+                     00C7   446 _STIF	=	0x00c7
+                     00C6   447 __IRCON6	=	0x00c6
+                     00C5   448 _P0IF	=	0x00c5
+                     00C4   449 _T4IF	=	0x00c4
+                     00C3   450 _T3IF	=	0x00c3
+                     00C2   451 _T2IF	=	0x00c2
+                     00C1   452 _T1IF	=	0x00c1
+                     00C0   453 _DMAIF	=	0x00c0
+                     00D7   454 _CY	=	0x00d7
+                     00D6   455 _AC	=	0x00d6
+                     00D5   456 _F0	=	0x00d5
+                     00D4   457 _RS1	=	0x00d4
+                     00D3   458 _RS0	=	0x00d3
+                     00D2   459 _OV	=	0x00d2
+                     00D1   460 _F1	=	0x00d1
+                     00D0   461 _P	=	0x00d0
+                     00DF   462 __TIMIF7	=	0x00df
+                     00DE   463 _T1OVFIM	=	0x00de
+                     00DD   464 _T4CH1IF	=	0x00dd
+                     00DC   465 _T4CH0IF	=	0x00dc
+                     00DB   466 _T4OVFIF	=	0x00db
+                     00DA   467 _T3CH1IF	=	0x00da
+                     00D9   468 _T3CH0IF	=	0x00d9
+                     00D8   469 _T3OVFIF	=	0x00d8
+                     00EF   470 __IRCON27	=	0x00ef
+                     00EE   471 __IRCON26	=	0x00ee
+                     00ED   472 __IRCON25	=	0x00ed
+                     00EC   473 _WDTIF	=	0x00ec
+                     00EB   474 _P1IF	=	0x00eb
+                     00EA   475 _UTX1IF	=	0x00ea
+                     00E9   476 _UTX0IF	=	0x00e9
+                     00E8   477 _P2IF	=	0x00e8
+                     00FF   478 _U1MODE	=	0x00ff
+                     00FE   479 _U1RE	=	0x00fe
+                     00FD   480 _U1SLAVE	=	0x00fd
+                     00FC   481 _U1FE	=	0x00fc
+                     00FB   482 _U1ERR	=	0x00fb
+                     00FA   483 _U1RX_BYTE	=	0x00fa
+                     00F9   484 _U1TX_BYTE	=	0x00f9
+                     00F8   485 _U1ACTIVE	=	0x00f8
+                            486 ;--------------------------------------------------------
+                            487 ; overlayable register banks
+                            488 ;--------------------------------------------------------
+                            489 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                     490 	.ds 8
+                            491 ;--------------------------------------------------------
+                            492 ; overlayable bit register bank
+                            493 ;--------------------------------------------------------
+                            494 	.area BIT_BANK	(REL,OVR,DATA)
+   0000                     495 bits:
+   0000                     496 	.ds 1
+                     8000   497 	b0 = bits[0]
+                     8100   498 	b1 = bits[1]
+                     8200   499 	b2 = bits[2]
+                     8300   500 	b3 = bits[3]
+                     8400   501 	b4 = bits[4]
+                     8500   502 	b5 = bits[5]
+                     8600   503 	b6 = bits[6]
+                     8700   504 	b7 = bits[7]
+                            505 ;--------------------------------------------------------
+                            506 ; internal ram data
+                            507 ;--------------------------------------------------------
+                            508 	.area DSEG    (DATA)
+                            509 ;--------------------------------------------------------
+                            510 ; overlayable items in internal ram 
+                            511 ;--------------------------------------------------------
+                            512 ;--------------------------------------------------------
+                            513 ; indirectly addressable internal ram data
+                            514 ;--------------------------------------------------------
+                            515 	.area ISEG    (DATA)
+                            516 ;--------------------------------------------------------
+                            517 ; absolute internal ram data
+                            518 ;--------------------------------------------------------
+                            519 	.area IABS    (ABS,DATA)
+                            520 	.area IABS    (ABS,DATA)
+                            521 ;--------------------------------------------------------
+                            522 ; bit data
+                            523 ;--------------------------------------------------------
+                            524 	.area BSEG    (BIT)
+                            525 ;--------------------------------------------------------
+                            526 ; paged external ram data
+                            527 ;--------------------------------------------------------
+                            528 	.area PSEG    (PAG,XDATA)
+                            529 ;--------------------------------------------------------
+                            530 ; external ram data
+                            531 ;--------------------------------------------------------
+                            532 	.area XSEG    (XDATA)
+   0000                     533 _timer3IsrPtr::
+   0000                     534 	.ds 2
+   0002                     535 _timer4IsrPtr::
+   0002                     536 	.ds 2
+   0004                     537 _tickThreshSave3::
+   0004                     538 	.ds 1
+   0005                     539 _tickThreshSave4::
+   0005                     540 	.ds 1
+                            541 ;--------------------------------------------------------
+                            542 ; absolute external ram data
+                            543 ;--------------------------------------------------------
+                            544 	.area XABS    (ABS,XDATA)
+                            545 ;--------------------------------------------------------
+                            546 ; external initialized ram data
+                            547 ;--------------------------------------------------------
+                            548 	.area XISEG   (XDATA)
+                            549 	.area HOME    (CODE)
+                            550 	.area GSINIT0 (CODE)
+                            551 	.area GSINIT1 (CODE)
+                            552 	.area GSINIT2 (CODE)
+                            553 	.area GSINIT3 (CODE)
+                            554 	.area GSINIT4 (CODE)
+                            555 	.area GSINIT5 (CODE)
+                            556 	.area GSINIT  (CODE)
+                            557 	.area GSFINAL (CODE)
+                            558 	.area CSEG    (CODE)
+                            559 ;--------------------------------------------------------
+                            560 ; global & static initialisations
+                            561 ;--------------------------------------------------------
+                            562 	.area HOME    (CODE)
+                            563 	.area GSINIT  (CODE)
+                            564 	.area GSFINAL (CODE)
+                            565 	.area GSINIT  (CODE)
+                            566 ;--------------------------------------------------------
+                            567 ; Home
+                            568 ;--------------------------------------------------------
+                            569 	.area HOME    (CODE)
+                            570 	.area HOME    (CODE)
+                            571 ;--------------------------------------------------------
+                            572 ; code
+                            573 ;--------------------------------------------------------
+                            574 	.area CSEG    (CODE)
+                            575 ;------------------------------------------------------------
+                            576 ;Allocation info for local variables in function 'timer3Isr'
+                            577 ;------------------------------------------------------------
+                            578 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:29: void timer3Isr(void) __interrupt (11) // PATCHED: moved interrupt to end and replaced pragma by 11 (see interrupt table)
+                            579 ;	-----------------------------------------
+                            580 ;	 function timer3Isr
+                            581 ;	-----------------------------------------
+   0000                     582 _timer3Isr:
+                     0007   583 	ar7 = 0x07
+                     0006   584 	ar6 = 0x06
+                     0005   585 	ar5 = 0x05
+                     0004   586 	ar4 = 0x04
+                     0003   587 	ar3 = 0x03
+                     0002   588 	ar2 = 0x02
+                     0001   589 	ar1 = 0x01
+                     0000   590 	ar0 = 0x00
+   0000 C0*00         [24]  591 	push	bits
+   0002 C0 E0         [24]  592 	push	acc
+   0004 C0 F0         [24]  593 	push	b
+   0006 C0 82         [24]  594 	push	dpl
+   0008 C0 83         [24]  595 	push	dph
+   000A C0 07         [24]  596 	push	(0+7)
+   000C C0 06         [24]  597 	push	(0+6)
+   000E C0 05         [24]  598 	push	(0+5)
+   0010 C0 04         [24]  599 	push	(0+4)
+   0012 C0 03         [24]  600 	push	(0+3)
+   0014 C0 02         [24]  601 	push	(0+2)
+   0016 C0 01         [24]  602 	push	(0+1)
+   0018 C0 00         [24]  603 	push	(0+0)
+   001A C0 D0         [24]  604 	push	psw
+   001C 75 D0 00      [24]  605 	mov	psw,#0x00
+                            606 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:31: timer3IsrPtr();
+   001F 90r00r00      [24]  607 	mov	dptr,#_timer3IsrPtr
+   0022 E0            [24]  608 	movx	a,@dptr
+   0023 F8            [12]  609 	mov	r0,a
+   0024 A3            [24]  610 	inc	dptr
+   0025 E0            [24]  611 	movx	a,@dptr
+   0026 F5 83         [12]  612 	mov	dph,a
+   0028 88 82         [24]  613 	mov	dpl,r0
+   002A 12r00r00      [24]  614 	lcall	__sdcc_call_dptr
+   002D D0 D0         [24]  615 	pop	psw
+   002F D0 00         [24]  616 	pop	(0+0)
+   0031 D0 01         [24]  617 	pop	(0+1)
+   0033 D0 02         [24]  618 	pop	(0+2)
+   0035 D0 03         [24]  619 	pop	(0+3)
+   0037 D0 04         [24]  620 	pop	(0+4)
+   0039 D0 05         [24]  621 	pop	(0+5)
+   003B D0 06         [24]  622 	pop	(0+6)
+   003D D0 07         [24]  623 	pop	(0+7)
+   003F D0 83         [24]  624 	pop	dph
+   0041 D0 82         [24]  625 	pop	dpl
+   0043 D0 F0         [24]  626 	pop	b
+   0045 D0 E0         [24]  627 	pop	acc
+   0047 D0*00         [24]  628 	pop	bits
+   0049 32            [24]  629 	reti
+                            630 ;------------------------------------------------------------
+                            631 ;Allocation info for local variables in function 'timer4Isr'
+                            632 ;------------------------------------------------------------
+                            633 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:34: void timer4Isr(void) __interrupt (12) // PATCHED: moved interrupt to end and replaced pragma by 12 (see interrupt table)
+                            634 ;	-----------------------------------------
+                            635 ;	 function timer4Isr
+                            636 ;	-----------------------------------------
+   004A                     637 _timer4Isr:
+   004A C0*00         [24]  638 	push	bits
+   004C C0 E0         [24]  639 	push	acc
+   004E C0 F0         [24]  640 	push	b
+   0050 C0 82         [24]  641 	push	dpl
+   0052 C0 83         [24]  642 	push	dph
+   0054 C0 07         [24]  643 	push	(0+7)
+   0056 C0 06         [24]  644 	push	(0+6)
+   0058 C0 05         [24]  645 	push	(0+5)
+   005A C0 04         [24]  646 	push	(0+4)
+   005C C0 03         [24]  647 	push	(0+3)
+   005E C0 02         [24]  648 	push	(0+2)
+   0060 C0 01         [24]  649 	push	(0+1)
+   0062 C0 00         [24]  650 	push	(0+0)
+   0064 C0 D0         [24]  651 	push	psw
+   0066 75 D0 00      [24]  652 	mov	psw,#0x00
+                            653 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:36: timer4IsrPtr();
+   0069 90r00r02      [24]  654 	mov	dptr,#_timer4IsrPtr
+   006C E0            [24]  655 	movx	a,@dptr
+   006D F8            [12]  656 	mov	r0,a
+   006E A3            [24]  657 	inc	dptr
+   006F E0            [24]  658 	movx	a,@dptr
+   0070 F5 83         [12]  659 	mov	dph,a
+   0072 88 82         [24]  660 	mov	dpl,r0
+   0074 12r00r00      [24]  661 	lcall	__sdcc_call_dptr
+   0077 D0 D0         [24]  662 	pop	psw
+   0079 D0 00         [24]  663 	pop	(0+0)
+   007B D0 01         [24]  664 	pop	(0+1)
+   007D D0 02         [24]  665 	pop	(0+2)
+   007F D0 03         [24]  666 	pop	(0+3)
+   0081 D0 04         [24]  667 	pop	(0+4)
+   0083 D0 05         [24]  668 	pop	(0+5)
+   0085 D0 06         [24]  669 	pop	(0+6)
+   0087 D0 07         [24]  670 	pop	(0+7)
+   0089 D0 83         [24]  671 	pop	dph
+   008B D0 82         [24]  672 	pop	dpl
+   008D D0 F0         [24]  673 	pop	b
+   008F D0 E0         [24]  674 	pop	acc
+   0091 D0*00         [24]  675 	pop	bits
+   0093 32            [24]  676 	reti
+                            677 ;------------------------------------------------------------
+                            678 ;Allocation info for local variables in function 'timer3Init'
+                            679 ;------------------------------------------------------------
+                            680 ;config                    Allocated to registers r5 r6 r7 
+                            681 ;------------------------------------------------------------
+                            682 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:39: void timer3Init(timer34Config_t *config)
+                            683 ;	-----------------------------------------
+                            684 ;	 function timer3Init
+                            685 ;	-----------------------------------------
+   0094                     686 _timer3Init:
+   0094 AD 82         [24]  687 	mov	r5,dpl
+   0096 AE 83         [24]  688 	mov	r6,dph
+   0098 AF F0         [24]  689 	mov	r7,b
+                            690 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:43: T3CTL |= 1 << 2;
+   009A 43 CB 04      [24]  691 	orl	_T3CTL,#0x04
+                            692 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:46: T3CTL = config->tickDivider << 5;
+   009D 8D 82         [24]  693 	mov	dpl,r5
+   009F 8E 83         [24]  694 	mov	dph,r6
+   00A1 8F F0         [24]  695 	mov	b,r7
+   00A3 12r00r00      [24]  696 	lcall	__gptrget
+   00A6 C4            [12]  697 	swap	a
+   00A7 23            [12]  698 	rl	a
+   00A8 54 E0         [12]  699 	anl	a,#0xE0
+   00AA F5 CB         [12]  700 	mov	_T3CTL,a
+                            701 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:49: T3CTL |= 1 << 3;
+   00AC 43 CB 08      [24]  702 	orl	_T3CTL,#0x08
+                            703 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:50: IEN1 |= 1 << 3;
+   00AF 43 B8 08      [24]  704 	orl	_IEN1,#0x08
+                            705 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:54: T3CTL |= 0x01;
+   00B2 43 CB 01      [24]  706 	orl	_T3CTL,#0x01
+                            707 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:57: T3CC0 = config->tickThresh;
+   00B5 74 01         [12]  708 	mov	a,#0x01
+   00B7 2D            [12]  709 	add	a,r5
+   00B8 FA            [12]  710 	mov	r2,a
+   00B9 E4            [12]  711 	clr	a
+   00BA 3E            [12]  712 	addc	a,r6
+   00BB FB            [12]  713 	mov	r3,a
+   00BC 8F 04         [24]  714 	mov	ar4,r7
+   00BE 8A 82         [24]  715 	mov	dpl,r2
+   00C0 8B 83         [24]  716 	mov	dph,r3
+   00C2 8C F0         [24]  717 	mov	b,r4
+   00C4 12r00r00      [24]  718 	lcall	__gptrget
+   00C7 F5 CD         [12]  719 	mov	_T3CC0,a
+                            720 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:58: tickThreshSave3 = config->tickThresh;
+   00C9 8A 82         [24]  721 	mov	dpl,r2
+   00CB 8B 83         [24]  722 	mov	dph,r3
+   00CD 8C F0         [24]  723 	mov	b,r4
+   00CF 12r00r00      [24]  724 	lcall	__gptrget
+   00D2 90r00r04      [24]  725 	mov	dptr,#_tickThreshSave3
+   00D5 F0            [24]  726 	movx	@dptr,a
+                            727 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:61: timer3IsrPtr = config->isrPtr;
+   00D6 74 02         [12]  728 	mov	a,#0x02
+   00D8 2D            [12]  729 	add	a,r5
+   00D9 FD            [12]  730 	mov	r5,a
+   00DA E4            [12]  731 	clr	a
+   00DB 3E            [12]  732 	addc	a,r6
+   00DC FE            [12]  733 	mov	r6,a
+   00DD 8D 82         [24]  734 	mov	dpl,r5
+   00DF 8E 83         [24]  735 	mov	dph,r6
+   00E1 8F F0         [24]  736 	mov	b,r7
+   00E3 12r00r00      [24]  737 	lcall	__gptrget
+   00E6 FD            [12]  738 	mov	r5,a
+   00E7 A3            [24]  739 	inc	dptr
+   00E8 12r00r00      [24]  740 	lcall	__gptrget
+   00EB FE            [12]  741 	mov	r6,a
+   00EC 90r00r00      [24]  742 	mov	dptr,#_timer3IsrPtr
+   00EF ED            [12]  743 	mov	a,r5
+   00F0 F0            [24]  744 	movx	@dptr,a
+   00F1 EE            [12]  745 	mov	a,r6
+   00F2 A3            [24]  746 	inc	dptr
+   00F3 F0            [24]  747 	movx	@dptr,a
+   00F4 22            [24]  748 	ret
+                            749 ;------------------------------------------------------------
+                            750 ;Allocation info for local variables in function 'timer3Start'
+                            751 ;------------------------------------------------------------
+                            752 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:64: void timer3Start(void)
+                            753 ;	-----------------------------------------
+                            754 ;	 function timer3Start
+                            755 ;	-----------------------------------------
+   00F5                     756 _timer3Start:
+                            757 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:67: T3CC0 = tickThreshSave3;
+   00F5 90r00r04      [24]  758 	mov	dptr,#_tickThreshSave3
+   00F8 E0            [24]  759 	movx	a,@dptr
+   00F9 F5 CD         [12]  760 	mov	_T3CC0,a
+                            761 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:68: T3CTL |= 1<<4; //Start timer
+   00FB 43 CB 10      [24]  762 	orl	_T3CTL,#0x10
+   00FE 22            [24]  763 	ret
+                            764 ;------------------------------------------------------------
+                            765 ;Allocation info for local variables in function 'timer3Stop'
+                            766 ;------------------------------------------------------------
+                            767 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:71: void timer3Stop(void)
+                            768 ;	-----------------------------------------
+                            769 ;	 function timer3Stop
+                            770 ;	-----------------------------------------
+   00FF                     771 _timer3Stop:
+                            772 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:73: T3CTL &= ~(1<<4); // Stop timer
+   00FF AF CB         [24]  773 	mov	r7,_T3CTL
+   0101 74 EF         [12]  774 	mov	a,#0xEF
+   0103 5F            [12]  775 	anl	a,r7
+   0104 F5 CB         [12]  776 	mov	_T3CTL,a
+   0106 22            [24]  777 	ret
+                            778 ;------------------------------------------------------------
+                            779 ;Allocation info for local variables in function 'timer4Init'
+                            780 ;------------------------------------------------------------
+                            781 ;config                    Allocated to registers r5 r6 r7 
+                            782 ;------------------------------------------------------------
+                            783 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:77: void timer4Init(timer34Config_t *config)
+                            784 ;	-----------------------------------------
+                            785 ;	 function timer4Init
+                            786 ;	-----------------------------------------
+   0107                     787 _timer4Init:
+   0107 AD 82         [24]  788 	mov	r5,dpl
+   0109 AE 83         [24]  789 	mov	r6,dph
+   010B AF F0         [24]  790 	mov	r7,b
+                            791 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:80: T4CTL |= 1 << 2;
+   010D 43 EB 04      [24]  792 	orl	_T4CTL,#0x04
+                            793 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:83: T4CTL = config->tickDivider << 5;
+   0110 8D 82         [24]  794 	mov	dpl,r5
+   0112 8E 83         [24]  795 	mov	dph,r6
+   0114 8F F0         [24]  796 	mov	b,r7
+   0116 12r00r00      [24]  797 	lcall	__gptrget
+   0119 C4            [12]  798 	swap	a
+   011A 23            [12]  799 	rl	a
+   011B 54 E0         [12]  800 	anl	a,#0xE0
+   011D F5 EB         [12]  801 	mov	_T4CTL,a
+                            802 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:86: T4CTL |= 1 << 3;
+   011F 43 EB 08      [24]  803 	orl	_T4CTL,#0x08
+                            804 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:87: IEN1 |= 1 << 4;
+   0122 43 B8 10      [24]  805 	orl	_IEN1,#0x10
+                            806 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:91: T4CTL |= 0x01;
+   0125 43 EB 01      [24]  807 	orl	_T4CTL,#0x01
+                            808 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:94: T4CC0 = config->tickThresh;
+   0128 74 01         [12]  809 	mov	a,#0x01
+   012A 2D            [12]  810 	add	a,r5
+   012B FA            [12]  811 	mov	r2,a
+   012C E4            [12]  812 	clr	a
+   012D 3E            [12]  813 	addc	a,r6
+   012E FB            [12]  814 	mov	r3,a
+   012F 8F 04         [24]  815 	mov	ar4,r7
+   0131 8A 82         [24]  816 	mov	dpl,r2
+   0133 8B 83         [24]  817 	mov	dph,r3
+   0135 8C F0         [24]  818 	mov	b,r4
+   0137 12r00r00      [24]  819 	lcall	__gptrget
+   013A F5 ED         [12]  820 	mov	_T4CC0,a
+                            821 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:95: tickThreshSave4 = config->tickThresh;
+   013C 8A 82         [24]  822 	mov	dpl,r2
+   013E 8B 83         [24]  823 	mov	dph,r3
+   0140 8C F0         [24]  824 	mov	b,r4
+   0142 12r00r00      [24]  825 	lcall	__gptrget
+   0145 90r00r05      [24]  826 	mov	dptr,#_tickThreshSave4
+   0148 F0            [24]  827 	movx	@dptr,a
+                            828 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:98: timer4IsrPtr = config->isrPtr;
+   0149 74 02         [12]  829 	mov	a,#0x02
+   014B 2D            [12]  830 	add	a,r5
+   014C FD            [12]  831 	mov	r5,a
+   014D E4            [12]  832 	clr	a
+   014E 3E            [12]  833 	addc	a,r6
+   014F FE            [12]  834 	mov	r6,a
+   0150 8D 82         [24]  835 	mov	dpl,r5
+   0152 8E 83         [24]  836 	mov	dph,r6
+   0154 8F F0         [24]  837 	mov	b,r7
+   0156 12r00r00      [24]  838 	lcall	__gptrget
+   0159 FD            [12]  839 	mov	r5,a
+   015A A3            [24]  840 	inc	dptr
+   015B 12r00r00      [24]  841 	lcall	__gptrget
+   015E FE            [12]  842 	mov	r6,a
+   015F 90r00r02      [24]  843 	mov	dptr,#_timer4IsrPtr
+   0162 ED            [12]  844 	mov	a,r5
+   0163 F0            [24]  845 	movx	@dptr,a
+   0164 EE            [12]  846 	mov	a,r6
+   0165 A3            [24]  847 	inc	dptr
+   0166 F0            [24]  848 	movx	@dptr,a
+   0167 22            [24]  849 	ret
+                            850 ;------------------------------------------------------------
+                            851 ;Allocation info for local variables in function 'timer4Start'
+                            852 ;------------------------------------------------------------
+                            853 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:100: void timer4Start(void)
+                            854 ;	-----------------------------------------
+                            855 ;	 function timer4Start
+                            856 ;	-----------------------------------------
+   0168                     857 _timer4Start:
+                            858 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:103: T4CC0 = tickThreshSave4;
+   0168 90r00r05      [24]  859 	mov	dptr,#_tickThreshSave4
+   016B E0            [24]  860 	movx	a,@dptr
+   016C F5 ED         [12]  861 	mov	_T4CC0,a
+                            862 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:104: T4CTL |= 1<<4; //Start timer
+   016E 43 EB 10      [24]  863 	orl	_T4CTL,#0x10
+   0171 22            [24]  864 	ret
+                            865 ;------------------------------------------------------------
+                            866 ;Allocation info for local variables in function 'timer4Stop'
+                            867 ;------------------------------------------------------------
+                            868 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:107: void timer4Stop(void)
+                            869 ;	-----------------------------------------
+                            870 ;	 function timer4Stop
+                            871 ;	-----------------------------------------
+   0172                     872 _timer4Stop:
+                            873 ;	/home/timvandermeij/Desktop/radio-tomography/projects/rf-node-project/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.c:109: T4CTL &= ~(1<<4); // Stop timer
+   0172 AF EB         [24]  874 	mov	r7,_T4CTL
+   0174 74 EF         [12]  875 	mov	a,#0xEF
+   0176 5F            [12]  876 	anl	a,r7
+   0177 F5 EB         [12]  877 	mov	_T4CTL,a
+   0179 22            [24]  878 	ret
+                            879 	.area CSEG    (CODE)
+                            880 	.area CONST   (CODE)
+                            881 	.area XINIT   (CODE)
+                            882 	.area CABS    (ABS,CODE)

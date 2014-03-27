@@ -70,15 +70,15 @@ void radioInit(rfConfig_t *rfConfig)
   FRMCTRL0 |= 0x40; //Turn on auto CRC
   
   //Set short address and pan
-  SHORT_ADDRH = (char)rfConfig->addr;
-  SHORT_ADDRL = (char)(rfConfig->addr>>8);
+  SHORT_ADDRL = (char)rfConfig->addr;
+  SHORT_ADDRH = (char)(rfConfig->addr>>8);
   PANL = (char)rfConfig->pan;
   PANH = (char)(rfConfig->pan>>8);
   
   //Set up frame filtering
   FRMFILT0 = 0x0D; //Enable frame filt, max_fcf_version set to 11
   FRMFILT1 = 0x10; //Only allow for data packets (no beacons, no ack, etc)
-  
+ 
   //Turn on RX
   RFST = ISRXON;
   
@@ -137,13 +137,15 @@ void sendPacket(char* ptr, short len, short pan, short dest, short src)
   RFST = ISRXON;
 }
 
+void blink(int arg);
+
 char receivePacket(char* ptr, char len, signed char* rssi)
 {
   char i; //Helper variable used throughout
 
   //Clear RX flags
   RFIRQF0 = 0x00;
-
+  blink(RXFIFOCNT + 1);
   //Check total length, including frame headers (+14)
   if(RXFIFOCNT != len+14)
   {
@@ -177,7 +179,7 @@ char receivePacket(char* ptr, char len, signed char* rssi)
     //Check CRC
     i = RFD;
     if(!(i & 0x80)) //MSB of last byte is CRC valid bit
-      return 0;
+      return len; //0;
     else
       return len;
     
