@@ -22,18 +22,18 @@
 #ifndef XPANRF_H
 #define XPANRF_H
 
-#include "cc2530.h" // PATCHED
+#include <ioCC2531.h>
 
 // Radio registers
 #define RSSI_OFFSET -76;
 #define CORR_THR                      0x14
 #define CCA_THR                       0xF8
-//#define TXFILTCFG                     XREG( 0x61FA ) // PATCHED: commented out this one and the four below: already defined by cc2530.h
+#define TXFILTCFG                     XREG( 0x61FA )
 #define TXFILTCFG_RESET_VALUE         0x09
-//#define  PANL     XREG( 0x6172 ) //PAN LSB
-//#define  PANH     XREG( 0x6173 ) //PAN MSB
-//#define  SHORT_ADDRL     XREG( 0x6174 ) // Short addresss LSB
-//#define  SHORT_ADDRH     XREG( 0x6175 ) // Short address MSB
+#define  PANL     XREG( 0x6172 ) //PAN LSB
+#define  PANH     XREG( 0x6173 ) //PAN MSB
+#define  SHORT_ADDRL     XREG( 0x6174 ) // Short addresss LSB
+#define  SHORT_ADDRH     XREG( 0x6175 ) // Short address MSB
 
 // Immediate strobe processor command instructions (issue twice)
 #define ISRXON        0xE3
