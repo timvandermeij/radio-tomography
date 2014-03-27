@@ -43,7 +43,7 @@
 #define PAN 0x2011
 
 spinPacket_t spinPacket,receivedPacket;
-static rfConfig_t *rfConfig; // PATCHED: *
+static rfConfig_t rfConfig;
 
 // Length (in ticks of the clock counter) of a TDMA slot
 #define SLOT_LENGTH 7 //1953.125Hz (1 = 512 us)
@@ -80,7 +80,7 @@ void next_TX_timeISR(void)
   timer4Start();
   
   ledOn(1); //green LED on
-  sendPacket((char*)&spinPacket, sizeof(spinPacket), rfConfig->pan, 0xFFFF, rfConfig->addr); // PATCHED: -> 2x
+  sendPacket((char*)&spinPacket, sizeof(spinPacket), rfConfig.pan, 0xFFFF, rfConfig.addr);
   ledOff(1); //green LED off
   
   // Increase the counter for the number of packets consecutively broadcasted WITHOUT
@@ -105,14 +105,14 @@ void channel_hoppingISR(void)
     channel_counter++;
     if(channel_counter == CHANNELS_NUMBER)
       channel_counter = 0;
-    rfConfig->channel = channel_sequence[channel_counter]; // PATCHED: ->
+    rfConfig.channel = channel_sequence[channel_counter];
   }
   else
   {
     // Reset to the default frequency channel
     // The "default" channel is the first channel in the array defined in channels.h
     channel_counter = 0;
-    rfConfig->channel = channel_sequence[channel_counter]; // PATCHED: ->
+    rfConfig.channel = channel_sequence[channel_counter];
     RFST = ISFLUSHRX;
     RFST = ISFLUSHRX;
   }
@@ -122,7 +122,7 @@ void channel_hoppingISR(void)
   channel_hoppingConfig.tickThresh = next_channel_time;
   timer3Init(&channel_hoppingConfig); // PATCHED: &
   timer3Start();
-  radioInit(rfConfig);
+  radioInit(&rfConfig); // PATCHED: &
   spinPacket.TX_channel = channel_sequence[channel_counter];
 }
 
@@ -143,11 +143,11 @@ void main(void)
   spinPacket.TX_channel = channel_sequence[channel_counter];
   
   // Set up the radio module
-  rfConfig->addr = ADDR; // PATCHED: -> 4 times
-  rfConfig->pan = PAN;
-  rfConfig->channel = channel_sequence[channel_counter];
-  rfConfig->txPower = 0xF5; // Max. available TX power
-  radioInit(rfConfig);
+  rfConfig.addr = ADDR;
+  rfConfig.pan = PAN;
+  rfConfig.channel = channel_sequence[channel_counter];
+  rfConfig.txPower = 0xF5; // Max. available TX power
+  radioInit(&rfConfig); // PATCHED: &
   
   // Enable interrupts 
   EA = 1;
