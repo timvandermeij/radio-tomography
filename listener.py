@@ -1,8 +1,6 @@
 import serial
 from struct import unpack
 
-MAX_NUM_NODES = 4
-packetSize = 4 + MAX_NUM_NODES + 2 # in bytes
 ser = serial.Serial("/dev/ttyACM0", 38400);
 beef = '\xef' + '\xbe'
 
