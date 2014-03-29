@@ -151,7 +151,7 @@
 * (The while condition below evaluates false without generating a
 *  constant-controlling-loop type of warning on most compilers.)
 */
-#define st(x)      do { x } while (__LINE__ == -1)
+#define st(x)      do { x } while(0)
 
 
 /***********************************************************************************
