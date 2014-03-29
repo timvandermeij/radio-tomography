@@ -36,7 +36,7 @@
 #include "channels.h"
 
 // ID number of the RF sensor
-#define THIS_NODE_ID 4
+#define THIS_NODE_ID 1
 #define ADDR 0x1234 + (THIS_NODE_ID - 1)
 #define PAN 0x2011
 
@@ -191,7 +191,7 @@ void main(void)
         int_TX_id = (int)(TX_id);
         if ((int_TX_id > 0) & (int_TX_id <= MAX_NUM_NODES))
         {
-          ledOn(1); //red LED on
+          ledOn(2); //red LED on
           next_channel_time = (MAX_NUM_NODES - int_TX_id +2) * SLOT_LENGTH;
           channel_hoppingConfig.tickThresh = next_channel_time;
           timer3Init(&channel_hoppingConfig); // PATCHED: &
@@ -217,7 +217,7 @@ void main(void)
           
           // Update the RSS array
           spinPacket.RSS[int_TX_id-1] = rssi;          
-          ledOff(1); //red LED off 
+          ledOff(2); //red LED off 
         }
       }
     }
