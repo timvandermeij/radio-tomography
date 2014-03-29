@@ -27,6 +27,7 @@ OBJS =	$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/listen_node/m
 		$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/targets/cc2531_dongle/hal_assert.rel \
 		$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/targets/cc2531_dongle/hal_board.rel \
 		$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/targets/cc2531_dongle/hal_led.rel \
+		$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/usb/class_cdc/usb_cdc_descriptor.rel \
 		$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/usb/class_cdc/usb_cdc_hooks.rel \
 		$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/usb/class_cdc/usb_firmware_library_config.rel \
 		$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/usb/class_cdc/usb_uart.rel \
@@ -36,21 +37,23 @@ OBJS =	$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/listen_node/m
 		$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/usb/library/usb_framework.rel \
 		$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/usb/library/usb_standard_requests.rel \
 		$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/utils/util_buffer.rel \
-		$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/flash.rel \
 		$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/flush_buffers.rel \
 		$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/leds.rel \
 		$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.rel \
 		$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/spin_clock.rel \
 		$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.rel
-CFLAGS += $(INCLUDES) -DNDEBUG -DBUF_SIZE=192 -DUSB_UART -Dchip=2531 --model-large --disable-warning 85 --stack-auto --opt-code-size
-USB_DESCRIPTOR = $(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/usb/class_cdc/usb_cdc_descriptor.lst
+CFLAGS += $(INCLUDES) -DNDEBUG -DBUF_SIZE=192 -DUSB_UART -Dchip=2531 --model-large --stack-auto --opt-code-size
+USB_DESCRIPTOR = $(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/usb/class_cdc/usb_cdc_descriptor
 
 # Pattern rules
 %.rel: %.c
 	$(SDCC) -c $(CPPFLAGS) $(CFLAGS) $< -o $@
 
 %.rel: %.asm
-	$(SDAS8051) $(INCLUDES) -x -o $@ -l $(USB_DESCRIPTOR) $<
+	$(SDAS8051) $(INCLUDES) -x -l -o $@ $<
+
+%.asm: %.asm.dist
+	cp $< $@
 
 # Compilation targets
 main: $(OBJS)
@@ -58,4 +61,4 @@ main: $(OBJS)
 	$(PACKIHX) $(IHX) > $(HEX)
 
 clean:
-	rm $(OBJS) *.hex *.ihx *.lk *.map *.mem
+	rm $(OBJS) $(OBJS:.rel=.asm) $(OBJS:.rel=.lst) $(OBJS:.rel=.rst) $(OBJS:.rel=.sym) *.hex *.ihx *.lk *.map *.mem

@@ -76,8 +76,8 @@ typedef struct {
 } USB_SETUP_HEADER;
 
 /// Setup handler data phase configuration
-typedef struct {
-    uint8 __generic *pBuffer;  ///< Pointer to where IN/OUT data should be taken from/received
+typedef struct { // PATCHED: __generic to __xdata below
+    uint8 __xdata *pBuffer;   ///< Pointer to where IN/OUT data should be taken from/received
     uint16 bytesLeft;         ///< The number of bytes to transfer
 } USB_SETUP_DATA;
 

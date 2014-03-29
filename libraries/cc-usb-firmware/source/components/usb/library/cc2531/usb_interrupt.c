@@ -48,8 +48,7 @@ void usbirqInit(uint16 irqMask)
  * Clears the P2 interrupt flag and converts all USB interrupt flags into events.
  * The interrupt also lets \ref usbsuspEnter() break from the suspend loop.
  */
-#pragma vector=P2INT_VECTOR
-__interrupt void usbirqHandler(void)
+void usbirqHandler(void) __interrupt 6 // PATCHED: moved __interrupt to end and added table number
 {
    uint8 usbcif;
 

@@ -137,15 +137,12 @@ void sendPacket(char* ptr, short len, short pan, short dest, short src)
   RFST = ISRXON;
 }
 
-void blink(int arg);
-
 char receivePacket(char* ptr, char len, signed char* rssi)
 {
   char i; //Helper variable used throughout
 
   //Clear RX flags
   RFIRQF0 = 0x00;
-  blink(RXFIFOCNT + 1);
   //Check total length, including frame headers (+14)
   if(RXFIFOCNT != len+14)
   {
@@ -179,7 +176,7 @@ char receivePacket(char* ptr, char len, signed char* rssi)
     //Check CRC
     i = RFD;
     if(!(i & 0x80)) //MSB of last byte is CRC valid bit
-      return len; //0;
+      return 0;
     else
       return len;
     

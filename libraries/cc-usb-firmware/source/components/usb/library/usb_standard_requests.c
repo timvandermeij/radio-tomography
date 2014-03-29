@@ -109,7 +109,7 @@ void usbsrGetStatus(void)
 
       if (usbfwData.ep0Status != EP_STALL) {
          // Send it
-         usbSetupData.pBuffer = (uint8 __generic *)&status;
+         usbSetupData.pBuffer = (uint8 __xdata *)&status; // PATCHED: __generic -> __xdata
          usbSetupData.bytesLeft = 2;
          usbfwData.ep0Status = EP_TX;
       }
@@ -311,13 +311,13 @@ void usbsrGetDescriptor(void)
 
    // Device descriptor
    case DESC_TYPE_DEVICE:
-      usbSetupData.pBuffer = (uint8 __code*) usbdpGetDeviceDesc();
+      usbSetupData.pBuffer = (uint8 __xdata*) usbdpGetDeviceDesc(); // PATCHED: __code -> __xdata
       usbSetupData.bytesLeft = usbSetupData.pBuffer[DESC_LENGTH_IDX];
       break;
 
    // Configuration descriptor
    case DESC_TYPE_CONFIG:
-      usbSetupData.pBuffer = (uint8 __code*) usbdpGetConfigurationDesc(0, LO_UINT16(usbSetupHeader.value));
+      usbSetupData.pBuffer = (uint8 __xdata*) usbdpGetConfigurationDesc(0, LO_UINT16(usbSetupHeader.value)); // PATCHED: __code -> __xdata
       usbSetupData.bytesLeft = usbSetupData.pBuffer[DESC_CONFIG_LENGTH_LSB_IDX] +
                                usbSetupData.pBuffer[DESC_CONFIG_LENGTH_MSB_IDX] * 256;
       break;
@@ -325,7 +325,7 @@ void usbsrGetDescriptor(void)
    // String descriptor
    case DESC_TYPE_STRING:
       // TODO: Implement language ID
-      usbSetupData.pBuffer = (uint8 __code*) usbdpGetStringDesc(LO_UINT16(usbSetupHeader.value));
+      usbSetupData.pBuffer = (uint8 __xdata*) usbdpGetStringDesc(LO_UINT16(usbSetupHeader.value)); // PATCHED: __code -> __xdata
       usbSetupData.bytesLeft = usbSetupData.pBuffer[DESC_LENGTH_IDX];
       break;
 
@@ -339,7 +339,7 @@ void usbsrGetDescriptor(void)
              && (usbDescriptorMarker.pUsbDescLut[n].indexMsb == HI_UINT16(usbSetupHeader.index))
              && (usbDescriptorMarker.pUsbDescLut[n].indexLsb == LO_UINT16(usbSetupHeader.index)) )
          {
-            usbSetupData.pBuffer = usbDescriptorMarker.pUsbDescLut[n].pDescStart;
+            usbSetupData.pBuffer = (uint8 __xdata*) usbDescriptorMarker.pUsbDescLut[n].pDescStart; // PATCHED: added cast
             usbSetupData.bytesLeft = usbDescriptorMarker.pUsbDescLut[n].length;
          }
       }

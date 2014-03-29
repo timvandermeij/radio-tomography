@@ -105,7 +105,7 @@ void usbfwSetupHandler(void)
 
       // Read FIFO
       bytesNow = USBCNT0;
-      usbfwReadFifo(&USBF0, bytesNow, usbSetupData.pBuffer);
+      usbfwReadFifo(USBF0, bytesNow, usbSetupData.pBuffer); // PATCHED: removed &
       usbSetupData.bytesLeft -= bytesNow;
       usbSetupData.pBuffer += bytesNow;
 
@@ -130,7 +130,7 @@ void usbfwSetupHandler(void)
    // Receive SETUP header
    if (usbfwData.ep0Status == EP_IDLE) {
       if (controlReg & USBCS0_OUTPKT_RDY) {
-         usbfwReadFifo(&USBF0, 8, (uint8 __xdata *) &usbSetupHeader);
+         usbfwReadFifo(USBF0, 8, (uint8 __xdata *) &usbSetupHeader); // PATCHED: removed &
 
          // Handle control transfers individually
          ProcessFunc = NULL;
@@ -203,7 +203,7 @@ void usbfwSetupHandler(void)
       }
 
       // Load the FIFO and move the pointer
-      usbfwWriteFifo(&USBF0, bytesNow, usbSetupData.pBuffer);
+      usbfwWriteFifo(USBF0, bytesNow, usbSetupData.pBuffer); // PATCHED: removed &
       usbSetupData.pBuffer += bytesNow;
       usbSetupData.bytesLeft -= bytesNow;
 
@@ -260,9 +260,9 @@ void usbfwSetAllEpStatus(EP_STATUS status)
  * \param[in]       *pData
  *     A pointer to the storage location for the read data (in any memory space)
  */
-void usbfwReadFifo(uint8 volatile __xdata *pFifo, uint8 count, void __generic *pData)
+void usbfwReadFifo(uint8 volatile __xdata *pFifo, uint8 count, void __xdata *pData) // PATCHED: __generic -> __xdata
 {
-   uint8 __generic *pTemp = pData;
+   uint8 __xdata *pTemp = pData; // PATCHED: __generic -> __xdata
    if (count) {
       do {
          *(pTemp++) = *pFifo;
@@ -285,9 +285,9 @@ void usbfwReadFifo(uint8 volatile __xdata *pFifo, uint8 count, void __generic *p
  * \param[in]       *pData
  *     A pointer to the data to be written (from any memory space)
  */
-void usbfwWriteFifo(uint8 volatile __xdata *pFifo, uint8 count, void __generic *pData)
+void usbfwWriteFifo(uint8 volatile __xdata *pFifo, uint8 count, void __xdata *pData) // PATCHED: __generic -> __xdata
 {
-   uint8 __generic *pTemp = pData;
+   uint8 __xdata *pTemp = pData; // PATCHED: __generic -> __xdata
    if (count) {
       do {
          *pFifo = *(pTemp++);

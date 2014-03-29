@@ -44,7 +44,7 @@ extern "C" {
 /***********************************************************************************
  * GLOBAL FUNCTIONS
  */
-void   halUartInit(uint8 baudrate, uint8 options);
+void   halUartInit(uint8 baudrate); // PATCHED: removed ignored argument 'options'
 uint16 halUartWrite(const uint8* buf, uint16 length);
 uint16 halUartRead(uint8* buf, uint16 length);
 uint16 halUartGetNumRxBytes(void);

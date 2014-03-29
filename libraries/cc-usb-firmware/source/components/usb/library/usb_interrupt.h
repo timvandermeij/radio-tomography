@@ -164,8 +164,8 @@ void usbirqHookProcessEvents(void);
 //-------------------------------------------------------------------------------------------------------
 // Function prototypes
 void usbirqInit(uint16 irqMask);
-__near_func __interrupt void usbirqHandler(void);
-__near_func __interrupt void usbirqResumeHandler(void);
+void usbirqHandler(void) __interrupt; // PATCHED: moving __interrupt to the end and removing __near_func, here and below
+void usbirqResumeHandler(void) __interrupt;
 //-------------------------------------------------------------------------------------------------------
 
 

@@ -17,7 +17,7 @@
 __xdata VFPTR pFnSuspendEnterHook=  NULL;
 __xdata VFPTR pFnSuspendExitHook=   NULL;
 
-extern void halEnterPowerMode(void);
+//extern void halEnterPowerMode(void); // PATCHED: removed USB power mode
 
 /** \brief Puts the chip into power mode 1 during USB suspend.
  *
@@ -43,7 +43,7 @@ void usbsuspEnter(void)
     do {
         // Enter PM1, in prescribed manner as explained in CC253x User's Guide
         SLEEPCMD = 0x05;
-        halEnterPowerMode();
+        //halEnterPowerMode(); // PATCHED: removed power mode
     } while ( usbirqData.inSuspend );
 
     // .... we are now up and running again

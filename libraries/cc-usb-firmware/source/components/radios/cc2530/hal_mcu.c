@@ -46,29 +46,29 @@ void halMcuInit(void)
 *
 * @return      none
 */
-#pragma optimize=none
+// PATCHED: removed pragma directive specific to IAR
 void halMcuWaitUs(uint16 usec)
 {
     usec>>= 1;
     while(usec--)
     {
-        NOP();
-        NOP();
-        NOP();
-        NOP();
-        NOP();
-        NOP();
-        NOP();
-        NOP();
-        NOP();
-        NOP();
-        NOP();
-        NOP();
-        NOP();
-        NOP();
-        NOP();
-        NOP();
-        NOP();
+        NOP; // PATCHED: removed parentheses here and below
+        NOP;
+        NOP;
+        NOP;
+        NOP;
+        NOP;
+        NOP;
+        NOP;
+        NOP;
+        NOP;
+        NOP;
+        NOP;
+        NOP;
+        NOP;
+        NOP;
+        NOP;
+        NOP;
     }
 }
 /***********************************************************************************

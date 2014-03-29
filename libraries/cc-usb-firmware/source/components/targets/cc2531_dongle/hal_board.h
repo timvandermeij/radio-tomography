@@ -17,7 +17,7 @@
 
 #include "hal_types.h"
 #include "hal_defs.h"
-#include "cc8051\hal_cc8051.h"
+#include "../../common/cc8051/hal_cc8051.h" // PATCHED: path
 #include "usb_reg.h"
 
 #if (chip==2531)

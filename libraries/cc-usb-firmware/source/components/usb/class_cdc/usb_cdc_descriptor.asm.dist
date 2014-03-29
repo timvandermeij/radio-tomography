@@ -1,0 +1,205 @@
+.MODULE  usb_descriptor  
+.area    RCODE  
+.globl _usbDescStart 
+.globl _usbDescEnd 
+.globl _usbDescLut  
+.globl _usbDescLutEnd  
+.globl _usbDblbufLut  
+.globl _usbDblbufLutEnd 
+;;-------------------------------------------------------------------------------------------------------  
+;; USB descriptors  
+_usbDescStart:  
+deviceDesc:
+     ; Device descriptor  
+.db deviceDescEnd - deviceDesc  
+.db 0x01  ;< Device ; bDescriptorType  
+.db 0x10, 0x01         ; bcdUSB  
+.db 0x02       ; bDeviceClass  
+.db 0x00              ; bDeviceSubClass  
+.db 0x00              ; bDeviceProtocol  
+.db 32  ;< The maximum data packet size for endpoint 0  
+.db 0x51, 0x04        ; idVendor Texas Instruments  
+.db 0xA8, 0x16        ; idProduct CC2531  
+.db 0xA4, 0x16        ; idProduct CC2511  
+.db 0xA6, 0x16        ; idProduct CC1111  
+.db 0x09, 00          ; bcdDevice  
+.db 0x01              ; iManufacturer  
+.db 0x02              ; iProduct  
+.db 0x03              ; iSerialNumber  
+.db 0x01              ; bNumConfigurations  
+deviceDescEnd:  
+config1LengthStart:  
+configDesc:     ; Configuration descriptor  
+.db configDescEnd - configDesc  
+.db 0x02  ;< Configuration ; bDescriptorType  
+.db config1LengthEnd - config1LengthStart, 0x00
+.db 0x02              ; NumInterfaces  
+.db 0x01              ; bConfigurationValue  
+.db 0x00              ; iConfiguration  
+.db 0x80              ; bmAttributes  
+.db 25               ; MaxPower  
+configDescEnd:  
+;  
+;               INTERFACE 0  
+;  
+interface0Desc: ; Interface descriptor  
+.db interface0DescEnd - interface0Desc  
+.db 0x04  ;< Interface    ; bDescriptorType  
+.db 0x00                    ; bInterfaceNumber  
+.db 0x00                    ; bAlternateSetting  
+.db 0x01                    ; bNumEndpoints  
+.db 0x02              ; bInterfaceClass  
+.db 0x02 ; bInterfaceSubClass  
+.db 0x01    ; bInterfaceProcotol  
+.db 00                    ; iInterface  
+interface0DescEnd:  
+;; CDC Class-Specific Descriptors  
+headerFunctionalDesc: ; Header Functional Descriptor  
+.db headerFunctionalDescEnd - headerFunctionalDesc  
+.db 0x24  
+.db 0x00  
+.db 0x10, 0x01  
+headerFunctionalDescEnd:  
+absCtrlManFuncDesc: ; Abstract Control Management Functional Descriptor  
+.db absCtrlManFuncDescEnd - absCtrlManFuncDesc  
+.db 0x24  
+.db 0x02   ;ACM - Abstract Control Management  
+.db 0x02   ;set the supported class requests  
+absCtrlManFuncDescEnd:  
+unionFunctionalDesc: ; Union Functional Descriptor  
+.db unionFunctionalDescEnd - unionFunctionalDesc  
+.db 0x24  
+.db 0x06  
+.db 0x00  
+.db 0x01  
+unionFunctionalDescEnd:  
+callMngFuncDesc: ; Call Management Functional Descriptor  
+.db callMngFuncDescEnd - callMngFuncDesc  
+.db 0x24  
+.db 0x01  
+.db 0x00  
+.db 0x01  
+callMngFuncDescEnd:  
+endpoint0Desc:  ; Endpoint descriptor (EP2 IN)  
+.db endpoint0DescEnd - endpoint0Desc  
+.db 0x05  ;< Endpoint     ; bDescriptorType  
+.db 0x82                    ; bEndpointAddress  
+.db 0x03  ;< Interrupt (guaranteed polling interval)            ; bmAttributes  
+.db 0x40, 0x00               ; wMaxPacketSize  
+.db 0x40                    ; bInterval  
+endpoint0DescEnd:  
+;  
+;               INTERFACE 1  
+;  
+interface1Desc: ; Interface descriptor  
+.db interface1DescEnd - interface1Desc  
+.db 0x04  ;< Interface    ; Interface descriptor type  
+.db 0x01                    ; Interface Number  
+.db 0x00                    ; Alternate Setting Number  
+.db 0x02                    ; Number of endpoints in this intf  
+.db 0x0A              ; Class code  
+.db 0x00                    ; Subclass code  
+.db 0x00    ; No class specific protocol required            ; Protocol code  
+.db 0x00                    ; Interface string index  
+interface1DescEnd:  
+endpoint1Desc:  ; Endpoint descriptor (EP4 OUT)  
+.db endpoint1DescEnd - endpoint1Desc  
+.db 0x05  ;< Endpoint     ; bDescriptorType  
+.db 0x84                    ; bEndpointAddress  
+.db 0x02  ;< Bulk           ; bmAttributes  
+.db 0x40, 0x00               ; wMaxPacketSize  
+.db 0x01                    ; bInterval  
+endpoint1DescEnd:  
+endpoint2Desc:  ; Endpoint descriptor (EP4 IN)  
+.db endpoint2DescEnd - endpoint2Desc  
+.db 0x05  ;< Endpoint     ; bDescriptorType  
+.db 0x04                    ; bEndpointAddress  
+.db 0x02  ;< Bulk           ; bmAttributes  
+.db 0x40, 0x00               ; wMaxPacketSize  
+.db 0x01                    ; bInterval  
+endpoint2DescEnd:  
+config1LengthEnd:  
+;;-------------------------------------------------------------------------------------------------------  
+;;-------------------------------------------------------------------------------------------------------  
+;; String descriptors  
+string0Desc:    ; Language ID  
+.db string0DescEnd - string0Desc  
+.db 0x03  ;< String       ; bDescriptorType  
+.db 0x09                    ; US-EN  
+.db 0x04  
+string0DescEnd:  
+string1Desc:    ; Manufacturer  
+.db string1DescEnd - string1Desc  
+.db 0x03  ;< String       ; bDescriptorType  
+.db 'T, 0  
+.db 'e, 0  
+.db 'x, 0  
+.db 'a, 0  
+.db 's, 0  
+.db ' , 0  
+.db 'I, 0  
+.db 'n, 0  
+.db 's, 0  
+.db 't, 0  
+.db 'r, 0  
+.db 'u, 0  
+.db 'm, 0  
+.db 'e, 0  
+.db 'n, 0  
+.db 't, 0  
+.db 's, 0  
+string1DescEnd:  
+string2Desc:    ; Product  
+.db string2DescEnd - string2Desc  
+.db 0x03  ;< String       ; bDescriptorType  
+.db 'C, 0  
+.db 'C, 0  
+.db '2, 0  
+.db '5, 0  
+.db '3, 0  
+.db '1, 0  
+.db '2, 0  
+.db '5, 0  
+.db '1, 0  
+.db '1, 0  
+.db '1, 0  
+.db '1, 0  
+.db '1, 0  
+.db '1, 0  
+.db ' , 0  
+.db 'U, 0  
+.db 'S, 0  
+.db 'B, 0  
+.db ' , 0  
+.db 'C, 0  
+.db 'D, 0  
+.db 'C, 0  
+string2DescEnd:  
+string3Desc:    ; Serial number  
+.db string3DescEnd - string3Desc  
+.db 0x03  ;< String       ; bDescriptorType  
+.db '0, 0  
+.db '0, 0  
+.db '1, 0  
+string3DescEnd:  
+_usbDescEnd:  
+;;-------------------------------------------------------------------------------------------------------  
+;;-------------------------------------------------------------------------------------------------------  
+;; Look-up table for descriptors that are not returned through requests for DSC_DEVICE, DSC_CONFIG or  
+;; DSC_STRING (e.g. HID report descriptors)  
+_usbDescLut:  
+_usbDescLutEnd:  
+;;-------------------------------------------------------------------------------------------------------  
+;;-------------------------------------------------------------------------------------------------------  
+;; Look-up table for double buffer settings (one set of bit masks for each defined interface)  
+_usbDblbufLut:  
+.dw interface0Desc   ; pInterface  
+.db 0x00              ; inMask  
+.db 0x00              ; outMask  
+.dw interface1Desc   ; pInterface  
+.db 0x00              ; inMask  
+.db 0x00              ; outMask  
+_usbDblbufLutEnd:  
+;;-------------------------------------------------------------------------------------------------------  
+  
+

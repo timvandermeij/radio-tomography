@@ -43,7 +43,7 @@ extern ringBuf_t rbTxBuf;
 /***********************************************************************************
  * GLOBAL VARIABLES
  */
-CDC_LINE_CODING_STRUCTURE __xdata currentLineCoding;
+CDC_LINE_CODING_STRUCTURE currentLineCoding; // PATCHED: removed __xdata: double storage class
 uint16 cdcRTS;              // Request-To-Send modem control line
 uint8  cdcCTS;              // Clear-To-Send   modem control line
 
@@ -211,7 +211,7 @@ static void usbInProcess(void)
             bufGet(&rbTxBuf,buffer,length);
 
             // Write to USB FIFO
-            usbfwWriteFifo(&USBF4, length, buffer);
+            usbfwWriteFifo(USBF4, length, buffer); // PATCHED: removed &
 
             // Flag USB IN buffer as not ready (disarming EP4)
             USBFW_SELECT_ENDPOINT(4);
@@ -260,7 +260,7 @@ static void usbOutProcess(void)
         if (nToSend>0)
         {
             // Read from USB FIFO
-            usbfwReadFifo(&USBF4, nToSend, buffer);
+            usbfwReadFifo(USBF4, nToSend, buffer); // PATCHED: removed &
 
             // Write to radio TX buffer
             bufPut(&rbRxBuf,buffer,nToSend);

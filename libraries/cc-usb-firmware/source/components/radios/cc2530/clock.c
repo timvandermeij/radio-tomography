@@ -41,7 +41,7 @@ void clockSetMainSrc(uint8 source)
     
     SLEEPCMD &= ~SLEEP_OSC_PD_BM;       // power up both oscillators
     while (!CC2530_IS_HFRC_STABLE() || ((SLEEPSTA & SLEEP_OSC_PD_BM)!=0));// wait until the oscillator is stable
-    NOP();
+    NOP; // PATCHED: removed parentheses
 
     if (source == CLOCK_SRC_HFRC){
         CLKCONCMD = (osc32k_bm | CLKCON_OSC_BM | TICKSPD_DIV_2 | CLKCON_CLKSPD_BM);

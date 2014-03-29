@@ -42,11 +42,10 @@ extern uint8 cdcCTS;
 * @brief   Initalise UART. Supported baudrates are: 38400, 57600 and 115200
 *
 * @param   uint8 baudrate
-*          uint8 options - this parameter is ignored
 *
 * @return  none
 */
-void halUartInit(uint8 baudrate, uint8 options)
+void halUartInit(uint8 baudrate) // PATCHED: removed ignored argument 'options'
 {
     uint32 baud;
 

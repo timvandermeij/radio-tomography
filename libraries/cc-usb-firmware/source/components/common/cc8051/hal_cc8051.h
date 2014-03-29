@@ -74,15 +74,15 @@
                                                     break; } )
 
 #define MCU_IO_OUTPUT_PREP(port, pin, val)  st( P##port##SEL &= ~BM(pin); \
-                                                P##port##_##pin## = val; \
-                                                P##port##DIR |= BM(pin); )
+                                                P##port##_##pin = val; \
+                                                P##port##DIR |= BM(pin); ) // PATCHED: removed ## here and below
 
-#define MCU_IO_SET_HIGH_PREP(port, pin)     st( P##port##_##pin## = 1; )
-#define MCU_IO_SET_LOW_PREP(port, pin)      st( P##port##_##pin## = 0; )
+#define MCU_IO_SET_HIGH_PREP(port, pin)     st( P##port##_##pin = 1; )
+#define MCU_IO_SET_LOW_PREP(port, pin)      st( P##port##_##pin = 0; )
 
-#define MCU_IO_SET_PREP(port, pin, val)     st( P##port##_##pin## = val; )
-#define MCU_IO_TGL_PREP(port, pin)          st( P##port##_##pin## ^= 1; )
-#define MCU_IO_GET_PREP(port, pin)          (P##port## & BM(pin))
+#define MCU_IO_SET_PREP(port, pin, val)     st( P##port##_##pin = val; )
+#define MCU_IO_TGL_PREP(port, pin)          st( P##port##_##pin ^= 1; )
+#define MCU_IO_GET_PREP(port, pin)          (P##port & BM(pin))
 
 #define MCU_IO_DIR_INPUT_PREP(port, pin)    st( P##port##DIR &= ~BM(pin); )
 #define MCU_IO_DIR_OUTPUT_PREP(port, pin)   st( P##port##DIR |= BM(pin); )

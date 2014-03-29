@@ -20,6 +20,7 @@
 // 
 
 #include <ioCC2531.h>
+#include <string.h> // PATCHED: needed for memcpy below
 #include "hal_defs.h"
 #include "hal_led.h"
 #include "hal_int.h"
@@ -76,7 +77,7 @@ void reset_radio_channelISR(void)
 {
   timer4Stop();
   rfConfig.channel = channel_sequence[0];
-  radioInit(rfConfig);
+  radioInit(&rfConfig); // PATCHED: &
   ledOn(1); //green LED on
 }
 
@@ -91,9 +92,9 @@ void channel_hoppingISR(void)
   timer3Stop();
   next_channel_time = (MAX_NUM_NODES + 3) * SLOT_LENGTH;
   channel_hoppingConfig.tickThresh = next_channel_time;
-  timer3Init(channel_hoppingConfig);
+  timer3Init(&channel_hoppingConfig); // PATCHED: &
   timer3Start();
-  radioInit(rfConfig);  
+  radioInit(&rfConfig); // PATCHED: &
 }
 
 void main(void)
@@ -103,14 +104,14 @@ void main(void)
   setSysTickFreq(TIMER_TICK_FREQ_250KHZ);
   
   halBoardInit();
-  halUartInit(HAL_UART_BAUDRATE_38400,0);
+  halUartInit(HAL_UART_BAUDRATE_38400); // PATCHED: removed ignored argument 'options'
   
   // Set up the radio module
   rfConfig.addr = ADDR;
   rfConfig.pan = PAN;
   rfConfig.channel = channel_sequence[channel_counter];
   rfConfig.txPower = 0xF5; // Max. available TX power
-  radioInit(rfConfig);
+  radioInit(&rfConfig); // PATCHED: &
   
   // Enable interrupts 
   EA = 1;
@@ -121,13 +122,13 @@ void main(void)
   reset_radio_channelConfig.tickDivider = 7;
   reset_radio_channelConfig.tickThresh = next_reset_radio_time;
   reset_radio_channelConfig.isrPtr = reset_radio_channelISR;
-  timer4Init(reset_radio_channelConfig);
+  timer4Init(&reset_radio_channelConfig); // PATCHED: &
   
   // Set up Timer3:
   channel_hoppingConfig.tickDivider = 7;
   channel_hoppingConfig.tickThresh = next_channel_time;
   channel_hoppingConfig.isrPtr = channel_hoppingISR;
-  timer3Init(channel_hoppingConfig);
+  timer3Init(&channel_hoppingConfig); // PATCHED: &
   
   while(1)
   {
@@ -143,7 +144,7 @@ void main(void)
         timer3Stop();
         
         flushRXFIFO();
-        serialPacket.spinPacket = rxPacket;
+        memcpy(&serialPacket.spinPacket, &rxPacket, sizeof(spinPacket_t)); // PATCHED: cannot assign values to aggregates
         serialPacket.suffix = 0xBEEF;
 		// Transfer the packet through the serial port
         halUartWrite((uint8*)&serialPacket,sizeof(serialPacket));
@@ -154,10 +155,10 @@ void main(void)
         int_TX_id = (int)(TX_id);
         next_channel_time = (MAX_NUM_NODES - int_TX_id +2)*SLOT_LENGTH;
         channel_hoppingConfig.tickThresh = next_channel_time;
-        timer3Init(channel_hoppingConfig);
+        timer3Init(&channel_hoppingConfig); // PATCHED: &
         timer3Start();
           
-        timer4Init(reset_radio_channelConfig);
+        timer4Init(&reset_radio_channelConfig); // PATCHED: &
         timer4Start();  
         ledOff(2); //red LED off
       }
