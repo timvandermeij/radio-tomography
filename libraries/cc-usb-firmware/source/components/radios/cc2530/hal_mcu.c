@@ -84,31 +84,10 @@ void halMcuWaitUs(uint16 usec)
 *
 * @return      none
 */
-#pragma optimize=none
 void halMcuWaitMs(uint16 msec)
 {
     while(msec--)
         halMcuWaitUs(1000);
-}
-
-
-/***********************************************************************************
-* @fn          halMcuSetLowPowerMode
-*
-* @brief      Sets the MCU in a low power mode. Will turn global interrupts on at
-*             the same time as entering the LPM mode. The MCU must be waken from
-*             an interrupt (status register on stack must be modified).
-*
-*              NB! This function is highly dependent on architecture and compiler!
-*
-* @param       uint8 mode - power mode
-*
-* @return      none
-*/
-void halMcuSetLowPowerMode(uint8 mode)
-{
-  // comment: not yet implemented
-//  HAL_ASSERT(FALSE);
 }
 
 

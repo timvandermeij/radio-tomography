@@ -19,7 +19,7 @@
 // along with multi-Spin. If not, see <http://www.gnu.org/licenses/>.
 // 
 
-#include <ioCC2531.h>
+#include <cc2530.h>
 
 void ledInit(void)
 {

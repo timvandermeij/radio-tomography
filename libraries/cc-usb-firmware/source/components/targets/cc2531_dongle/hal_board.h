@@ -21,7 +21,7 @@
 #include "usb_reg.h"
 
 #if (chip==2531)
-#include <ioCC2531.h>
+#include <cc2530.h> // PATCHED: SDCC header
 #else
 #error "chip not defined!"
 #endif

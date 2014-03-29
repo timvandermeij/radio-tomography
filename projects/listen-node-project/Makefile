@@ -8,8 +8,7 @@ HEX = listen_node.hex
 
 # Include paths, object definitions and compilation flags
 BUILDROOT = $(realpath .)
-INCLUDES =	-I$(BUILDROOT)/../../libraries \
-			-I$(BUILDROOT)/../../libraries/multi-spin-2.0/listen_node \
+INCLUDES =	-I$(BUILDROOT)/../../libraries/multi-spin-2.0/listen_node \
 			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/usb/class_cdc \
 			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/usb/library \
 			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/common \
@@ -47,10 +46,10 @@ USB_DESCRIPTOR = $(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/
 
 # Pattern rules
 %.rel: %.c
-	$(SDCC) -c $(CPPFLAGS) $(CFLAGS) $< -o $@
+	$(SDCC) -c $(CFLAGS) $< -o $@
 
 %.rel: %.asm
-	$(SDAS8051) $(INCLUDES) -x -l -o $@ $<
+	$(SDAS8051) $(INCLUDES) -x -l -s -o $@ $<
 
 %.asm: %.asm.dist
 	cp $< $@
@@ -61,4 +60,5 @@ main: $(OBJS)
 	$(PACKIHX) $(IHX) > $(HEX)
 
 clean:
+	cp $(USB_DESCRIPTOR).asm.dist $(USB_DESCRIPTOR).asm # Done to prevent errors as the .asm file is already deleted after the main target.
 	rm $(OBJS) $(OBJS:.rel=.asm) $(OBJS:.rel=.lst) $(OBJS:.rel=.rst) $(OBJS:.rel=.sym) *.hex *.ihx *.lk *.map *.mem

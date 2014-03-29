@@ -70,10 +70,10 @@ void radioInit(rfConfig_t *rfConfig)
   FRMCTRL0 |= 0x40; //Turn on auto CRC
   
   //Set short address and pan
-  SHORT_ADDRL = (char)rfConfig->addr;
-  SHORT_ADDRH = (char)(rfConfig->addr>>8);
-  PANL = (char)rfConfig->pan;
-  PANH = (char)(rfConfig->pan>>8);
+  SHORTADDRH = (char)rfConfig->addr;
+  SHORTADDRL = (char)(rfConfig->addr>>8);
+  PANIDH = (char)rfConfig->pan;
+  PANIDL = (char)(rfConfig->pan>>8);
   
   //Set up frame filtering
   FRMFILT0 = 0x0D; //Enable frame filt, max_fcf_version set to 11

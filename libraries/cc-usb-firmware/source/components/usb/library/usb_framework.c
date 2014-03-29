@@ -105,7 +105,7 @@ void usbfwSetupHandler(void)
 
       // Read FIFO
       bytesNow = USBCNT0;
-      usbfwReadFifo(USBF0, bytesNow, usbSetupData.pBuffer); // PATCHED: removed &
+      usbfwReadFifo(&USBF0, bytesNow, usbSetupData.pBuffer);
       usbSetupData.bytesLeft -= bytesNow;
       usbSetupData.pBuffer += bytesNow;
 
@@ -130,7 +130,7 @@ void usbfwSetupHandler(void)
    // Receive SETUP header
    if (usbfwData.ep0Status == EP_IDLE) {
       if (controlReg & USBCS0_OUTPKT_RDY) {
-         usbfwReadFifo(USBF0, 8, (uint8 __xdata *) &usbSetupHeader); // PATCHED: removed &
+         usbfwReadFifo(&USBF0, 8, (uint8 __xdata *) &usbSetupHeader);
 
          // Handle control transfers individually
          ProcessFunc = NULL;
@@ -203,7 +203,7 @@ void usbfwSetupHandler(void)
       }
 
       // Load the FIFO and move the pointer
-      usbfwWriteFifo(USBF0, bytesNow, usbSetupData.pBuffer); // PATCHED: removed &
+      usbfwWriteFifo(&USBF0, bytesNow, usbSetupData.pBuffer);
       usbSetupData.pBuffer += bytesNow;
       usbSetupData.bytesLeft -= bytesNow;
 
