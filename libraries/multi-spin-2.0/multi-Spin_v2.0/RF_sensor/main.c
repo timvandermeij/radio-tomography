@@ -24,7 +24,6 @@
 #include "hal_defs.h"
 #include "hal_led.h"
 #include "hal_int.h"
-#include "hal_board.h"
 #include "hal_assert.h"
 #include "hal_mcu.h"
 #include "hal_uart.h"
@@ -32,7 +31,6 @@
 #include "flush_buffers.h"
 #include "timers34.h"
 #include "leds.h"
-#include "clock.h"
 #include "spin_clock.h"
 #include "spin_multichannel.h"
 #include "channels.h"
@@ -72,53 +70,6 @@ timer34Config_t channel_hoppingConfig;
 // timer 4: broadcast a packet
 timer34Config_t next_TX_timeConfig;
 
-void blink(int arg) {
-  int i, j, k;
-  
-  ledOn(1);
-  for (i = 0; i < 4000; ++i) {
-          for (k = 0; k < 800; ++k) {
-              NOP;
-          }
-      }
-  ledOff(1);
-for (i = 0; i < 1000; ++i) {
-          for (k = 0; k < 400; ++k) {
-              NOP;
-          }
-      }
-
-
-  k = arg;
-  for (j = 0; j < 16; ++j) {
-       if ((arg>>j) == 0)
-           break;
-
-      if ((arg>>j) & 1)
-        ledOn(1);
-      for (i = 0; i < 2000; ++i) {
-          for (k = 0; k < 400; ++k) {
-              NOP;
-          }
-      }
-      ledOff(1);
-      for (i = 0; i < 1000; ++i) {
-          for (k = 0; k < 400; ++k) {
-              NOP;
-          }
-      }
-
-  }
-
-  ledOn(1);
-  for (i = 0; i < 4000; ++i) {
-          for (k = 0; k < 800; ++k) {
-              NOP;
-          }
-      }
-  ledOff(1);
-}
-
 void next_TX_timeISR(void) __interrupt (12)
 {
   int i; // PATCHED: declare here, not in loop
@@ -128,9 +79,9 @@ void next_TX_timeISR(void) __interrupt (12)
   timer4Init(&next_TX_timeConfig); // PATCHED: &
   timer4Start();
   
-  //ledOn(1); //green LED on
+  ledOn(1); //green LED on
   sendPacket((char*)&spinPacket, sizeof(spinPacket), rfConfig.pan, 0xFFFF, rfConfig.addr);
-  //ledOff(1); //green LED off
+  ledOff(1); //green LED off
 
   // Increase the counter for the number of packets consecutively broadcasted WITHOUT
   // receiving a packet from a neighboring RF sensors
@@ -199,14 +150,14 @@ void main(void)
   radioInit(&rfConfig); // PATCHED: &
 
   // Set up the amplifier
-  /*AGCCTRL1 = 0x15;
+  AGCCTRL1 = 0x15;
   FSCAL1 = 0x0;
   RFC_OBS_CTRL0 = 0x68;
   RFC_OBS_CTRL1 = 0x6A;
   OBSSEL1 = 0xFB;
   OBSSEL4 = 0xFC;
   P0DIR |= 0x80;
-  PA_LNA_RX_HGM();*/
+  PA_LNA_RX_HGM();
 
   // Enable interrupts 
   EA = 1;

@@ -25,10 +25,7 @@ CFLAGS += $(INCLUDES) -DNDEBUG -Dchip=2530 --model-large --Werror --stack-auto -
 
 # Pattern rules
 %.rel: %.c
-	$(SDCC) -c $(CPPFLAGS) $(CFLAGS) $< -o $@
-
-%.rel: %.asm
-	$(SDAS8051) $(INCLUDES) -x -o $@ $<
+	$(SDCC) -c $(CFLAGS) $< -o $@
 
 # Compilation targets
 main: $(OBJS)
