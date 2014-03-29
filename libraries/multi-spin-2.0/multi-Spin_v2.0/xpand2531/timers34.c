@@ -19,7 +19,7 @@
 // along with multi-Spin. If not, see <http://www.gnu.org/licenses/>.
 // 
 
-#include <ioCC2531.h>
+#include <cc2530.h>
 #include "timers34.h"
 // PATCHED: * and -> instead of .
 void (*timer3IsrPtr)(void);

@@ -20,7 +20,7 @@
 // 
 
 //Includes
-#include <ioCC2531.h>
+#include <cc2530.h>
 #include "hal_defs.h"
 #include "hal_led.h"
 #include "hal_int.h"
