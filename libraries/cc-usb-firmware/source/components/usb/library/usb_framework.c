@@ -156,7 +156,6 @@ void usbfwSetupHandler(void)
             case GET_DESCRIPTOR:    usbsrGetDescriptor(); break;
             case GET_CONFIGURATION: usbsrGetConfiguration(); break;
             case GET_INTERFACE:     usbsrGetInterface(); break;
-            case SYNCH_FRAME:       /*usbsrHookSynchFrame(); break; - unsupported */
             default:                usbfwData.ep0Status = EP_STALL; break;
             }
             break;

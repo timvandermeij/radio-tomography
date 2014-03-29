@@ -99,7 +99,7 @@
 #define BUILD_UINT16(loByte, hiByte) \
     ((uint16)(((loByte) & 0x00FF) + (((hiByte) & 0x00FF) << 8)))
 
-#define HI_UINT16(a) (((uint16)(a) >> 8) & 0xFF)
+#define HI_UINT16(a) (signed)(((uint16)(a) >> 8) & 0xFF)
 #define LO_UINT16(a) ((uint16)(a) & 0xFF)
 
 

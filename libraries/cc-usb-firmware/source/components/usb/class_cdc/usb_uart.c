@@ -250,7 +250,7 @@ static void usbOutProcess(void)
 
         // Get length of USB packet, this operation must not be interrupted.
         length = USBFW_GET_OUT_ENDPOINT_COUNT_LOW();
-        length+= USBFW_GET_OUT_ENDPOINT_COUNT_HIGH() >> 8;
+        length+= (int)(USBFW_GET_OUT_ENDPOINT_COUNT_HIGH()) >> 8;
 
         // Calculate number of bytes available in RF buffer; and the number
         // of bytes we may transfer in this operation.
