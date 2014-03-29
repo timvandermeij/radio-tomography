@@ -142,12 +142,13 @@ void blink(int arg);
 char receivePacket(char* ptr, char len, signed char* rssi)
 {
   char i; //Helper variable used throughout
+  static volatile char j;
 
   //Clear RX flags
   RFIRQF0 = 0x00;
-  blink(RXFIFOCNT + 1);
+  i = RXFIFOCNT;
   //Check total length, including frame headers (+14)
-  if(RXFIFOCNT != len+14)
+  if(i != len+14)
   {
     RFST = ISFLUSHRX; RFST = ISFLUSHRX; //Flush the FIFO - 2 times necessary
     return 0; //Error
@@ -155,11 +156,12 @@ char receivePacket(char* ptr, char len, signed char* rssi)
 
   for (i = 0; i<12; i++)
   {
-    RFD; //Skip through the first 12 bytes, not useful here
+    j = RFD; //Skip through the first 12 bytes, not useful here
   }
   
   //Check to make sure remaining length is correct
-  if(RXFIFOCNT != (len + 2))
+  i = RXFIFOCNT;
+  if(i != (len + 2))
   {
     RFST = ISFLUSHRX; RFST = ISFLUSHRX; //Flush the FIFO - 2 times necessary
     return 0; //Error
