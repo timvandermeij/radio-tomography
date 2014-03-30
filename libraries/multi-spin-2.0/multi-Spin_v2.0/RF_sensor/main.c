@@ -47,7 +47,7 @@ spinPacket_t spinPacket,receivedPacket;
 static rfConfig_t rfConfig;
 
 // Length (in ticks of the clock counter) of a TDMA slot
-#define SLOT_LENGTH 7 //1953.125Hz (1 = 512 us)
+#define SLOT_LENGTH 8
 // Initialization of the length of the interval of time until the next transmission
 int next_TX_time = 255 - (THIS_NODE_ID * SLOT_LENGTH);
 // Initialization of the length of time until the next frequency channel switch
