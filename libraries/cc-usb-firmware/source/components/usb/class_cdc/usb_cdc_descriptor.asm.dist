@@ -1,5 +1,5 @@
 .MODULE  usb_descriptor  
-.area    RCODE  
+.area    CSEG  
 .globl _usbDescStart 
 .globl _usbDescEnd 
 .globl _usbDescLut  
