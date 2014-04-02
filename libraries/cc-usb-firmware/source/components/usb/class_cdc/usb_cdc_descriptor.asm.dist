@@ -20,8 +20,6 @@ deviceDesc:
 .db 32  ;< The maximum data packet size for endpoint 0  
 .db 0x51, 0x04        ; idVendor Texas Instruments  
 .db 0xA8, 0x16        ; idProduct CC2531  
-.db 0xA4, 0x16        ; idProduct CC2511  
-.db 0xA6, 0x16        ; idProduct CC1111  
 .db 0x09, 00          ; bcdDevice  
 .db 0x01              ; iManufacturer  
 .db 0x02              ; iProduct  
@@ -157,14 +155,6 @@ string2Desc:    ; Product
 .db '2, 0  
 .db '5, 0  
 .db '3, 0  
-.db '1, 0  
-.db '2, 0  
-.db '5, 0  
-.db '1, 0  
-.db '1, 0  
-.db '1, 0  
-.db '1, 0  
-.db '1, 0  
 .db '1, 0  
 .db ' , 0  
 .db 'U, 0  

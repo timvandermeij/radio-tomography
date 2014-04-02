@@ -41,7 +41,7 @@ OBJS =	$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/listen_node/m
 		$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/rf.rel \
 		$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/spin_clock.rel \
 		$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/xpand2531/timers34.rel
-CFLAGS += $(INCLUDES) -DNDEBUG -DBUF_SIZE=192 -DUSB_UART -Dchip=2531 --Werror --disable-warning 85 --disable-warning 84 --model-large --opt-code-size --code-loc 0x100
+CFLAGS += $(INCLUDES) -DNDEBUG -DBUF_SIZE=192 -DUSB_UART -Dchip=2531 --Werror --disable-warning 85 --disable-warning 84 --model-large --opt-code-size --code-loc 0xFF
 USB_DESCRIPTOR = $(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/usb/class_cdc/usb_cdc_descriptor
 
 # Pattern rules
