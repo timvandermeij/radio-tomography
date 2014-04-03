@@ -26,7 +26,6 @@ OBJS =	$(BUILDROOT)/../../libraries/multi-spin-2.0/multi-Spin_v2.0/listen_node/m
 		$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/targets/cc2531_dongle/hal_assert.rel \
 		$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/targets/cc2531_dongle/hal_board.rel \
 		$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/targets/cc2531_dongle/hal_led.rel \
-		$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/usb/class_cdc/usb_cdc_descriptor.rel \
 		$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/usb/class_cdc/usb_cdc_hooks.rel \
 		$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/usb/class_cdc/usb_firmware_library_config.rel \
 		$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/usb/class_cdc/usb_uart.rel \
@@ -60,5 +59,4 @@ main: $(OBJS)
 	$(PACKIHX) $(IHX) > $(HEX)
 
 clean:
-	cp $(USB_DESCRIPTOR).asm.dist $(USB_DESCRIPTOR).asm # Done to prevent errors as the .asm file is already deleted after the main target.
 	rm $(OBJS) $(OBJS:.rel=.asm) $(OBJS:.rel=.lst) $(OBJS:.rel=.rst) $(OBJS:.rel=.sym) *.hex *.ihx *.lk *.map *.mem

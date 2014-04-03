@@ -80,12 +80,12 @@
 //-------------------------------------------------------------------------------------------------------
 // Function prototypes
 void usbdpInit(void);
-void __code *usbdpFindNext(uint8 wantedType, uint8 haltAtType);
+void __xdata *usbdpFindNext(uint8 wantedType, uint8 haltAtType);
 
-USB_DEVICE_DESCRIPTOR __code* usbdpGetDeviceDesc(void);
-USB_CONFIGURATION_DESCRIPTOR __code* usbdpGetConfigurationDesc(uint8 cfgValue, uint8 cfgIndex);
-USB_INTERFACE_DESCRIPTOR __code* usbdpGetInterfaceDesc(uint8 cfgValue, uint8 intNumber, uint8 altSetting);
-USB_STRING_DESCRIPTOR __code* usbdpGetStringDesc(uint8 strIndex);
+USB_DEVICE_DESCRIPTOR __xdata* usbdpGetDeviceDesc(void);
+USB_CONFIGURATION_DESCRIPTOR __xdata* usbdpGetConfigurationDesc(uint8 cfgValue, uint8 cfgIndex);
+USB_INTERFACE_DESCRIPTOR __xdata* usbdpGetInterfaceDesc(uint8 cfgValue, uint8 intNumber, uint8 altSetting);
+USB_STRING_DESCRIPTOR __xdata* usbdpGetStringDesc(uint8 strIndex);
 //-------------------------------------------------------------------------------------------------------
 
 

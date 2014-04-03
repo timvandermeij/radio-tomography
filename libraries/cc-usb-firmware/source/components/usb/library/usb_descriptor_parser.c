@@ -22,7 +22,7 @@ static USBDP_DATA __xdata usbdpData; ///< USBDP internal module data
 */
 void usbdpInit(void)
 {
-   usbdpData.pDesc = (const uint8 __code *) usbDescriptorMarker.pUsbDescStart;
+   usbdpData.pDesc = (const uint8 __xdata *) usbDescriptorMarker.pUsbDescStart;
 } // usbdpInit
 
 
@@ -50,17 +50,17 @@ void usbdpInit(void)
 * \return
 *     A pointer to the wanted descriptor type, or \c NULL if it was not found.
 */
-void __code* usbdpFindNext(uint8 wantedType, uint8 haltAtType)
+void __xdata* usbdpFindNext(uint8 wantedType, uint8 haltAtType)
 {
-   void __code *pResult;
+   void __xdata *pResult;
    pResult = NULL;
 
    // As long as we haven't reached the end...
-   while (usbdpData.pDesc != (void __code *) usbDescriptorMarker.pUsbDescEnd) {
+   while (usbdpData.pDesc != (void __xdata *) usbDescriptorMarker.pUsbDescEnd) {
 
       // If we have a match on wantedType...
       if (usbdpData.pDesc[DESC_TYPE_IDX] == wantedType) {
-         pResult = (void __code*) usbdpData.pDesc;
+         pResult = (void __xdata*) usbdpData.pDesc;
          usbdpData.pDesc += usbdpData.pDesc[DESC_LENGTH_IDX];
          break;
 
@@ -86,7 +86,7 @@ void __code* usbdpFindNext(uint8 wantedType, uint8 haltAtType)
 * \return
 *     A pointer to the \ref USB_DEVICE_DESCRIPTOR, or \c NULL if it was not found.
 */
-USB_DEVICE_DESCRIPTOR __code* usbdpGetDeviceDesc(void)
+USB_DEVICE_DESCRIPTOR __xdata* usbdpGetDeviceDesc(void)
 {
    usbdpInit();
    return usbdpFindNext(DESC_TYPE_DEVICE, 0);
@@ -112,9 +112,9 @@ USB_DEVICE_DESCRIPTOR __code* usbdpGetDeviceDesc(void)
 * \return
 *     A pointer to the \ref USB_DEVICE_DESCRIPTOR, or \c NULL if it was not found.
 */
-USB_CONFIGURATION_DESCRIPTOR __code* usbdpGetConfigurationDesc(uint8 cfgValue, uint8 cfgIndex)
+USB_CONFIGURATION_DESCRIPTOR __xdata* usbdpGetConfigurationDesc(uint8 cfgValue, uint8 cfgIndex)
 {
-   USB_CONFIGURATION_DESCRIPTOR __code *pConfigurationDesc;
+   USB_CONFIGURATION_DESCRIPTOR __xdata *pConfigurationDesc;
    usbdpInit();
 
    // As long as there are more configuration descriptors...
@@ -154,9 +154,9 @@ USB_CONFIGURATION_DESCRIPTOR __code* usbdpGetConfigurationDesc(uint8 cfgValue, u
 * \return
 *     A pointer to the \ref USB_INTERFACE_DESCRIPTOR, or \c NULL if it was not found.
 */
-USB_INTERFACE_DESCRIPTOR __code* usbdpGetInterfaceDesc(uint8 cfgValue, uint8 intNumber, uint8 altSetting)
+USB_INTERFACE_DESCRIPTOR __xdata* usbdpGetInterfaceDesc(uint8 cfgValue, uint8 intNumber, uint8 altSetting)
 {
-   USB_INTERFACE_DESCRIPTOR __code *pInterfaceDesc;
+   USB_INTERFACE_DESCRIPTOR __xdata *pInterfaceDesc;
 
    // First get to the correct configuration
    usbdpGetConfigurationDesc(cfgValue, 0);
@@ -184,9 +184,9 @@ USB_INTERFACE_DESCRIPTOR __code* usbdpGetInterfaceDesc(uint8 cfgValue, uint8 int
 * \return
 *     A pointer to the \ref USB_INTERFACE_DESCRIPTOR, or \c NULL if it was not found.
 */
-USB_STRING_DESCRIPTOR __code* usbdpGetStringDesc(uint8 strIndex)
+USB_STRING_DESCRIPTOR __xdata* usbdpGetStringDesc(uint8 strIndex)
 {
-   USB_STRING_DESCRIPTOR __code *pStringDesc;
+   USB_STRING_DESCRIPTOR __xdata *pStringDesc;
    usbdpInit();
 
 #ifdef MS_EXT_C_ID

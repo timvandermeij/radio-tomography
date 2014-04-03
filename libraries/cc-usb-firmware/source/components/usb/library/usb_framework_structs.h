@@ -168,13 +168,13 @@ typedef struct {
     uint8 valueLsb;            ///< MSB of the \ref USB_SETUP_HEADER.value request parameter
     uint8 indexMsb;            ///< LSB of the \ref USB_SETUP_HEADER.index request parameter
     uint8 indexLsb;            ///< MSB of the \ref USB_SETUP_HEADER.index request parameter
-    uint8 __code *pDescStart;  ///< A pointer to the descriptor to be returned for the given index/value
+    uint8 __xdata *pDescStart;  ///< A pointer to the descriptor to be returned for the given index/value
     uint16 length;            ///< The length of the returned descriptor
 } DESC_LUT_INFO;
 
 /// Look-up table for double-buffer settings
 typedef struct {
-    USB_INTERFACE_DESCRIPTOR __code *pInterface; ///< Pointer to an interface descriptor
+    USB_INTERFACE_DESCRIPTOR __xdata *pInterface; ///< Pointer to an interface descriptor
     uint8 inMask;                                 ///< Bitmask for IN endpoints (bit x maps to EPx IN)
     uint8 outMask;                                ///< Bitmask for OUT endpoints (bit x maps to EPx OUT)
 } DBLBUF_LUT_INFO;
@@ -191,7 +191,7 @@ typedef struct {
 //-------------------------------------------------------------------------------------------------------
 /// USBDP internal module data
 typedef struct {
-    const uint8 __code *pDesc; ///< Pointer to the current descriptor
+    const uint8 __xdata *pDesc; ///< Pointer to the current descriptor
 } USBDP_DATA;
 //@}
 

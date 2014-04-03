@@ -71,9 +71,15 @@ timer34Config_t channel_hoppingConfig;
 // timer 4: reset radio module to default frequency channel
 timer34Config_t reset_radio_channelConfig;
 
+void usbirqHandler(void);
+void usb_irq_handler(void) __interrupt 6
+{
+  usbirqHandler();
+}
+
 // ISR for resetting the radio to the default channel
 // The "default" channel is the first channel in the array defined in channels.h
-void reset_radio_channelISR(void)
+void reset_radio_channelISR(void) __interrupt 12
 {
   timer4Stop();
   rfConfig.channel = channel_sequence[0];
@@ -83,7 +89,7 @@ void reset_radio_channelISR(void)
 
 // ISR for switching frequency channel
 // The listen node loops on the frequency channels defined in channels.h
-void channel_hoppingISR(void)
+void channel_hoppingISR(void) __interrupt 11
 {
   channel_counter++;
   if (channel_counter == CHANNELS_NUMBER)

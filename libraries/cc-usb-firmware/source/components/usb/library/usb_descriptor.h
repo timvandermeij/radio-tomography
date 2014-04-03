@@ -133,12 +133,12 @@
 //@{
 /// USB descriptor markers which the USB Firmware Library imports from the application
 typedef struct {
-    uint8 __code* const pUsbDescStart;           ///< USB descriptor start pointer
-    uint8 __code* const pUsbDescEnd;             ///< USB descriptor end pointer
-    DESC_LUT_INFO __code* const pUsbDescLut;     ///< Start of USB desc look-up table pointer
-    DESC_LUT_INFO __code* const pUsbDescLutEnd;  ///< End of USB desc look-up table pointer
-    DBLBUF_LUT_INFO __code* const pUsbDblbufLut; ///< Start of double-buffering look-up table pointer
-    DBLBUF_LUT_INFO __code* const pUsbDblbufLutEnd; ///< End of double-buffering look-up table pointer
+    uint8 __xdata* const pUsbDescStart;           ///< USB descriptor start pointer
+    uint8 __xdata* const pUsbDescEnd;             ///< USB descriptor end pointer
+    DESC_LUT_INFO __xdata* const pUsbDescLut;     ///< Start of USB desc look-up table pointer
+    DESC_LUT_INFO __xdata* const pUsbDescLutEnd;  ///< End of USB desc look-up table pointer
+    DBLBUF_LUT_INFO __xdata* const pUsbDblbufLut; ///< Start of double-buffering look-up table pointer
+    DBLBUF_LUT_INFO __xdata* const pUsbDblbufLutEnd; ///< End of double-buffering look-up table pointer
 } USB_DESCRIPTOR_MARKER;
 
 extern USB_DESCRIPTOR_MARKER __xdata usbDescriptorMarker; ///< USB descriptor marker
@@ -149,12 +149,12 @@ extern USB_DESCRIPTOR_MARKER __xdata usbDescriptorMarker; ///< USB descriptor ma
 // They need to be defined here or in application FW
 // The source file <app>_usb_descriptor.s51 need to use these names, or update
 // the names used here with the ones used in <app>_usb_descriptor.s51.
-extern void __code* usbDescStart;       ///< Pointer to start of (standard) USB descriptor
-extern void __code* usbDescEnd;         ///< Pointer to end of (standard) USB descriptor
-extern void __code* usbDescLut;         ///< Pointer to start of lookup table for non-standard USB descriptors
-extern void __code* usbDescLutEnd;      ///< Pointer to end of lookup table for non-standard USB descriptors
-extern void __code* usbDblbufLut;       ///< Pointer to start of lookup table for endpoints' double-buffer settings
-extern void __code* usbDblbufLutEnd;    ///< Pointer to end of lookup table for endpoints' double-buffer settings
+extern void __xdata* usbDescStart;       ///< Pointer to start of (standard) USB descriptor
+extern void __xdata* usbDescEnd;         ///< Pointer to end of (standard) USB descriptor
+extern void __xdata* usbDescLut;         ///< Pointer to start of lookup table for non-standard USB descriptors
+extern void __xdata* usbDescLutEnd;      ///< Pointer to end of lookup table for non-standard USB descriptors
+extern void __xdata* usbDblbufLut;       ///< Pointer to start of lookup table for endpoints' double-buffer settings
+extern void __xdata* usbDblbufLutEnd;    ///< Pointer to end of lookup table for endpoints' double-buffer settings
 //@}
 
 

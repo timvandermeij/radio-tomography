@@ -19,14 +19,45 @@
 // put it in the project catalog. Then edit the code below as needed:
 //-----------------------------------------------------------------------------
 
+uint8 deviceDesc[] = { 18,
+    0x01, 0x10, 0x01, 0x02, 0x00, 0x00, 32, 0x51,
+    0x04, 0xA8, 0x16, 0x09, 0x00, 0x01, 0x02, 0x03,
+    0x01 };
+uint8 configDesc[] = { 9,
+    0x02, 67, 0x00, 0x02, 0x01, 0x00, 0x80, 25 };
+uint8 interface0Desc[] = { 9,
+    0x04, 0x00, 0x00, 0x01, 0x02, 0x02, 0x01, 0x00,
+
+    5, 0x24, 0x00, 0x10, 0x01,
+    4, 0x24, 0x02, 0x02,
+    5, 0x24, 0x06, 0x00, 0x01,
+    5, 0x24, 0x01, 0x00, 0x01,
+    7, 0x05, 0x82, 0x03, 0x40, 0x00, 0x40 };
+uint8 interface1Desc[] = { 9,
+    0x04, 0x01, 0x00, 0x02, 0x0a, 0x00, 0x00, 0x00,
+
+    7, 0x05, 0x84, 0x02, 0x40, 0x00, 0x01,
+    7, 0x05, 0x04, 0x02, 0x40, 0x00, 0x01 };
+uint8 string0Desc[] = {
+    4, 0x03, 0x09, 0x04 };
+uint8 string1Desc[] = { 12,
+    0x03, 'H',0, 'e',0, 'l',0, 'l',0, 'o',0 };
+uint8 string2Desc[] = { 12,
+    0x03, 'w',0, 'o',0, 'r',0, 'l',0, 'd',0 };
+uint8 string3Desc[] = { 8,
+    0x03, 0x00,0, 0x00,0, 0x01,0 };
+uint8 dummy[] = { 0 };
+uint8 __xdata* usbDblbufLut2[] = { interface0Desc, 0, interface1Desc, 0 };
+uint8 dummy2[] = { 0 };
+
 // Declaration of global USB descriptor pointers
 USB_DESCRIPTOR_MARKER usbDescriptorMarker= {
-    (uint8 __code *)&usbDescStart,
-    (uint8 __code *)&usbDescEnd,
-    (DESC_LUT_INFO __code *) &usbDescLut,
-    (DESC_LUT_INFO __code *) &usbDescLutEnd,
-    (DBLBUF_LUT_INFO __code *) &usbDblbufLut,
-    (DBLBUF_LUT_INFO __code *) &usbDblbufLutEnd
+    (uint8 __xdata *)&deviceDesc,
+    (uint8 __xdata *)&dummy,
+    (DESC_LUT_INFO __xdata *) &dummy,
+    (DESC_LUT_INFO __xdata *) &dummy,
+    (DBLBUF_LUT_INFO __xdata *) &usbDblbufLut2,
+    (DBLBUF_LUT_INFO __xdata *) &dummy2
 };
 
 /// @}

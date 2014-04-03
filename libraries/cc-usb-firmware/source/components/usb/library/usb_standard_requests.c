@@ -311,13 +311,13 @@ void usbsrGetDescriptor(void)
 
    // Device descriptor
    case DESC_TYPE_DEVICE:
-      usbSetupData.pBuffer = (uint8 __xdata*) usbdpGetDeviceDesc(); // PATCHED: __code -> __xdata
+      usbSetupData.pBuffer = (uint8 __xdata*) usbdpGetDeviceDesc();
       usbSetupData.bytesLeft = usbSetupData.pBuffer[DESC_LENGTH_IDX];
       break;
 
    // Configuration descriptor
    case DESC_TYPE_CONFIG:
-      usbSetupData.pBuffer = (uint8 __xdata*) usbdpGetConfigurationDesc(0, LO_UINT16(usbSetupHeader.value)); // PATCHED: __code -> __xdata
+      usbSetupData.pBuffer = (uint8 __xdata*) usbdpGetConfigurationDesc(0, LO_UINT16(usbSetupHeader.value));
       usbSetupData.bytesLeft = usbSetupData.pBuffer[DESC_CONFIG_LENGTH_LSB_IDX] +
                                usbSetupData.pBuffer[DESC_CONFIG_LENGTH_MSB_IDX] * 256;
       break;
@@ -325,7 +325,7 @@ void usbsrGetDescriptor(void)
    // String descriptor
    case DESC_TYPE_STRING:
       // TODO: Implement language ID
-      usbSetupData.pBuffer = (uint8 __xdata*) usbdpGetStringDesc(LO_UINT16(usbSetupHeader.value)); // PATCHED: __code -> __xdata
+      usbSetupData.pBuffer = (uint8 __xdata*) usbdpGetStringDesc(LO_UINT16(usbSetupHeader.value));
       usbSetupData.bytesLeft = usbSetupData.pBuffer[DESC_LENGTH_IDX];
       break;
 
@@ -373,18 +373,18 @@ void usbsrGetDescriptor(void)
  * \param[in]       *pInterface
  *     A pointer to the interface descriptor
  */
-static void ConfigureEndpoints(USB_INTERFACE_DESCRIPTOR __code *pInterface)
+static void ConfigureEndpoints(USB_INTERFACE_DESCRIPTOR __xdata *pInterface)
 {
    uint8 n;
    uint16 maxpRegValue;
    uint8 csRegValue;
    uint8 endpoint;
-   USB_ENDPOINT_DESCRIPTOR __code *pEndpoint;
-   DBLBUF_LUT_INFO __code *pUsbDblbufLutInfo;
+   USB_ENDPOINT_DESCRIPTOR __xdata *pEndpoint;
+   DBLBUF_LUT_INFO __xdata *pUsbDblbufLutInfo;
 
    // Locate the double buffer settings
    if (pInterface->bNumEndpoints) {
-       pUsbDblbufLutInfo = (DBLBUF_LUT_INFO __code*) usbDescriptorMarker.pUsbDblbufLut;
+       pUsbDblbufLutInfo = (DBLBUF_LUT_INFO __xdata*) usbDescriptorMarker.pUsbDblbufLut;
        while (pUsbDblbufLutInfo->pInterface != pInterface) {
           pUsbDblbufLutInfo++;
        }
@@ -494,8 +494,8 @@ void usbsrGetConfiguration(void)
 void usbsrSetConfiguration(void)
 {
    uint8 n;
-   USB_CONFIGURATION_DESCRIPTOR __code *pConfiguration;
-   USB_INTERFACE_DESCRIPTOR __code *pInterface;
+   USB_CONFIGURATION_DESCRIPTOR __xdata *pConfiguration;
+   USB_INTERFACE_DESCRIPTOR __xdata *pInterface;
 
    // Sanity check
    if ((usbfwData.usbState == DEV_DEFAULT) || usbSetupHeader.index || usbSetupHeader.length || HI_UINT16(usbSetupHeader.value)) {
@@ -597,7 +597,7 @@ void usbsrGetInterface(void)
  */
 void usbsrSetInterface(void)
 {
-   USB_INTERFACE_DESCRIPTOR __code *pInterface;
+   USB_INTERFACE_DESCRIPTOR __xdata *pInterface;
 
    // Sanity check
    if ((usbfwData.usbState != DEV_CONFIGURED) || (usbSetupHeader.requestType != RT_OUT_INTERFACE) || usbSetupHeader.length) {
