@@ -84,7 +84,7 @@ void reset_radio_channelISR(void) __interrupt 12
   timer4Stop();
   rfConfig.channel = channel_sequence[0];
   radioInit(&rfConfig); // PATCHED: &
-  ledOn(1); //green LED on
+  //ledOn(1); //green LED on
 }
 
 // ISR for switching frequency channel
@@ -165,7 +165,7 @@ void main(void)
         timer3Start();
           
         timer4Init(&reset_radio_channelConfig); // PATCHED: &
-        timer4Start();  
+        timer4Start();
         ledOff(2); //red LED off
       }
     }
