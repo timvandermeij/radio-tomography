@@ -21,31 +21,99 @@
 
 #include <cc2530.h>
 
+#if (chip==2531)
 void ledInit(void)
 {
-  P1DIR |= 0x01; // PATCHED: only one led
+  P0DIR |= 0x01;
+  P1DIR |= 0x02;
 }
 
-void ledOn(char ledID) // PATCHED: only one led
+void ledOn(char ledID)
 {
-  if(ledID == 1) {
+  switch(ledID)
+  {
+  case 1:
+    P0_0 = 0;
+    break;
+  case 2:
+    P1_1 = 1;
+    break;
+  default:
+    break;
+  }
+}
+
+void ledOff(char ledID)
+{
+  switch(ledID)
+  {
+  case 1:
+    P0_0 = 1;
+    break;
+  case 2:
+    P1_1 = 0;
+    break;
+  default:
+    break;
+  }
+}
+
+void ledToggle(char ledID)
+{
+  switch(ledID)
+  {
+  case 1:
+    P0_0 ^= 1;
+    break;
+  case 2:
+    P1_1 ^= 1;
+    break;
+  default:
+    break;
+  }
+}
+
+#elif (chip==2530)
+void ledInit(void)
+{
+  P1DIR |= 0x01;
+}
+
+void ledOn(char ledID)
+{
+  switch(ledID)
+  {
+  case 1:
     P1_0 = 0;
+    break;
+  default:
+    break;
   }
-  return;
 }
 
-void ledOff(char ledID) // PATCHED: only one led
+void ledOff(char ledID)
 {
-  if(ledID == 1){
+  switch(ledID)
+  {
+  case 1:
     P1_0 = 1;
+    break;
+  default:
+    break;
   }
-  return;
 }
 
-void ledToggle(char ledID) // PATCHED: only one led
+void ledToggle(char ledID)
 {
-  if(ledID == 1) {
+  switch(ledID)
+  {
+  case 1:
     P1_0 ^= 1;
+    break;
+  default:
+    break;
   }
-  return;
 }
+#else
+#error unsupported chip
+#endif
