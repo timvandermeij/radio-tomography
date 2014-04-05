@@ -140,13 +140,11 @@ void sendPacket(char* ptr, short len, short pan, short dest, short src)
 char receivePacket(char* ptr, char len, signed char* rssi)
 {
   char i; //Helper variable used throughout
-  static volatile char j;
 
   //Clear RX flags
   RFIRQF0 = 0x00;
-  i = RXFIFOCNT;
   //Check total length, including frame headers (+14)
-  if(i != len+14)
+  if(RXFIFOCNT != len+14)
   {
     RFST = ISFLUSHRX; RFST = ISFLUSHRX; //Flush the FIFO - 2 times necessary
     return 0; //Error
@@ -154,12 +152,11 @@ char receivePacket(char* ptr, char len, signed char* rssi)
 
   for (i = 0; i<12; i++)
   {
-    j = RFD; //Skip through the first 12 bytes, not useful here
+    RFD; //Skip through the first 12 bytes, not useful here
   }
   
   //Check to make sure remaining length is correct
-  i = RXFIFOCNT;
-  if(i != (len + 2))
+  if(RXFIFOCNT != (len + 2))
   {
     RFST = ISFLUSHRX; RFST = ISFLUSHRX; //Flush the FIFO - 2 times necessary
     return 0; //Error
