@@ -137,7 +137,7 @@ void sendPacket(char* ptr, short len, short pan, short dest, short src)
   RFST = ISRXON;
 }
 
-char receivePacket(char* ptr, char len, signed char* rssi)
+char receivePacket(char* ptr, char len, signed char* rssi, char* corr)
 {
   char i; //Helper variable used throughout
 
@@ -176,11 +176,13 @@ char receivePacket(char* ptr, char len, signed char* rssi)
     //Check CRC
     i = RFD;
     if(!(i & 0x80)) //MSB of last byte is CRC valid bit
+    {
       return 0;
-    else
-      return len;
-    
-    
+    }
+
+    //Read the correlation value
+    *corr = i & 0x7F;
+    return len;
   }
 }
 

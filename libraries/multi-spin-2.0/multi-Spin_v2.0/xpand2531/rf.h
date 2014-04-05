@@ -53,7 +53,7 @@ typedef struct {
 // Prototypes
 void radioInit(rfConfig_t *rfConfig); // PATCHED: *
 void sendPacket(char* ptr, short len, short pan, short dest, short src);
-char receivePacket(char* ptr, char len, signed char* rssi);
+char receivePacket(char* ptr, char len, signed char* rssi, char* corr);
 char isPacketReady(void);
 
 #endif

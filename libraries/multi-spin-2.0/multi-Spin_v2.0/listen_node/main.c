@@ -58,6 +58,7 @@ static rfConfig_t rfConfig;
 
 int counter = 0;
 signed char rssi;
+char corr;
 char TX_id;
 int int_TX_id;
 
@@ -141,7 +142,7 @@ void main(void)
     HAL_PROCESS();
     if(isPacketReady())
     {
-      if(receivePacket((char*)&rxPacket, sizeof(rxPacket), &rssi) == sizeof(rxPacket))
+      if(receivePacket((char*)&rxPacket, sizeof(rxPacket), &rssi, &corr) == sizeof(rxPacket))
       {
       	ledOn(2); //red LED on
         ledOff(1); //green LED off
