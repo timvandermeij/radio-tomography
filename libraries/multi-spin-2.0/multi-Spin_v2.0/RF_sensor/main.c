@@ -57,6 +57,7 @@ int next_channel_time = 255-(THIS_NODE_ID*SLOT_LENGTH);
 
 long int i = 0;
 signed char rssi;
+char corr;
 char TX_id;
 int int_TX_id;
 
@@ -87,11 +88,12 @@ void next_TX_timeISR(void) __interrupt (12)
   // receiving a packet from a neighboring RF sensors
   TX_counter++;
   
-  // Reset the array used to store the RSS of the packets broadcasted by the
-  // neighboring RF sensors
+  // Reset the array used to store the RSS and correlation values of the packets
+  // broadcasted by the neighboring RF sensors
   for(i=0; i<MAX_NUM_NODES; i++)
   {
     spinPacket.RSS[i] = SPIN_HOLE;
+    spinPacket.CORR[i] = SPIN_HOLE_CORR;
   }
 }
 
@@ -139,6 +141,7 @@ void main(void)
   for (u=0; u<MAX_NUM_NODES; u++)
   {
     spinPacket.RSS[u] = SPIN_HOLE;
+    spinPacket.CORR[u] = SPIN_HOLE_CORR;
   }
   spinPacket.TX_channel = channel_sequence[channel_counter];
   
@@ -179,7 +182,7 @@ void main(void)
   {
     if(isPacketReady())
     {
-      if(receivePacket((char*)&receivedPacket, sizeof(spinPacket), &rssi) == sizeof(spinPacket))
+      if(receivePacket((char*)&receivedPacket, sizeof(spinPacket), &rssi, &corr) == sizeof(spinPacket))
       {
         timer4Stop();
         timer3Stop();
@@ -215,8 +218,9 @@ void main(void)
           timer4Init(&next_TX_timeConfig); // PATCHED: &
           timer4Start();
           
-          // Update the RSS array
-          spinPacket.RSS[int_TX_id-1] = rssi;          
+          // Update the RSS and CORR arrays
+          spinPacket.RSS[int_TX_id-1] = rssi;
+          spinPacket.CORR[int_TX_id-1] = corr;          
           ledOff(2); //red LED off 
         }
       }
