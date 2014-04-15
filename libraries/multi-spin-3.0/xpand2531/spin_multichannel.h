@@ -19,13 +19,13 @@
 // along with multi-Spin. If not, see <http://www.gnu.org/licenses/>.
 // 
 
-#ifndef XPANSPIN_H
-#define XPANSPIN_H
+#ifndef XPAND_SPIN_MULTICHANNEL_H
+#define XPAND_SPIN_MULTICHANNEL_H
 
-// Number of nodes composing the RF sensor network
+// Number of nodes composing the sensor network
 #define MAX_NUM_NODES 20
 
-#define SPIN_HOLE 0x7F //127 (max of signed 8 bit)
+#define SPIN_HOLE 0x7F // 127 (max. of signed 8 bit)
 
 typedef struct {
     unsigned int packet_counter;

@@ -19,23 +19,21 @@
 // along with multi-Spin. If not, see <http://www.gnu.org/licenses/>.
 // 
 
-#ifndef XPANTIMER34_H
-#define XPANTIMER34_H
+#ifndef XPAND_TIMERS34_H
+#define XPAND_TIMERS34_H
 
-typedef struct
-{
-  char tickDivider;
-  char tickThresh;
-  void (*isrPtr)(void);
+typedef struct {
+    char tickDivider;
+    char tickThresh;
+    void (*isrPtr)(void);
 } timer34Config_t;
 
-void timer3Init(timer34Config_t config);
+void timer3Init(timer34Config_t*);
 void timer3Start(void);
 void timer3Stop(void);
 
-void timer4Init(timer34Config_t config);
+void timer4Init(timer34Config_t*);
 void timer4Start(void);
 void timer4Stop(void);
 
 #endif
-
