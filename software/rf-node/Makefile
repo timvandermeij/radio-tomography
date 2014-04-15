@@ -3,19 +3,19 @@ SDCC = sdcc
 PACKIHX = packihx
 SDCC_LIB_PATH = /usr/share/sdcc/lib
 SDAS8051 = sdas8051 # Intel 8051 compiler
-IHX = rf_node.ihx
-HEX = rf_node.hex
+IHX = rf-node.ihx
+HEX = rf-node.hex
 
 # Include paths, object definitions and compilation flags
 BUILDROOT = $(realpath .)
-INCLUDES =	-I$(BUILDROOT)/../../libraries/multi-spin-3.0/RF_sensor \
+INCLUDES =	-I$(BUILDROOT)/../../libraries/multi-spin-3.0/rf-node \
 			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/common \
 			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/targets/interface \
 			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/targets/srf05_soc \
 			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/common/cc8051 \
 			-I$(BUILDROOT)/../../libraries/multi-spin-3.0/xpand2531 \
 			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/radios/cc2530
-OBJS =	$(BUILDROOT)/../../libraries/multi-spin-3.0/RF_sensor/main.rel \
+OBJS =	$(BUILDROOT)/../../libraries/multi-spin-3.0/rf-node/main.rel \
 		$(BUILDROOT)/../../libraries/multi-spin-3.0/xpand2531/leds.rel \
 		$(BUILDROOT)/../../libraries/multi-spin-3.0/xpand2531/rf.rel \
 		$(BUILDROOT)/../../libraries/multi-spin-3.0/xpand2531/spin_clock.rel \

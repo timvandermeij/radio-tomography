@@ -3,12 +3,12 @@ SDCC = sdcc
 PACKIHX = packihx
 SDCC_LIB_PATH = /usr/share/sdcc/lib
 SDAS8051 = sdas8051 # Intel 8051 compiler
-IHX = listen-node.ihx
-HEX = listen-node.hex
+IHX = listener-node.ihx
+HEX = listener-node.hex
 
 # Include paths, object definitions and compilation flags
 BUILDROOT = $(realpath .)
-INCLUDES =	-I$(BUILDROOT)/../../libraries/multi-spin-3.0/listen_node \
+INCLUDES =	-I$(BUILDROOT)/../../libraries/multi-spin-3.0/listener-node \
 			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/usb/class_cdc \
 			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/usb/library \
 			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/common \
@@ -18,7 +18,7 @@ INCLUDES =	-I$(BUILDROOT)/../../libraries/multi-spin-3.0/listen_node \
 			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/utils \
 			-I$(BUILDROOT)/../../libraries/multi-spin-3.0/xpand2531 \
 			-I$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/radios/cc2530
-OBJS =	$(BUILDROOT)/../../libraries/multi-spin-3.0/listen_node/main.rel \
+OBJS =	$(BUILDROOT)/../../libraries/multi-spin-3.0/listener-node/main.rel \
 		$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/targets/common/hal_uart_usb.rel \
 		$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/common/hal_int.rel \
 		$(BUILDROOT)/../../libraries/cc-usb-firmware/source/components/radios/cc2530/clock.rel \
