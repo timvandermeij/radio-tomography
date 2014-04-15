@@ -3,7 +3,7 @@ This repository contains the open source radio tomography software toolchain for
 Prerequisites
 =============
 
-In order to be able to use the toolchain, you must install the following software on your system first. The software has been developed for Linux, but can also be made to work on Windows or any other operating system since all prerequisites are also present for those operating systems.
+In order to be able to use the toolchain, you must install the following software on your system. The software has been developed for Linux, but can also be made to work on Windows or any other operating system since all prerequisites are also present for those operating systems.
 
 * Git 1.9.0 (other versions might also work)
 * SDCC 3.3.0 (other versions might also work)
@@ -14,9 +14,9 @@ In order to be able to use the toolchain, you must install the following softwar
     * `python2-scipy`
     * `python2-pyqtgraph`
     * `python2-opengl`
-    * `python2-matplotlib`i
+    * `python2-matplotlib`
 * Vim or any other code editor
-* boost and boost-libs (package named may differer per operating system)
+* boost and boost-libs (package names may differer per operating system)
 
 For all commands in this file, replace `python` by `python2` if your operating system uses that to distinguish between Python 2.x and Python 3.x and replace `vim` by any other code editor you might be using.
 
@@ -25,13 +25,13 @@ Cloning the repository
 
 The first step is to clone the repository to obtian a local copy of the code. Open a terminal window and run the following commands.
 
-    $ git clone https://github.com/timvandermeij/radio-tomography.git`
-    $ cd radio-tomography`
+    $ git clone https://github.com/timvandermeij/radio-tomography.git
+    $ cd radio-tomography
 
 Compiling the software
 ======================
 
-Now that you have a copy of the software, we can compile the software. The software consists of two parts: software for the listener node (USB dongle) and software for the RF nodes. Both must be compiled individually using the steps outlined below.
+Now that you have a copy of the software, you can compile the software. The software consists of two parts: software for the listener node (USB dongle) and software for the RF nodes. Both must be compiled individually using the steps outlined below.
 
 Listener node
 -------------
@@ -40,7 +40,7 @@ Before being able to compile the listener node software, you must first make sur
 
     $ vim libraries/multi-spin-3.0/xpand2531/configuration.h
 
-For the sensor network to operate correctly, you only have to update the array of MAC addresses of all RF nodes in your network. The order is hereby important because node IDs will be assigned in the order given in the array. You must therefore also place the nodes in the same order in the network in order to obtain consistent results!
+For the sensor network to operate correctly, you only have to update the array of MAC addresses of all RF nodes in your network. The order is hereby important because node IDs will be assigned in the order given in the array. You must therefore also place the nodes in the same order in the network to obtain consistent results!
 
 Once you have done this, run the following commands to compile the listener node software.
 
@@ -62,9 +62,9 @@ Again, you will end up with an Intel HEX file named `rf-node.hex` that contains 
 Flashing the software
 =====================
 
-The next step is to flash the software onto the nodes. This is a process that must be done once. If you want to experiment with the network later on, you only need to reflash the listener node and not all individual RF nodes (unless you make a fundamental change in the RF node's behaviour).
+The next step is to flash the software onto the nodes. This is a process that must be done once. If you want to experiment with the network later on, you only need to flash the listener node again and not all individual RF nodes (unless you make a fundamental change in the RF node's behaviour of course).
 
-In order to be able to flash the HEX files onto the nodes, we must first compile `cc-tool` from source. Note that compiling from source is necessary because the software has been patched for usage with the CC2530 nodes/ Run the following commands to compile `cc-tool`.
+In order to be able to flash the HEX files onto the nodes, we must first compile `cc-tool` from source. Note that compiling from source is necessary because the software has been patched for usage with the CC2530 nodes. Run the following commands to compile `cc-tool`.
 
     $ cd ../../tools/cc-tool
     $ ./configure
@@ -95,7 +95,7 @@ Once the process is complete, one RF node is flashed. Repeat this process for al
 Inspection
 ==========
 
-The network should be up and running now. To inspect the network, the toolchain provides several useful tools.
+The network should be up and running now. To inspect the network, the toolchain provides several useful tools that are outlined below.
 
 Sniffer
 -------
@@ -117,7 +117,7 @@ plots the RSSI and correlation values from node 1 to node 2 in the sensor networ
 
     $ sudo python 3d_surface.py
 
-gives you a 3D surface plot of the averaged RSSI values of all links in the network. The x-axis and z-axis respectively contain the source and destination nodes and the y-axis represents the RSSI value for each link. This plot is primarily useful for researching the effects of distortions in the network.
+gives you a 3D surface plot of the averaged RSSI values per time unit of all links in the network. The x-axis and z-axis respectively represent the source and destination nodes and the y-axis represents the RSSI value for each link. This plot is primarily useful for researching the effects of distortions in the network.
 
 Reconstruction
 --------------
@@ -148,4 +148,4 @@ This software in this toolchain uses or is based on the following sources.
 * multi-Spin 2.0: https://sites.google.com/site/boccamaurizio/home/software-data
 * Texas Instruments CC USB library: http://www.ti.com/lit/zip/swrc088
 * cc-tool: http://sourceforge.net/projects/cctool/files
-* http://code.google.com/p/smartdoor/source/browse/trunk/rfap
+* smartdoor: http://code.google.com/p/smartdoor/source/browse/trunk/rfap
