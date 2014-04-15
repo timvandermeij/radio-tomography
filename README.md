@@ -44,7 +44,7 @@ For the sensor network to operate correctly, you only have to update the array o
 
 Once you have done this, run the following commands to compile the listener node software.
 
-    $ cd projects/listener-node
+    $ cd software/listener-node
     $ make
 
 The result of `make` is (amongst others) an Intel HEX file named `listener-node.hex` that contains the compiled code.
@@ -77,7 +77,7 @@ Listener node
 
 To flash the listener node, connect the USB dongle and the SmartRF board to the computer using the steps outlined in the CC2530 user manual. If the devices are properly connected, run the following commands.
 
-    $ cd ../../projects/listener-node
+    $ cd ../../software/listener-node
     $ sudo cc-tool -ew listener-node.hex -v
 
 Once the process is complete, the listener node is flashed.
