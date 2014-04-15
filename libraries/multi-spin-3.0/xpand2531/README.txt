@@ -1,4 +1,4 @@
-xpand TI CC2531 USB dongle library - Release 0.1
+xpand TI CC2531 USB dongle library - Release 0.2
 
 Author(s):
 Maurizio Bocca (maurizio.bocca@utah.edu)
@@ -33,3 +33,8 @@ restarted each time they fire.
 the entire page will be erased.
 - spin_multichannel.h: This is included for convenience of including spin.h in multiple
 projects (RF sensor, listen node, etc.).
+
+Modifications since version 0.1:
+- SDCC compatibility
+- Implemented correlation values in Spin packets
+- Dynamic node configuration

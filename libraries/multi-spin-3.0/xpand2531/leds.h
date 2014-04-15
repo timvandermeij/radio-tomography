@@ -19,13 +19,12 @@
 // along with multi-Spin. If not, see <http://www.gnu.org/licenses/>.
 // 
 
-#ifndef XPANLEDS_H
-#define XPANLEDS_H
+#ifndef XPAND_LEDS_H
+#define XPAND_LEDS_H
 
-//Prototypes
 void ledInit(void);
-void ledOn(char ledID);
-void ledOff(char ledID);
-void ledToggle(char ledID);
+void ledOn(char);
+void ledOff(char);
+void ledToggle(char);
 
 #endif

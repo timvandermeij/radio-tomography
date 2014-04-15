@@ -38,7 +38,6 @@ typedef struct {
     char inc_irq;
 } flashDMAConfig_t;
 
-// Prototypes
 short flashWrite(char*, char, short, char);
 short flashRead(char*, char, short, char);
 void flashErase(char);
