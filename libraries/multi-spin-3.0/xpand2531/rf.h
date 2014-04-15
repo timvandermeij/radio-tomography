@@ -19,41 +19,35 @@
 // along with multi-Spin. If not, see <http://www.gnu.org/licenses/>.
 // 
 
-#ifndef XPANRF_H
-#define XPANRF_H
+#ifndef XPAND_RF_H
+#define XPAND_RF_H
 
-#include <ioCC2531.h>
+#include <cc2530.h>
 
 // Radio registers
 #define RSSI_OFFSET -76;
-#define CORR_THR                      0x14
-#define CCA_THR                       0xF8
-#define TXFILTCFG                     XREG( 0x61FA )
-#define TXFILTCFG_RESET_VALUE         0x09
-#define  PANL     XREG( 0x6172 ) //PAN LSB
-#define  PANH     XREG( 0x6173 ) //PAN MSB
-#define  SHORT_ADDRL     XREG( 0x6174 ) // Short addresss LSB
-#define  SHORT_ADDRH     XREG( 0x6175 ) // Short address MSB
+#define CORR_THR 0x14
+#define CCA_THR 0xF8
+#define TXFILTCFG_RESET_VALUE 0x09
 
 // Immediate strobe processor command instructions (issue twice)
-#define ISRXON        0xE3
-#define ISTXON        0xE9
-#define ISTXONCCA     0xEA
-#define ISRFOFF       0xEF
-#define ISFLUSHRX     0xED
-#define ISFLUSHTX     0xEE
+#define ISRXON 0xE3
+#define ISTXON 0xE9
+#define ISTXONCCA 0xEA
+#define ISRFOFF 0xEF
+#define ISFLUSHRX 0xED
+#define ISFLUSHTX 0xEE
 
 typedef struct {
-  short pan;
-  short addr;
-  char channel;
-  char txPower;
+    short pan;
+    short addr;
+    char channel;
+    char txPower;
 } rfConfig_t;
 
-// Prototypes
-void radioInit(rfConfig_t rfConfig);
-void sendPacket(char* ptr, short len, short pan, short dest, short src);
-char receivePacket(char* ptr, char len, signed char* rssi);
+void radioInit(rfConfig_t*);
+void sendPacket(char*, short, short, short, short);
+char receivePacket(char*, char, signed char*, char*);
 char isPacketReady(void);
 
 #endif
