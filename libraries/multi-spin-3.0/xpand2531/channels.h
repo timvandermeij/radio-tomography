@@ -19,8 +19,8 @@
 // along with multi-Spin. If not, see <http://www.gnu.org/licenses/>.
 // 
 
-#ifndef CHANNELS_H
-#define CHANNELS_H
+#ifndef XPAND_CHANNELS_H
+#define XPAND_CHANNELS_H
 
 // Number of frequency channels
 #define CHANNELS_NUMBER 4
@@ -30,6 +30,6 @@
 // frequency channel all the nodes will switch back to whenever they don't hear
 // from other neighboring nodes (this avoid nodes asynchronously looping on the
 // defined frequency channels without communicating)
-char channel_sequence[CHANNELS_NUMBER] = {26,11,16,21};
+char channel_sequence[CHANNELS_NUMBER] = { 26, 11, 16, 21 };
 
 #endif

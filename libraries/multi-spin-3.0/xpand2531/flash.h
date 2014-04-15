@@ -19,30 +19,28 @@
 // along with multi-Spin. If not, see <http://www.gnu.org/licenses/>.
 // 
 
-#ifndef XPANFLASH_H
-#define XPANFLASH_H
+#ifndef XPAND_FLASH_H
+#define XPAND_FLASH_H
 
 #define FLASH_PAGE_SIZE 2048
-#define FLASH_PAGE_MAP  0x8000
+#define FLASH_PAGE_MAP 0x8000
 #define FLASH_PAGE_PER_BANK 16
 
 // DMA config for flash
-typedef struct
-{
-  char srcaddr_h;
-  char srcaddr_l;
-  char destaddr_h;
-  char destaddr_l;
-  char vlen_len;
-  char len;
-  char wordsize_tmode_trig;
-  char inc_irq;
+typedef struct {
+    char srcaddr_h;
+    char srcaddr_l;
+    char destaddr_h;
+    char destaddr_l;
+    char vlen_len;
+    char len;
+    char wordsize_tmode_trig;
+    char inc_irq;
 } flashDMAConfig_t;
 
-// prototypes
-void flashInit(void);
-short flashWrite(char* ptr, char flashPage, short flashOffset, char len);
-short flashRead(char* ptr, char flashPage, short flashOffset, char len);
-void flashErase(char page);
+// Prototypes
+short flashWrite(char*, char, short, char);
+short flashRead(char*, char, short, char);
+void flashErase(char);
 
 #endif

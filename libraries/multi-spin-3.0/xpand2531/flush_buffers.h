@@ -19,8 +19,8 @@
 // along with multi-Spin. If not, see <http://www.gnu.org/licenses/>.
 // 
 
-#ifndef FLUSHBUF_H
-#define FLUSHBUF_H
+#ifndef XPAND_FLUSH_BUFFERS_H
+#define XPAND_FLUSH_BUFFERS_H
 
 void flushRXFIFO(void);
 void flushTXFIFO(void);

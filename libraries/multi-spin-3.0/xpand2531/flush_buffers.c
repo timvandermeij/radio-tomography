@@ -19,15 +19,13 @@
 // along with multi-Spin. If not, see <http://www.gnu.org/licenses/>.
 // 
 
-#include <ioCC2531.h>
+#include <cc2530.h>
 #include "flush_buffers.h"
 
-void flushRXFIFO(void)
-{
-  RFST = 0xED; // Strobe to clear RX FIFO
+void flushRXFIFO(void) {
+    RFST = 0xED; // Strobe to clear RX FIFO
 }
 
-void flushTXFIFO(void)
-{
-  RFST = 0xDD; // Strobe to clear TX FIFO
+void flushTXFIFO(void) {
+    RFST = 0xDD; // Strobe to clear TX FIFO
 }
