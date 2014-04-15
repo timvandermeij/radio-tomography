@@ -37,4 +37,3 @@ projects (RF sensor, listen node, etc.).
 Modifications since version 0.1:
 - SDCC compatibility
 - Implemented correlation values in Spin packets
-- Dynamic node configuration

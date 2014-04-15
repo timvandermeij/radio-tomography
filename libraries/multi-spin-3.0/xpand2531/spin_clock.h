@@ -19,8 +19,8 @@
 // along with multi-Spin. If not, see <http://www.gnu.org/licenses/>.
 // 
 
-#ifndef XPANMISC_H
-#define XPANMISC_H
+#ifndef XPAND_SPIN_CLOCK_H
+#define XPAND_SPIN_CLOCK_H
 
 #define TIMER_TICK_FREQ_32MHZ 0
 #define TIMER_TICK_FREQ_16MHZ 1
@@ -31,8 +31,7 @@
 #define TIMER_TICK_FREQ_500KHZ 6
 #define TIMER_TICK_FREQ_250KHZ 7
 
-// Prototypes
-void setSysTickFreq(char freq);
+void setSysTickFreq(char);
 void clockInit(void);
 
 #endif

@@ -19,27 +19,30 @@
 // along with multi-Spin. If not, see <http://www.gnu.org/licenses/>.
 // 
 
-#include <ioCC2531.h>
+#include <cc2530.h>
 
-void clockInit(void)
-{
-  CLKCONCMD = 0x80; //Set up clock speed to use crystal at 32MHz
-  while(!(CLKCONSTA == 0x80)); //Wait for ack of clock change
+void clockInit(void) {
+    CLKCONCMD = 0x80; // Set up clock speed to use crystal at 32MHz
+    while(!(CLKCONSTA == 0x80)); // Wait for acknowledgement of clock change
 }
 
-void setSysTickFreq(char freq)
-{
-  // bits 5-3 of CLKCONCMD
-  if (freq & 0x02)
-    CLKCONCMD |= (1<<5);
-  else
-    CLKCONCMD &= ~(1<<5);
-  if (freq & 0x01)
-    CLKCONCMD |= (1<<4);
-  else
-    CLKCONCMD &= ~(1<<3);
-  if (freq & 0x01)
-    CLKCONCMD |= (1<<3);
-  else
-    CLKCONCMD &= ~(1<<3);
+void setSysTickFreq(char freq) {
+    // Bits 5-3 of CLKCONCMD
+    if(freq & 0x02) {
+        CLKCONCMD |= (1 << 5);
+    } else {
+        CLKCONCMD &= ~(1 << 5);
+    }
+
+    if(freq & 0x01) {
+        CLKCONCMD |= (1 << 4);
+    } else {
+        CLKCONCMD &= ~(1 << 3);
+    }
+
+    if(freq & 0x01) {
+        CLKCONCMD |= (1 << 3);
+    } else {
+        CLKCONCMD &= ~(1 << 3);
+    }
 }
