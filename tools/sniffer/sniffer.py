@@ -3,7 +3,7 @@ from struct import unpack
 
 # Establish a serial connection and clear the buffer
 ser = serial.Serial("/dev/ttyACM0", 38400);
-ser.flushInput)()
+ser.flushInput()
 beef = '\xef' + '\xbe'
 buffer = ''
 
