@@ -26,6 +26,7 @@
 #define MAX_NUM_NODES 20
 
 #define SPIN_HOLE 0x7F // 127 (max. of signed 8 bit)
+#define SPIN_HOLE_CORR 0x0
 
 typedef struct {
     unsigned int packet_counter;
