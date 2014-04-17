@@ -11,53 +11,193 @@
 #define USBFIRMWARELIBRARYCONFIG_C ///< Modifies the behavior of "EXTERN" in usb_interrupt.h
 #include "usb_firmware_library_headers.h"
 
-//-----------------------------------------------------------------------------
-// READ THIS!!
-//
-// This file configures the USB Firmware Library.
-// To use the library, make a copy of this file, rename it to "usb_firmware_library_config.c", and
-// put it in the project catalog. Then edit the code below as needed:
-//-----------------------------------------------------------------------------
+// Device descriptor
+uint8 deviceDesc[] = {
+    18, // deviceDescEnd - deviceDesc
+    0x01, // bDescriptorType
+    0x10, 0x01, // bcdUsb
+    0x02, // bDeviceClass
+    0x00, // bDeviceSubClass
+    0x00, // bDeviceProtocol
+    32, // Maximum data packet size for endpoint 0
+    0x51, 0x04, // idVendor Texas Instruments
+    0xA8, 0x16, // idProduct CC2531
+    0x09, 0x00, // bcdDevice
+    0x01, // iManufacturer
+    0x02, // iProduct
+    0x03, // iSerialNumber
+    0x01 // bNumConfigurations
+};
 
-uint8 deviceDesc[] = { 18,
-    0x01, 0x10, 0x01, 0x02, 0x00, 0x00, 32, 0x51,
-    0x04, 0xA8, 0x16, 0x09, 0x00, 0x01, 0x02, 0x03,
-    0x01 };
-uint8 configDesc[] = { 9,
-    0x02, 67, 0x00, 0x02, 0x01, 0x00, 0x80, 25 };
-uint8 interface0Desc[] = { 9,
-    0x04, 0x00, 0x00, 0x01, 0x02, 0x02, 0x01, 0x00,
+// Configuration descriptor
+uint8 configDesc[] = {
+    9, // configDescEnd - configDesc
+    0x02, // bDescriptorType
+    67, 0x00, // config1LengthEnd - config1LengthStart
+    0x02, // numInterfaces
+    0x01, // bConfigurationValue
+    0x00, // iConfiguration
+    0x80, // bmAttributes
+    25 // maxPower
+};
 
-    5, 0x24, 0x00, 0x10, 0x01,
-    4, 0x24, 0x02, 0x02,
-    5, 0x24, 0x06, 0x00, 0x01,
-    5, 0x24, 0x01, 0x00, 0x01,
-    7, 0x05, 0x82, 0x03, 0x40, 0x00, 0x40 };
-uint8 interface1Desc[] = { 9,
-    0x04, 0x01, 0x00, 0x02, 0x0a, 0x00, 0x00, 0x00,
+// Interface 0 descriptor
+uint8 interface0Desc[] = {
+    // Interface descriptor
+    9, // interface0DescEnd - interface0Desc
+    0x04, // bDescriptorType
+    0x00, // bInterfaceNumber
+    0x00, // bAlternateSetting
+    0x01, // bNumEndpoints
+    0x02, // bInterfaceClass
+    0x02, // bInterfaceSubClass
+    0x01, // bInterfaceProtocol
+    0x00, // iInterface
 
-    7, 0x05, 0x84, 0x02, 0x40, 0x00, 0x01,
-    7, 0x05, 0x04, 0x02, 0x40, 0x00, 0x01 };
+    // Header functional descriptor
+    5, // headerFunctionalDescEnd - headerFunctionalDesc
+    0x24,
+    0x00,
+    0x10, 0x01,
+    
+    // Abstract control management functional descriptor
+    4, // absCtrlManFuncDescEnd - absCtrlManFuncDesc
+    0x24,
+    0x02, // ACM (abstract control management)
+    0x02, // Set the supported class requests
+
+    // Union functional descriptor
+    5, // unionFunctionalDescEnd - unionFunctionalDesc
+    0x24,
+    0x06,
+    0x00,
+    0x01,
+
+    // Call management functional descriptor
+    5, // callMngFuncDescEnd - callMngFuncDesc
+    0x24,
+    0x01,
+    0x00,
+    0x01,
+
+    // Endpoint descriptor (EP2 IN)
+    7, // endpoint0DescEnd - endpoint0Desc
+    0x05, // bDescriptorType
+    0x82, // bEndpointAddress
+    0x03, // bmAttributes
+    0x40, 0x00, // wMaxPacketSize
+    0x40 // bInterval
+};
+
+// Interface 1 descriptor
+uint8 interface1Desc[] = { 
+    // Interface descriptor
+    9, // interfaceDesc1End - interface1Desc
+    0x04, // Interface descriptor type
+    0x01, // Interface number
+    0x00, // Alternate setting number
+    0x02, // Number of endpoints in this intf
+    0x0A, // Class code
+    0x00, // Subclass code
+    0x00, // Protocol code
+    0x00, // Interface string index
+
+    // Endpoint descriptor (EP4 OUT)
+    7, // endpoint1DescEnd - endpoint1Desc
+    0x05, // bDescriptorType
+    0x84, // bEndpointAddress
+    0x02, // bmAttributes
+    0x40, 0x00, // wMaxPacketSize
+    0x01, // bInterval
+
+    // Endpoint descriptor (EP4 IN)
+    7, // endpoint2DescEnd - endpoint2Desc
+    0x05, // bDescriptorType
+    0x04, // bEndpointAddress
+    0x02, // bmAttributes
+    0x40, 0x00, // wMaxPacketSize
+    0x01 // bInterval
+};
+
+// String 0 descriptor: language ID
 uint8 string0Desc[] = {
-    4, 0x03, 0x09, 0x04 };
-uint8 string1Desc[] = { 12,
-    0x03, 'H',0, 'e',0, 'l',0, 'l',0, 'o',0 };
-uint8 string2Desc[] = { 12,
-    0x03, 'w',0, 'o',0, 'r',0, 'l',0, 'd',0 };
-uint8 string3Desc[] = { 8,
-    0x03, 0x00,0, 0x00,0, 0x01,0 };
-uint8 dummy[] = { 0 };
-uint8 __xdata* usbDblbufLut2[] = { interface0Desc, 0, interface1Desc, 0 };
-uint8 dummy2[] = { 0 };
+    4, // string0DescEnd - string0Desc
+    0x03, // bDescriptorType
+    0x09, // US-EN
+    0x04
+};
+
+// String 1 descriptor: manufacturer
+uint8 string1Desc[] = {
+    12, // string1DescEnd - string1Desc
+    0x03, // bDescriptorType
+    'T', 0,
+    'e', 0,
+    'x', 0,
+    'a', 0,
+    's', 0,
+    ' ', 0,
+    'I', 0,
+    'n', 0,
+    's', 0,
+    't', 0,
+    'r', 0,
+    'u', 0,
+    'm', 0,
+    'e', 0,
+    'n', 0,
+    't', 0,
+    's', 0
+};
+
+// String 2 descriptor: product
+uint8 string2Desc[] = {
+    12, // string2DescEnd - string2Desc
+    0x03, // bDescriptorType
+    'C', 0,
+    'C', 0,
+    '2', 0,
+    '5', 0,
+    '3', 0,
+    '1', 0,
+    ' ', 0,
+    'U', 0,
+    'S', 0,
+    'B', 0,
+    ' ', 0,
+    'C', 0,
+    'D', 0,
+    'C', 0
+};
+
+// String 3 descriptor: serial number
+uint8 string3Desc[] = {
+    8, // string3DescEnd - string3Desc
+    0x03, // bDescriptorType
+    0x00, 0,
+    0x00, 0,
+    0x01, 0
+};
+
+uint8 empty[] = { 0 };
+uint8 empty2[] = { 0 };
+
+// Look-up table for double buffer settings
+uint8 __xdata* usbDblbufLut2[] = {
+    interface0Desc,
+    0,
+    interface1Desc,
+    0
+};
 
 // Declaration of global USB descriptor pointers
 USB_DESCRIPTOR_MARKER usbDescriptorMarker= {
     (uint8 __xdata *)&deviceDesc,
-    (uint8 __xdata *)&dummy,
-    (DESC_LUT_INFO __xdata *) &dummy,
-    (DESC_LUT_INFO __xdata *) &dummy,
+    (uint8 __xdata *)&empty,
+    (DESC_LUT_INFO __xdata *) &empty,
+    (DESC_LUT_INFO __xdata *) &empty,
     (DBLBUF_LUT_INFO __xdata *) &usbDblbufLut2,
-    (DBLBUF_LUT_INFO __xdata *) &dummy2
+    (DBLBUF_LUT_INFO __xdata *) &empty2
 };
 
 /// @}
