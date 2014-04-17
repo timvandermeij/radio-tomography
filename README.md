@@ -131,9 +131,9 @@ The software directly starts converting measurements to reconstruction images.
 Authors
 =======
 
-* Tim van der Meij (@timvandermeij)
-* Alyssa Milburn (@fuzzie)
-* Folkert Bleichrodt (@3cHeLoN)
+* Folkert Bleichrodt (CWI Amsterdam, @3cHeLoN)
+* Tim van der Meij (Leiden University, @timvandermeij)
+* Alyssa Milburn (Leiden University, @fuzzie)
 
 License
 =======
