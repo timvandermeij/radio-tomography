@@ -33,12 +33,20 @@ Compiling the software
 
 Now that you have a copy of the software, you can compile the software. The software consists of two parts: software for the listener node (USB dongle) and software for the RF nodes. Both must be compiled individually using the steps outlined below.
 
+In order to make a configuration file and to be able to flash the HEX files onto the nodes later on, we must first compile `cc-tool`. Note that compiling from source is necessary because the software has been patched for usage with the CC2530 nodes. Run the following commands to compile `cc-tool`.
+
+    $ cd tools/cc-tool
+    $ ./configure
+    $ make
+
+You will end up with an executable named `cc-tool`. It is recommended to add this executable to your PATH variables so you can use it everywhere. For this manual, we will assume that you have done this.
+
 Listener node
 -------------
 
 Before being able to compile the listener node software, you must first generate a `configuration.h` file for your network. Run the following commands to do so.
 
-    $ cd tools/configuration_generator
+    $ cd ../configuration_generator
     $ sudo python configuration_generator.py
 
 Follow the steps and you will end up with a `configuration.h` file in the same folder. Note that the order of presenting the nodes to the script is important because node IDs will be assigned in the same order. You must therefore also place the nodes in the same order in the network to obtain consistent results!
@@ -66,14 +74,6 @@ Flashing the software
 =====================
 
 The next step is to flash the software onto the nodes. This is a process that must be done once. If you want to experiment with the network later on, you only need to flash the listener node again and not all individual RF nodes (unless you make a fundamental change in the RF node's behaviour of course).
-
-In order to be able to flash the HEX files onto the nodes, we must first compile `cc-tool` from source. Note that compiling from source is necessary because the software has been patched for usage with the CC2530 nodes. Run the following commands to compile `cc-tool`.
-
-    $ cd ../../tools/cc-tool
-    $ ./configure
-    $ make
-
-You will end up with an executable named `cc-tool`. It is recommended to add this executable to your PATH variables so you can use it everywhere. For this manual, we will assume that you have done this.
 
 Listener node
 -------------
