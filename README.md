@@ -36,15 +36,17 @@ Now that you have a copy of the software, you can compile the software. The soft
 Listener node
 -------------
 
-Before being able to compile the listener node software, you must first make sure that the configuration file is correct for your configuration. Run the following command to do so.
+Before being able to compile the listener node software, you must first generate a `configuration.h` file for your network. Run the following command to do so.
 
-    $ vim libraries/multi-spin-3.0/xpand2531/configuration.h
+    $ cd tools/configuration_generator
+    $ sudo python configuration_generator.py
 
-For the sensor network to operate correctly, you only have to update the array of MAC addresses of all RF nodes in your network. The order is hereby important because node IDs will be assigned in the order given in the array. You must therefore also place the nodes in the same order in the network to obtain consistent results!
+Follow the steps and you will end up with a `configuration.h` file in the same folder. Note that the order of presenting the nodes to the script important because node IDs will be assigned in that order. You must therefore also place the nodes in the same order in the network to obtain consistent results!
 
 Once you have done this, run the following commands to compile the listener node software.
-
-    $ cd software/listener-node
+    
+    $ mv -f configuration.h ../../libraries/multi-spin-3.0/xpand2531/configuration.h
+    $ cd ../../software/listener-node
     $ make
 
 The result of `make` is (amongst others) an Intel HEX file named `listener-node.hex` that contains the compiled code.
