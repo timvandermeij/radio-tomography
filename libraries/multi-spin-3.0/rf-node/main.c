@@ -34,26 +34,28 @@
 #include "spin_multichannel.h"
 #include "channels.h"
 
-// Configuration of the RF sensor
-#define THIS_NODE_ID 1
-#define ADDR 0x1234 + (THIS_NODE_ID - 1)
+// RF sensor configuration
 #define PAN 0x2011
+
+// Length (in ticks of the clock counter) of a TDMA slot
+#define SLOT_LENGTH 7 // 1953.125Hz (1 = 512 us)
+
+// Threshold that forces the RF sensor to reset to the default frequency channel
+#define RESET_LIMIT 3
 
 // Amplifier
 #define PA_LNA_RX_HGM() { uint8 i; P0_7 = 1; for(i = 0; i < 8; i++) { NOP; } }
 
 spinPacket_t spinPacket, receivedPacket;
+configurationPacket_t configPacket;
 static rfConfig_t rfConfig;
 
-// Length (in ticks of the clock counter) of a TDMA slot
-#define SLOT_LENGTH 7 // 1953.125Hz (1 = 512 us)
-// Initialization of the length of the interval of time until the next transmission
-int next_TX_time = 255 - (THIS_NODE_ID * SLOT_LENGTH);
-// Initialization of the length of time until the next frequency channel switch
-int next_channel_time = 255-(THIS_NODE_ID * SLOT_LENGTH);
-// Threshold that forces the RF sensor to reset to the default frequency channel
-#define RESET_LIMIT 3
+// Flash data that contains the MAC address of the node
+#define PAGE_SIZE 1024
+const unsigned short __xdata __at (0x780C) flashDataAddr[PAGE_SIZE];
 
+int nodeId, numNodes, packetSize;
+int next_TX_time, next_channel_time;
 long int i = 0;
 signed char rssi;
 char corr;
@@ -73,13 +75,13 @@ timer34Config_t next_TX_timeConfig;
 void next_TX_timeISR(void) __interrupt (12) {
     int i;
     timer4Stop();
-    next_TX_time = (MAX_NUM_NODES + 3) * SLOT_LENGTH;
+    next_TX_time = (numNodes + 3) * SLOT_LENGTH;
     next_TX_timeConfig.tickThresh = next_TX_time;
     timer4Init(&next_TX_timeConfig);
     timer4Start();
 
     ledOn(1); // Green LED on
-    sendPacket((char*)&spinPacket, sizeof(spinPacket), rfConfig.pan, 0xFFFF, rfConfig.addr);
+    sendPacket((char*)&spinPacket, packetSize, rfConfig.pan, 0xFFFF, rfConfig.addr);
     ledOff(1); // Green LED off
 
     // Increase the counter for the number of packets consecutively broadcasted WITHOUT
@@ -88,9 +90,9 @@ void next_TX_timeISR(void) __interrupt (12) {
   
     // Reset the array used to store the RSS and correlation values of the packets
     // broadcasted by the neighboring RF sensors
-    for(i = 0; i < MAX_NUM_NODES; i++) {
-        spinPacket.RSS[i] = SPIN_HOLE;
-        spinPacket.CORR[i] = SPIN_HOLE_CORR;
+    for(i = 0; i < numNodes; i++) {
+        spinPacket.data[i].RSS = SPIN_HOLE;
+        spinPacket.data[i].CORR = SPIN_HOLE;
     }
 }
 
@@ -114,31 +116,23 @@ void channel_hoppingISR(void) __interrupt (11) {
     }
 
     timer3Stop();
-    next_channel_time = (MAX_NUM_NODES + 3) * SLOT_LENGTH;
+    next_channel_time = (numNodes + 3) * SLOT_LENGTH;
     channel_hoppingConfig.tickThresh = next_channel_time;
     timer3Init(&channel_hoppingConfig);
     timer3Start();
     radioInit(&rfConfig);
-    spinPacket.TX_channel = channel_sequence[channel_counter];
+    spinPacket.header.TX_channel = channel_sequence[channel_counter];
 }
 
 void main(void) {
-    int u;
+    int u, configured = 0, macsEqual = 1;
+
     clockInit();
     ledInit();
     setSysTickFreq(TIMER_TICK_FREQ_250KHZ);
 
-    // Initialize the packet to be broadcasted
-    spinPacket.packet_counter = 0;
-    spinPacket.TX_id = THIS_NODE_ID;
-    for(u = 0; u < MAX_NUM_NODES; u++) {
-        spinPacket.RSS[u] = SPIN_HOLE;
-        spinPacket.CORR[u] = SPIN_HOLE_CORR;
-    }
-    spinPacket.TX_channel = channel_sequence[channel_counter];
-
     // Set up the radio module
-    rfConfig.addr = ADDR;
+    rfConfig.addr = 0x1234;
     rfConfig.pan = PAN;
     rfConfig.channel = channel_sequence[channel_counter];
     rfConfig.txPower = 0xF5; // Max. available TX power
@@ -157,6 +151,46 @@ void main(void) {
     // Enable interrupts 
     EA = 1;
 
+    // Wait for the configuration packet and configure the node
+    while(!configured) {
+        if(isPacketReady()) {
+            if(receivePacket((char*)&configPacket, sizeof(configPacket), &rssi, &corr) == sizeof(configPacket)) {
+                // Check if the MAC addresses are equal
+                macsEqual = 1;
+                for(u = 0; u < 4; u++) { // 4 because fashDataAddr is read 2 bytes at a time
+                    if(configPacket.macAddress[2*u] != (flashDataAddr[u] >> 8) ||
+                        configPacket.macAddress[(2*u)+1] != ((flashDataAddr[u] << 8) >> 8)) {
+                        macsEqual = 0;
+                    }
+                }
+                if(macsEqual) {
+                    nodeId = configPacket.nodeId;
+                    numNodes = configPacket.numNodes;
+                    packetSize = sizeof(spinHeader) + sizeof(spinData) * numNodes;
+                    configured = 1;
+                }
+            }
+        }
+    }
+
+    // Reconfigure the radio with the assigned node ID
+    rfConfig.addr = 0x1234 + (nodeId - 1);
+    radioInit(&rfConfig);
+
+    // Initialization of the length of the interval of time until the next transmission
+    next_TX_time = 255 - (nodeId * SLOT_LENGTH);
+    // Initialization of the length of time until the next frequency channel switch
+    next_channel_time = 255-(nodeId * SLOT_LENGTH);
+
+    // Initialize the packet to be broadcasted
+    spinPacket.header.packet_counter = 0;
+    spinPacket.header.TX_id = nodeId;
+    for (u = 0; u < numNodes; u++) {
+        spinPacket.data[u].RSS = SPIN_HOLE;
+        spinPacket.data[u].CORR = SPIN_HOLE;
+    }
+    spinPacket.header.TX_channel = channel_sequence[channel_counter];
+
     // Set up timer 4 for next_TX_time
     next_TX_timeConfig.tickDivider = 7;
     next_TX_timeConfig.tickThresh = next_TX_time;
@@ -172,34 +206,34 @@ void main(void) {
     timer4Start();
     while(1) {
         if(isPacketReady()) {
-            if(receivePacket((char*)&receivedPacket, sizeof(spinPacket), &rssi, &corr) == sizeof(spinPacket)) {
+            if(receivePacket((char*)&receivedPacket, packetSize, &rssi, &corr) == packetSize) {
                 timer4Stop();
                 timer3Stop();
         
                 // Reset TX_counter each time a packet is received
                 TX_counter = 0;
 
-                RX_packet_counter = receivedPacket.packet_counter;
-                TX_id = receivedPacket.TX_id;
+                RX_packet_counter = receivedPacket.header.packet_counter;
+                TX_id = receivedPacket.header.TX_id;
                 int_TX_id = (int)(TX_id);
                 
-                if((int_TX_id > 0) & (int_TX_id <= MAX_NUM_NODES)) {
+                if((int_TX_id > 0) & (int_TX_id <= numNodes)) {
                     ledOn(2); // Red LED on
-                    next_channel_time = (MAX_NUM_NODES - int_TX_id + 2) * SLOT_LENGTH;
+                    next_channel_time = (numNodes - int_TX_id + 2) * SLOT_LENGTH;
                     channel_hoppingConfig.tickThresh = next_channel_time;
                     timer3Init(&channel_hoppingConfig);
                     timer3Start();                   
                     
-                    if(int_TX_id > THIS_NODE_ID) {
-                        next_TX_time = MAX_NUM_NODES - int_TX_id;
-                        next_TX_time += (THIS_NODE_ID - 1);
+                    if(int_TX_id > nodeId) {
+                        next_TX_time = numNodes - int_TX_id;
+                        next_TX_time += (nodeId - 1);
                         next_TX_time = next_TX_time * SLOT_LENGTH;
                         next_TX_time += (3 * SLOT_LENGTH);
-                        spinPacket.packet_counter = RX_packet_counter + MAX_NUM_NODES - int_TX_id + 1;
+                        spinPacket.headerpacket_counter = RX_packet_counter + numNodes - int_TX_id + 1;
                     } else {
-                        next_TX_time = THIS_NODE_ID - 1 - int_TX_id;
+                        next_TX_time = (nodeId - 1) - int_TX_id;
                         next_TX_time = next_TX_time * SLOT_LENGTH;
-                        spinPacket.packet_counter = RX_packet_counter + THIS_NODE_ID - int_TX_id;
+                        spinPacket.header.packet_counter = RX_packet_counter + nodeId - int_TX_id;
                     }
 
                     next_TX_timeConfig.tickThresh = next_TX_time;
@@ -207,8 +241,8 @@ void main(void) {
                     timer4Start();
           
                     // Update the RSS and CORR arrays
-                    spinPacket.RSS[int_TX_id-1] = rssi;
-                    spinPacket.CORR[int_TX_id-1] = corr;          
+                    spinPacket.data[int_TX_id - 1].RSS = rssi;
+                    spinPacket.data[int_TX_id - 1].CORR = corr;
                     ledOff(2); // Red LED off 
                 }
             }

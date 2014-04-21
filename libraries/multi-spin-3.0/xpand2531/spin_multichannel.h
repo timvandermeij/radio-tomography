@@ -22,18 +22,29 @@
 #ifndef XPAND_SPIN_MULTICHANNEL_H
 #define XPAND_SPIN_MULTICHANNEL_H
 
-// Number of nodes composing the sensor network
-#define MAX_NUM_NODES 20
-
 #define SPIN_HOLE 0x7F // 127 (max. of signed 8 bit)
-#define SPIN_HOLE_CORR 0x0
+#define MAX_MEASUREMENTS 50
 
 typedef struct {
     unsigned int packet_counter;
     char TX_id;
-    signed char RSS[MAX_NUM_NODES];
-    char CORR[MAX_NUM_NODES];
     signed char TX_channel;
+} spinHeader;
+
+typedef struct {
+    signed char RSS;
+    char CORR;
+} spinData;
+
+typedef struct {
+    spinHeader header;
+    spinData data[MAX_MEASUREMENTS];
 } spinPacket_t;
+
+typedef struct {
+    unsigned char macAddress[8];
+    unsigned int numNodes;
+    unsigned int nodeId;
+} configurationPacket_t;
 
 #endif
