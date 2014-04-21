@@ -36,12 +36,12 @@ Now that you have a copy of the software, you can compile the software. The soft
 Listener node
 -------------
 
-Before being able to compile the listener node software, you must first generate a `configuration.h` file for your network. Run the following command to do so.
+Before being able to compile the listener node software, you must first generate a `configuration.h` file for your network. Run the following commands to do so.
 
     $ cd tools/configuration_generator
     $ sudo python configuration_generator.py
 
-Follow the steps and you will end up with a `configuration.h` file in the same folder. Note that the order of presenting the nodes to the script important because node IDs will be assigned in that order. You must therefore also place the nodes in the same order in the network to obtain consistent results!
+Follow the steps and you will end up with a `configuration.h` file in the same folder. Note that the order of presenting the nodes to the script is important because node IDs will be assigned in the same order. You must therefore also place the nodes in the same order in the network to obtain consistent results!
 
 Once you have done this, run the following commands to compile the listener node software.
     
