@@ -151,7 +151,7 @@ void main(void) {
         if(isPacketReady()) {
             while(isPacketReady()) {
                 if(receivePacket((char*)&rxPacket, packetSize, &rssi, &corr) == packetSize) {
-                   // Spin packet received; mark the node as configured
+                    // Spin packet received; mark the node as configured
                     if(!configured[rxPacket.header.TX_id - 1]) {
                         configured[rxPacket.header.TX_id - 1] = 1;
                         unconfigured--;
@@ -194,7 +194,7 @@ void main(void) {
                 serialPacket.suffix = 0xBEEF;
 
                 // Transfer the packet through the serial port
-                halUartWrite((uint8*)&serialPacket,sizeof(serialPacket));
+                halUartWrite((uint8*)&serialPacket, sizeof(serialPacket));
                 setSysTickFreq(TIMER_TICK_FREQ_250KHZ);
 
     	        // Update next_channel_time
