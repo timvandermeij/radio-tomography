@@ -55,9 +55,10 @@ RF nodes
 The RF nodes requires no additional configuration and the software can be compiled directly using the following commands.
 
     $ cd ../rf-node
+    $ make clean
     $ make
 
-Again, you will end up with an Intel HEX file named `rf-node.hex` that contains the compiled code.
+Running `make clean` here is important because the libraries have previously been compiled with the `chip=2531` flag, but we now want to compile with the `chip=2530` flag. Again, you will end up with an Intel HEX file named `rf-node.hex` that contains the compiled code.
 
 Flashing the software
 =====================
