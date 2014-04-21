@@ -129,7 +129,7 @@ uint8 string0Desc[] = {
 
 // String 1 descriptor: manufacturer
 uint8 string1Desc[] = {
-    12, // string1DescEnd - string1Desc
+    36, // string1DescEnd - string1Desc
     0x03, // bDescriptorType
     'T', 0,
     'e', 0,
@@ -152,7 +152,7 @@ uint8 string1Desc[] = {
 
 // String 2 descriptor: product
 uint8 string2Desc[] = {
-    12, // string2DescEnd - string2Desc
+    30, // string2DescEnd - string2Desc
     0x03, // bDescriptorType
     'C', 0,
     'C', 0,
