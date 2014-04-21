@@ -80,7 +80,7 @@ Listener node
 
 To flash the listener node, connect the USB dongle and the SmartRF board to the computer using the steps outlined in the CC2530 user manual. If the devices are properly connected, run the following commands.
 
-    $ cd ../../software/listener-node
+    $ cd ../listener-node
     $ sudo cc-tool -ew listener-node.hex -v
 
 Once the process is complete, the listener node is flashed.
