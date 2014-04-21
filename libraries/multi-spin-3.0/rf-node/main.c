@@ -229,7 +229,7 @@ void main(void) {
                         next_TX_time += (nodeId - 1);
                         next_TX_time = next_TX_time * SLOT_LENGTH;
                         next_TX_time += (3 * SLOT_LENGTH);
-                        spinPacket.headerpacket_counter = RX_packet_counter + numNodes - int_TX_id + 1;
+                        spinPacket.header.packet_counter = RX_packet_counter + numNodes - int_TX_id + 1;
                     } else {
                         next_TX_time = (nodeId - 1) - int_TX_id;
                         next_TX_time = next_TX_time * SLOT_LENGTH;
