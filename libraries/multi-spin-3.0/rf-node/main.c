@@ -180,12 +180,12 @@ void main(void) {
     // Initialization of the length of the interval of time until the next transmission
     next_TX_time = 255 - (nodeId * SLOT_LENGTH);
     // Initialization of the length of time until the next frequency channel switch
-    next_channel_time = 255-(nodeId * SLOT_LENGTH);
+    next_channel_time = 255 - (nodeId * SLOT_LENGTH);
 
     // Initialize the packet to be broadcasted
     spinPacket.header.packet_counter = 0;
     spinPacket.header.TX_id = nodeId;
-    for (u = 0; u < numNodes; u++) {
+    for(u = 0; u < numNodes; u++) {
         spinPacket.data[u].RSS = SPIN_HOLE;
         spinPacket.data[u].CORR = SPIN_HOLE;
     }
