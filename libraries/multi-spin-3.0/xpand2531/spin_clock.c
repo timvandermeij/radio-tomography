@@ -27,22 +27,6 @@ void clockInit(void) {
 }
 
 void setSysTickFreq(char freq) {
-    // Bits 5-3 of CLKCONCMD
-    if(freq & 0x02) {
-        CLKCONCMD |= (1 << 5);
-    } else {
-        CLKCONCMD &= ~(1 << 5);
-    }
-
-    if(freq & 0x01) {
-        CLKCONCMD |= (1 << 4);
-    } else {
-        CLKCONCMD &= ~(1 << 3);
-    }
-
-    if(freq & 0x01) {
-        CLKCONCMD |= (1 << 3);
-    } else {
-        CLKCONCMD &= ~(1 << 3);
-    }
+    // Set bits 5-3 of CLKCONCMD
+    CLKCONCMD |= freq << 3;
 }
