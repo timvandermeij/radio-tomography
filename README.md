@@ -80,7 +80,7 @@ The changes made for the listener node are also used for the RF nodes. However, 
     $ make
     $ mv rf-node.hex rf-node-8.hex
 
-Running `make clean` here is important because the libraries have previously been compiled with the `chip=2531` flag, but we now want to compile with the `chip=2530` flag.
+Running `make clean` here is important because the libraries have previously been compiled with the `chip=2531` flag, but we now want to compile with the `chip=2530` flag. Run `make clean` only for the first node, otherwise you will also remove previously made RF node HEX files!
 
 By doing this for all RF nodes, you will end up with `MAX_NUM_NODES` Intel HEX files that can be flashed onto the hardware chips.
 
@@ -109,8 +109,8 @@ To flash the RF nodes, connect the SmartRF board to the computer and the RF node
 
 Once the process is complete, one RF node (node 8 in our case) is flashed. Repeat this process for all RF nodes in the sensor network.
 
-Inspection
-==========
+Tools
+=====
 
 The network should be up and running now. To inspect the network, the toolchain provides several useful tools that are outlined below.
 
