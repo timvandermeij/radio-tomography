@@ -28,7 +28,6 @@
 #include "hal_assert.h"
 #include "hal_mcu.h"
 #include "hal_uart.h"
-#include "configuration.h"
 #include "rf.h"
 #include "flush_buffers.h"
 #include "timers34.h"
@@ -44,7 +43,6 @@ typedef struct {
     uint16 suffix;
 } serialPacket_t;
 serialPacket_t serialPacket;
-configurationPacket_t configPacket;
 spinPacket_t rxPacket;
 static rfConfig_t rfConfig;
 
@@ -62,14 +60,11 @@ signed char rssi;
 char corr;
 char TX_id;
 int int_TX_id;
-int unconfigured = NUM_NODES;
-int configured[NUM_NODES];
 
-int packetSize = sizeof(spinHeader) + sizeof(spinData) * NUM_NODES;
 char channel;
 static int channel_counter = 0;
 int next_channel_time;
-int next_reset_radio_time = (NUM_NODES + 3) * SLOT_LENGTH;
+int next_reset_radio_time = (MAX_NUM_NODES + 3) * SLOT_LENGTH;
 
 // Timer 3: frequency channel hopping
 timer34Config_t channel_hoppingConfig;
@@ -99,7 +94,7 @@ void channel_hoppingISR(void) __interrupt 11 {
     }
     rfConfig.channel = channel_sequence[channel_counter];
     timer3Stop();
-    next_channel_time = (NUM_NODES + 3) * SLOT_LENGTH;
+    next_channel_time = (MAX_NUM_NODES + 3) * SLOT_LENGTH;
     channel_hoppingConfig.tickThresh = next_channel_time;
     timer3Init(&channel_hoppingConfig);
     timer3Start();
@@ -107,8 +102,6 @@ void channel_hoppingISR(void) __interrupt 11 {
 }
 
 void main(void) {
-    int i, j;
-
     clockInit();
     ledInit();
     setSysTickFreq(TIMER_TICK_FREQ_250KHZ);
@@ -140,49 +133,11 @@ void main(void) {
     channel_hoppingConfig.isrPtr = channel_hoppingISR;
     timer3Init(&channel_hoppingConfig);
 
-    // Make sure all nodes start unconfigured.
-    for(i = 0; i < NUM_NODES; i++) {
-        configured[i] = 0;
-    }
-
-    // Configure the nodes
-    while(unconfigured > 0) {
-        HAL_PROCESS();
-        if(isPacketReady()) {
-            while(isPacketReady()) {
-                if(receivePacket((char*)&rxPacket, packetSize, &rssi, &corr) == packetSize) {
-                    // Spin packet received; mark the node as configured
-                    if(!configured[rxPacket.header.TX_id - 1]) {
-                        configured[rxPacket.header.TX_id - 1] = 1;
-                        unconfigured--;
-                    }
-                }
-            }
-        } else {
-            for(i = 1; i <= NUM_NODES; i++) {
-                if(!configured[i - 1]) {
-                    // The node has not been configured yet; send a configuration packet for the node
-                    memcpy(&configPacket.macAddress, &macAddresses[i - 1], sizeof(macAddresses[i - 1]));
-                    configPacket.nodeId = i;
-                    configPacket.numNodes = NUM_NODES;
-                    sendPacket((char*)&configPacket, sizeof(configPacket), rfConfig.pan, 0xFFFF, rfConfig.addr);
-
-                    // Sending a packet takes some time. Adding a bit of delay.
-                    for(j = 0; j < 5000; j++) {
-                        NOP;
-                    }
-                }
-            }
-        }
-    }
-    flushRXFIFO();
-    flushTXFIFO();
-
     // Process incoming Spin packets
     while(1) {
         HAL_PROCESS();
         if(isPacketReady()) {
-            if(receivePacket((char*)&rxPacket, packetSize, &rssi, &corr) == packetSize) {
+            if(receivePacket((char*)&rxPacket, sizeof(rxPacket), &rssi, &corr) == sizeof(rxPacket)) {
       	        ledOn(2); // Red LED on
                 ledOff(1); // Green LED off
 
@@ -198,9 +153,9 @@ void main(void) {
                 setSysTickFreq(TIMER_TICK_FREQ_250KHZ);
 
     	        // Update next_channel_time
-                TX_id = rxPacket.header.TX_id;
+                TX_id = rxPacket.TX_id;
                 int_TX_id = (int)(TX_id);
-                next_channel_time = (NUM_NODES - int_TX_id + 2) * SLOT_LENGTH;
+                next_channel_time = (MAX_NUM_NODES - int_TX_id + 2) * SLOT_LENGTH;
                 channel_hoppingConfig.tickThresh = next_channel_time;
                 timer3Init(&channel_hoppingConfig);
                 timer3Start();
