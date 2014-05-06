@@ -15,4 +15,4 @@ while True:
         binaryPacket = lines[-2]
         buffer = lines[-1]
         spinPacket = unpack('<Hb' + (len(binaryPacket) - 4) * 'b' + 'b', binaryPacket)
-        print(str(spinPacket).replace(', 0', '')) # Remove zeros from the output
+        print(spinPacket)
