@@ -50,22 +50,18 @@ You will end up with an executable named `cc-tool`. It is recommended to add thi
 Listener node
 -------------
 
-Before compiling the listener node software, you must:
-
-- Update the number of RF nodes in your sensor network. You can do this as follows:
+Before compiling the listener node software, you must update the number of RF nodes in your sensor network. You can do this as follows:
 
     $ cd ../../libraries/multi-spin-3.0/xpand2531
     $ vim spin_multichannel.h
 
-In this file, set `MAX_NUM_NODES` to the number of RF nodes in the sensor network.
-
-- Update the number of channels to use. You can do this as follows:
+In this file, set `MAX_NUM_NODES` to the number of RF nodes in the sensor network. After that, update the number of channels to use. You can do this as follows:
 
     $ vim channels.h
 
-In this file, set `CHANNELS_NUMBER` to the number of channels that you wish to use. After doing that, update the channels array a few lines below `CHANNELS_NUMBER`. Make sure that the channels array starts with the channel that you want to use as default channel.
+In this file, set `CHANNELS_NUMBER` to the number of channels that you wish to use. Do not forget to update the channels array a few lines below `CHANNELS_NUMBER`. Make sure that the channels array starts with the channel that you want to use as default channel.
 
-Once you have done this, run the following commands to compile the listener node software.
+Once you have done all this, run the following commands to compile the listener node software.
     
     $ cd ../../../software/listener-node
     $ make
