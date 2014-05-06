@@ -88,9 +88,9 @@ void next_TX_timeISR(void) __interrupt (12) {
   
     // Reset the array used to store the RSS and correlation values of the packets
     // broadcasted by the neighboring RF sensors
-    for(i = 0; i < numNodes; i++) {
-        spinPacket.data[i].RSS = SPIN_HOLE;
-        spinPacket.data[i].CORR = SPIN_HOLE;
+    for(i = 0; i < MAX_NUM_NODES; i++) {
+        spinPacket.RSS[i] = SPIN_HOLE;
+        spinPacket.CORR[i] = SPIN_HOLE;
     }
 }
 
