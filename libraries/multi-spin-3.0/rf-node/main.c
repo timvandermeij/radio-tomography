@@ -35,7 +35,7 @@
 #include "channels.h"
 
 // RF sensor configuration
-#define THIS_NODE_ID 1
+#define THIS_NODE_ID 3
 #define ADDR 0x1234 + (THIS_NODE_ID - 1)
 #define PAN 0x2011
 

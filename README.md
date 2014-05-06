@@ -71,18 +71,12 @@ The result of `make` is (amongst others) an Intel HEX file named `listener-node.
 RF nodes
 --------
 
-The changes made for the listener node are also used for the RF nodes. However, because each RF node has a unique identifier, the HEX files for each RF node must be compiled separately. You can do this with the following commands (assuming we compile node 8):
+The changes made for the listener node are also used for the RF nodes. However, because each RF node has a unique identifier, the HEX files for each RF node must be compiled separately. Since this can be a tedious task, we have provided build automation for this. Run the following commands to automatically generate all RF node HEX files (change `MAX_NUM_NODES` to the number of nodes in your sensor network):
 
-    $ cd ../../libraries/multi-spin-3.0/rf-node
-    $ vim main.c (change THIS_NODE_ID to 8 and save)
-    $ cd ../../../software/rf-node
-    $ make clean
-    $ make
-    $ mv rf-node.hex rf-node-8.hex
+    $ cd ../../tools
+    $ python rf_compiler.py MAX_NUM_NODES
 
-Running `make clean` here is important because the libraries have previously been compiled with the `chip=2531` flag, but we now want to compile with the `chip=2530` flag. Run `make clean` only for the first node, otherwise you will also remove previously made RF node HEX files!
-
-By doing this for all RF nodes, you will end up with `MAX_NUM_NODES` Intel HEX files that can be flashed onto the hardware chips.
+You will end up with `MAX_NUM_NODES` Intel HEX files that can be flashed onto the hardware chips.
 
 Flashing the software
 =====================
