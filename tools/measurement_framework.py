@@ -107,12 +107,12 @@ class Export:
 
         if type == 'rssi':
             label = 'RSSI'
-            yMin = '-30'
-            yMax = '0'
+            yMin = '-50'
+            yMax = '-20'
         else:
             label = 'Correlation value'
-            yMax = '110'
             yMin = '80'
+            yMax = '110'
 
         file.write('\t' + '\\begin{axis}[width=\\textwidth,' + 
                                         'height=0.85\\textwidth,' + 
