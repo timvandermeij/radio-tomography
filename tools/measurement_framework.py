@@ -129,7 +129,7 @@ class Export:
             channelPackets = filter.where('channel', int(channel))
 
             # Write the plot command for the current channel
-            file.write('\t\t' + '\\addplot[color=' + colors[channel] + ', semithick] coordinates {' + '\n')
+            file.write('\t\t' + '\\addplot[color=' + colors[channel] + ', thick] coordinates {' + '\n')
             for index, packet in list(enumerate(channelPackets)):
                 file.write('\t\t\t' + '(' + str(index) + ', ' + str(getattr(packet, type)) + ')' + '\n')
             file.write('\t\t' + '};' + '\n')
