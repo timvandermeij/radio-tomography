@@ -149,9 +149,9 @@ def main(argv):
         os._exit(1)
     channels = argv;
 
-    # Get packets for five seconds
+    # Get packets for ten seconds
     sniffer = Sniffer()
-    sniffer.start(5)
+    sniffer.start(10)
     sniffer.stop()
     packets = sniffer.getPackets()
 
