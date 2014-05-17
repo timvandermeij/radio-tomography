@@ -14,7 +14,7 @@ from struct import unpack
 PACKETS_UNTIL_UPDATE = 4
 UPDATE_COUNTER = 0
 X = []
-YRSSI = []
+YRSS = []
 YCORR = []
 
 # Get the channel to monitor from the provided arguments
@@ -34,7 +34,7 @@ plt.plotItem.setYRange(-40, 120)
 def update():
     x, yRssi, yCorr = parse(collect())
     plt.plotItem.setXRange(UPDATE_COUNTER * PACKETS_UNTIL_UPDATE - 100, UPDATE_COUNTER * PACKETS_UNTIL_UPDATE)
-    plt.plot(x, yRssi, pen=pg.mkPen('r', width=2), antialias=True, name='RSSI', clear=True)
+    plt.plot(x, yRssi, pen=pg.mkPen('r', width=2), antialias=True, name='RSS', clear=True)
     plt.plot(x, yCorr, pen=pg.mkPen('b', width=2), antialias=True, name='Correlation value')
     
 # Collect measurements from the serial port (USB dongle)
@@ -71,7 +71,7 @@ def collect():
 
 # Parse measurements in the buffer
 def parse(packets):
-    global UPDATE_COUNTER, PACKETS_UNTIL_UPDATE, X, YRSSI, YCORR
+    global UPDATE_COUNTER, PACKETS_UNTIL_UPDATE, X, YRSS, YCORR
     splitPackets = string.split(packets, '\n')
     
     for index, line in enumerate(splitPackets):
@@ -84,11 +84,11 @@ def parse(packets):
         splitLine = string.split(line, ', ')
         
         X.append(UPDATE_COUNTER * PACKETS_UNTIL_UPDATE + index)
-        YRSSI.append(int(splitLine[3]))
+        YRSS.append(int(splitLine[3]))
         YCORR.append(int(splitLine[5]))
 
     UPDATE_COUNTER = UPDATE_COUNTER + 1
-    return X, YRSSI, YCORR
+    return X, YRSS, YCORR
 
 # Set the timer to dynamically update the plot
 timer = QtCore.QTimer()

@@ -9,14 +9,14 @@ class Packet:
     def __init__(self):
         self.fromNode = 0
         self.toNode = 0
-        self.rssi = 0
+        self.rss = 0
         self.corr = 0
         self.channel = 0
 
     def __str__(self):
         return (str(self.fromNode) + ' | ' +
                 str(self.toNode) + ' | ' +
-                str(self.rssi) + ' | ' +
+                str(self.rss) + ' | ' +
                 str(self.corr) + ' | ' +
                 str(self.channel))
 
@@ -43,15 +43,15 @@ class Sniffer:
                 buffer = lines[-1]
                 binaryPacket = str(unpack('<Hb' + (len(binaryPacket) - 4) * 'b' + 'b', binaryPacket))
                 binaryPacket = string.split(binaryPacket.translate(None, '\n()'), ', ')
-                numNodes = (len(binaryPacket) - fieldsToIgnore) / 2 # Because of RSSI and CORR arrays
-                rssiArray = binaryPacket[2 : (2 + numNodes)]
+                numNodes = (len(binaryPacket) - fieldsToIgnore) / 2 # Because of RSS and CORR arrays
+                rssArray = binaryPacket[2 : (2 + numNodes)]
                 corrArray = binaryPacket[(2 + numNodes) : (2 + (numNodes * 2))]
                 for index in range(1, numNodes + 1):
                     # Create a packet object for each measured link
                     packet = Packet()
                     packet.fromNode = int(binaryPacket[1])
                     packet.toNode = index
-                    packet.rssi = int(rssiArray[index - 1])
+                    packet.rss = int(rssArray[index - 1])
                     packet.corr = int(corrArray[index - 1])
                     packet.channel = int(binaryPacket[-1])
                     self.packets.append(packet)
@@ -105,8 +105,8 @@ class Export:
         file.write('\\begin{document}' + '\n\n')
         file.write('\\begin{tikzpicture}' + '\n')
 
-        if type == 'rssi':
-            label = 'RSSI'
+        if type == 'rss':
+            label = 'RSS'
             yMin = '-50'
             yMax = '-20'
         else:
@@ -163,7 +163,7 @@ def main(argv):
     # Write the results to a text file and create two LaTeX plots
     export = Export(packets)
     export.txt('measurements.txt')
-    export.tex('plot_rssi.tex', 'rssi', channels)
+    export.tex('plot_rss.tex', 'rss', channels)
     export.tex('plot_corr.tex', 'corr', channels)
 
 if __name__ == "__main__":
