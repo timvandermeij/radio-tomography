@@ -32,9 +32,9 @@ plt.plotItem.setYRange(-40, 120)
 
 # Update the plot with the new data
 def update():
-    x, yRssi, yCorr = parse(collect())
+    x, yRss, yCorr = parse(collect())
     plt.plotItem.setXRange(UPDATE_COUNTER * PACKETS_UNTIL_UPDATE - 100, UPDATE_COUNTER * PACKETS_UNTIL_UPDATE)
-    plt.plot(x, yRssi, pen=pg.mkPen('r', width=2), antialias=True, name='RSS', clear=True)
+    plt.plot(x, yRss, pen=pg.mkPen('r', width=2), antialias=True, name='RSS', clear=True)
     plt.plot(x, yCorr, pen=pg.mkPen('b', width=2), antialias=True, name='Correlation value')
     
 # Collect measurements from the serial port (USB dongle)

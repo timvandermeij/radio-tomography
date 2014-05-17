@@ -123,7 +123,7 @@ The toolchain provides a realtime 2D line plotter. You can use the plotter only 
 
     $ sudo python plotter.py 26
 
-will open a plot window with two line plots: one for the RSSI values and one for the correlation values. The last parameter, 26 in this case, is the channel for which the RSSI and correlation values are plotted.
+will open a plot window with two line plots: one for the RSS values and one for the correlation values. The last parameter, 26 in this case, is the channel for which the RSS and correlation values are plotted.
 
 Measurement framework
 ---------------------
