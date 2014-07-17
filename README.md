@@ -167,7 +167,7 @@ Authors
 License
 =======
 
-The toolchain itself is licensed under a GPL v2 license. Please refer to the `LICENSE` file for more information. However, the external libraries used (like cc-tool, the CC USB firmware or multi-Spin) are licensed under their own licenses. Refer to their individual license files for more information. multi-Spin 3.0 has the same license as multi-Spin 2.0.
+The toolchain itself is licensed under a GPL v3 license. Please refer to the `LICENSE` file for more information. However, the external libraries used (like cc-tool, the CC USB firmware or multi-Spin) are licensed under their own licenses. Refer to their individual license files for more information. multi-Spin 3.0 has the same license as multi-Spin 2.0.
 
 References
 ==========
