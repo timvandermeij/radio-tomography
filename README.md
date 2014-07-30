@@ -169,6 +169,12 @@ License
 
 The toolchain itself is licensed under a GPL v3 license. Please refer to the `LICENSE` file for more information. However, the external libraries used (like cc-tool, the CC USB firmware or multi-Spin) are licensed under their own licenses. Refer to their individual license files for more information. multi-Spin 3.0 has the same license as multi-Spin 2.0.
 
+If you use this material in your own work, please properly cite the papers indicated below, which describe the protocol from the original authors of multi-Spin:
+
+* _M. Bocca, O. Kaltiokallio, and N. Patwari. "Radio Tomographic Imaging for Ambient Assisted Living", in S. Chessa and S. Knauth (Eds.): EvAAL 2012, Communications in Computer and Information Science (CCIS) 362, pp. 108-130, Springer (2013)._
+
+* _O. Kaltiokallio, M. Bocca, and N. Patwari. "Enhancing the Accuracy of Radio Tomographic Imaging Using Channel Diversity", 9th IEEE Int. Conference on Mobile Ad Hoc Sensor Systems (IEEE MASS 2012), October 8-10, 2012, Las Vegas, NV, USA._
+
 References
 ==========
 
